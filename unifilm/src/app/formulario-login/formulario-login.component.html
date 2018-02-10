@@ -1,3 +1,133 @@
-<p>
-  formulario-login works!
-</p>
+<div class="container-fluid d-flex fondo-login" style="height:800px">
+                
+                                        <div class="form-group mx-auto my-auto text-center">
+                                                <h1 class="display-1 mx-auto my-auto" style="color:white; font-weight: bold; font-family: 'Cinzel Decorative', cursive">UNIFILM</h1><br>
+                                                <h1 class="display-3 mx-auto my-auto" style="color:white; font-weight: bold; font-style: italic">Lo más fresco en peliculas</h1><br><br>
+                                                <button type="button" class="btn-lg btn-primary mx-2" data-toggle="modal" data-target="#loginModal"><i class="fas fa-sign-in-alt"></i> Iniciar Sesion</button>
+                                                <button type="button" class="btn-lg btn-danger mx-2" data-toggle="modal" data-target="#signupModal">Registrarse</button>
+                                                <!-- Modal de Inicio de Sesion -->
+                                                <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                                <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                                <h5 class="modal-title" id="exampleModalLabel">Iniciar Sesion</h5>
+                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                </button>
+                                                                        </div>
+                                                                        <div class="modal-body text-left">
+                                                                                <form action="login.php" class="form-group" method="post" name="signup" id="signup" enctype="multipart/form-data">
+                                                                                        <div class="form-group">
+                                                                                                <label class="col-form-label">Usuario<span class="text-danger">*</span></label>
+                                                                                                <input type="text" class="form-control" name="username" id="username" placeholder="Ingresa tu nombre de usuario" value="">
+                                                                                        </div>
+                
+                                                                                        <div class="form-group">
+                                                                                                <label class="control-label">Contraseña<span class="text-danger">*</span></label>
+                                                                                                <div class="input-group">
+                                                                                                        <input type="password" class="form-control" name="password" id="password" placeholder="Ingresa tu contraseña" value="">
+                                                                                                </div>
+                                                                                                <small><a href="#">¿Olvidaste tu contraseña?</a></small>
+                                                                                        </div>
+                
+                                                                                
+                                                                                <br>
+                                                                                <input name="Submit" type="submit" value="Iniciar Sesion" class="btn btn-primary btn-lg mx-auto d-block">
+                                                                        </form>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                        <h5 class="text-cemter">¿Aún no estás registrado?</h5><br>
+                                                                        <h5 class="text-center"><a href="signup">Crea una cuenta</a></h5>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                
+                                                <!-- Modal de Registro -->
+                                                <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                                <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                                <h5 class="modal-title" id="exampleModalLabel2">Registro</h5>
+                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                </button>
+                                                                        </div>
+                                                                        <div class="modal-body text-left">
+                                                                                <section>
+                                                                                        <form class="form-group" action="signup.php" method="post" name="signup" enctype="multipart/form-data" >
+                
+                                                                                                <!--USERNAME-->
+                                                                                                <div class="form-group">
+                                                                                                        <label class="col-form-label">Nombre de usuario <span class="text-danger">*</span></label>
+                                                                                                        <input type="text" data-toggle="tooltip"
+                                                                                                        title="Tu PSNID debe tener al menos entre 3 y 16 caracteres válidos (A-Z _ -)"
+                                                                                                        class="form-control" name="username" placeholder="Ingresa tu nombre de usuario"
+                                                                                                        value="" required>
+                                                                                                </div>
+                
+                                                                                                <!--EMAIL-->
+                                                                                                <div class="form-group">
+                                                                                                        <label class="control-label">Correo Electronico <span class="text-danger">*</span></label>
+                                                                                                        <input type="email" class="form-control" name="email" placeholder="Ingresa tu eMail" value="" required>
+                                                                                                        <small> Tu eMail es utilizado para la seguridad de tu cuenta, autorización y recuperación de contraseña</small>
+                                                                                                </div>
+                
+                                                                                                <!--PASSWORD-->
+                                                                                                <div class="form-group">
+                                                                                                        <label class="control-label">Contraseña <span class="text-danger">*</span></label>
+                                                                                                        <input type="password" class="form-control" name="password" placeholder="Ingresa tu contraseña" value="" data-toggle="tooltip" title="Tu contraseña debe tener entre 5 a 15 caracteres" required>
+                                                                                                        <small> Ingresa una contraseña de 5 a 15 caracteres</small>
+                                                                                                </div>
+                
+                                                                                                <!--CONFIRMA PASSWORD-->
+                                                                                                <div class="form-group">
+                                                                                                        <label class="control-label">Confirmar Contraseña <span class="text-danger">*</span></label>
+                                                                                                        <input type="password" class="form-control" name="cpassword" id="cpassword" placeholder="Confirmar contraseña" value="" required>
+                                                                                                </div>
+                
+                                                                                                <!--NOMBRE COMPLETO-->
+                                                                                                <div class="form-group">
+                                                                                                        <label class="control-label">Nombre Completo <span class="text-danger">*</span></label>
+                                                                                                        <div class="form-inline">
+                                                                                                                <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre(s)" value="" data-toggle="tooltip" title="Ingresa tu nombre por favor" required>
+                                                                                                                <input type="text" class="form-control" name="apellido" id="apellido" placeholder="Apellido" value="" data-toggle="tooltip" title="Ingresa tu apellido por favor" required>
+                                                                                                        </div>
+                                                                                                </div>
+                
+                                                                                                <!--GENERO-->
+                                                                                                <div class="form-group">
+                                                                                                        <label class="control-label">Sexo<span class="text-danger">*</span></label>
+                                                                                                        <div>
+                                                                                                                <label>
+                                                                                                                        <input name="genero" type="radio" value="M" checked >
+                                                                                                                Masculino</label>
+                                                                                                                <label>
+                                                                                                                        <input name="genero" type="radio" value="F" >
+                                                                                                                Femenino</label>
+                                                                                                        </div>
+                                                                                                </div>
+                
+                                                                                                <!--TARJETA-->
+                                                                                                <div class="form-group">
+                                                                                                        <label class="control-label">Tarjeta de Credito<span class="text-danger">*</span></label>
+                                                                                                        <input class="form-control" name="numeroTarjeta" type="number" placeholder="Ingresa el numero de tu tarjeta de credito" required>
+                                                                                                </div>
+                
+                                                                                                <p class="text-left">Los valores marcados con (<span class="text-danger">*</span>) son requeridos.</p>
+                
+                                                                                                <span class="text-muted"><span class="label label-danger">Nota:</span> Al hacer click en Registrarse, aceptas haber leído y estar de acuerdo con nuestros <a href="#">Términos y Condiciones</a> , incluyendo nuestro <a href="#">uso de Cookies</a>.</span>
+                                                                                        </form>
+                                                                                </section>
+                                                                        </div>
+                                                                        <div class="modal-footer text-center">
+                                                                                <input name="submit" type="submit" value="Cancelar" class="btn btn-disabled">
+                                                                                <input name="submit" type="submit" value="Registrarse" class="btn btn-primary">
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                
+                
+                                        </div>
+                                </div>
