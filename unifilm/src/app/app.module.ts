@@ -1,22 +1,25 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { FormularioLoginComponent } from './formulario-login/formulario-login.component';
-import { FormularioRegistroComponent } from './formulario-registro/formulario-registro.component';
+
 import { PaginaPrincipalComponent } from './pagina-principal/pagina-principal.component';
 
+import { Routing } from './routing';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FormularioLoginComponent,
-    FormularioRegistroComponent,
-    PaginaPrincipalComponent
+    PaginaPrincipalComponent,
+    HomeComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    Routing
   ],
   providers: [],
   bootstrap: [AppComponent]
