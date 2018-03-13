@@ -7,6 +7,7 @@ import { UsuarioNewComponent } from './usuario-new.component';
 
 export const USUARIO_ROUTES: Routes = [
     { path: '', component: UsuarioListComponent, pathMatch: 'full' },
+    { path: 'new', component: UsuarioNewComponent },
     { path: ':id', component: UsuarioDetailComponent }
 
 

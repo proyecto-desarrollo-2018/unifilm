@@ -15,6 +15,9 @@ import { UsuarioDetailComponent } from './usuario/usuario-detail.component';
 import { UsuarioNewComponent } from './usuario/usuario-new.component';
 import { SinginComponent } from './singin/singin.component';
 import { SingupComponent } from './singup/singup.component';
+import { PeliculaNewComponent } from './pelicula/pelicula-new.component';
+import { PeliculaListComponent } from './pelicula/pelicula-list.component';
+import { PeliculaDetailComponent } from './pelicula/pelicula-detail.component';
 
 
 @NgModule({
@@ -27,7 +30,10 @@ import { SingupComponent } from './singup/singup.component';
     UsuarioDetailComponent,
     UsuarioNewComponent,
     SinginComponent,
-    SingupComponent
+    SingupComponent,
+    PeliculaNewComponent,
+    PeliculaListComponent,
+    PeliculaDetailComponent
   ],
   imports: [
     BrowserModule,
