@@ -1,0 +1,105 @@
+<div class="container-fluid d-flex fondo-login" style="height:800px">
+
+
+<div style="justify-content:center">
+<form  class="form-group" [formGroup]="registro" (ngSubmit)="onSubmit()" name="signup" enctype="multipart/form-data">
+
+  <!--USERNAME-->
+  <div class="form-group">
+    <label class="col-form-label">Nombre de usuario
+      <span class="text-danger">*</span>
+    </label>
+    <input type="text" data-toggle="tooltip" title="Tu PSNID debe tener al menos entre 3 y 16 caracteres válidos (A-Z _ -)" class="form-control"
+      name="username" placeholder="Ingresa tu nombre de usuario" value="" required formControlName="username">
+  </div>
+
+  <!--EMAIL-->
+  <div class="form-group">
+    <label class="control-label">Correo Electronico
+      <span class="text-danger">*</span>
+    </label>
+    <input type="email" class="form-control" name="email" placeholder="Ingresa tu eMail" value="" required formControlName="email">
+    <small> Tu eMail es utilizado para la seguridad de tu cuenta, autorización y recuperación de contraseña</small>
+  </div>
+
+  <!--PASSWORD-->
+  <div class="form-group">
+    <label class="control-label">Contraseña
+      <span class="text-danger">*</span>
+    </label>
+    <input type="password" class="form-control" name="password" placeholder="Ingresa tu contraseña" value="" data-toggle="tooltip"
+      title="Tu contraseña debe tener entre 5 a 15 caracteres" required formControlName="password">
+    <small> Ingresa una contraseña de 5 a 15 caracteres</small>
+  </div>
+
+  <!--CONFIRMA PASSWORD-->
+  <div class="form-group">
+    <label class="control-label">Confirmar Contraseña
+      <span class="text-danger">*</span>
+    </label>
+    <input type="password" class="form-control" name="cpassword" id="cpassword" placeholder="Confirmar contraseña" value="" required
+      formControlName="cpassword">
+  </div>
+
+  <!--NOMBRE COMPLETO-->
+  <div class="form-group">
+    <label class="control-label">Nombre Completo
+      <span class="text-danger">*</span>
+    </label>
+    <div class="form-inline">
+      <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre(s)" value="" data-toggle="tooltip"
+        title="Ingresa tu nombre por favor" required formControlName="nombre">
+      <input type="text" class="form-control" name="apellido" id="apellido" placeholder="Apellido" value="" data-toggle="tooltip"
+        title="Ingresa tu apellido por favor" required formControlName="apellido">
+    </div>
+  </div>
+
+  <!--GENERO-->
+  <div class="form-group">
+    <label class="control-label">Sexo
+      <span class="text-danger">*</span>
+    </label>
+    <div>
+      <label>
+        <input name="genero" type="radio" value="M" checked formControlName="genero"> Masculino
+      </label>
+      <label>
+        <input name="genero" type="radio" value="F" formControlName="genero"> Femenino
+      </label>
+    </div>
+  </div>
+
+
+  <!--TARJETA-->
+  <div class="form-group">
+    <label class="control-label">Tarjeta de Credito
+      <span class="text-danger">*</span>
+    </label>
+    <input class="form-control" name="numeroTarjeta" type="number" placeholder="Ingresa el numero de tu tarjeta de credito" required
+      formControlName="tarjeta">
+  </div>
+
+  <p class="text-left">Los valores marcados con (
+    <span class="text-danger">*</span>) son requeridos.</p>
+
+  <span class="text-muted">
+    <span class="label label-danger">Nota:</span> Al hacer click en Registrarse, aceptas haber leído y estar de acuerdo con nuestros
+    <a href="#">Términos y Condiciones</a> , incluyendo nuestro
+    <a href="#">uso de Cookies</a>.</span>
+
+  <div class="modal-footer text-center">
+    <input name="submit" type="submit" value="Cancelar" class="btn btn-disabled" data-dismiss="modal">
+    <input *ngIf="registro.valid" [routerLink]="['/home']" name="submit" type="submit" value="Registrarse" class="btn btn-primary"
+      data-dismiss="modal">
+    <h5 class="text-center">
+      <a href="signupModal" data-toggle="modal" data-target="#loginModal">¿Ya tienes una cuenta?</a>
+    </h5>
+    <!--<button class="btn btn-primary" type="submit">Registrarse</button>
+                  <button class="btn btn-disabled" >Cancelar</button>
+                                                                                                       -->
+  </div>
+</form>
+
+</div>
+
+</div>

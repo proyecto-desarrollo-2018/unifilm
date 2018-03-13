@@ -1,0 +1,29 @@
+
+<form class="form-group" name="signup" id="signup" enctype="multipart/form-data" [formGroup]="singin" (ngSubmit)="onSubmitL()">
+  <div class="form-group">
+    <label class="col-form-label">Usuario
+      <span class="text-danger">*</span>
+    </label>
+    <input type="text" class="form-control" name="username" id="username" placeholder="Ingresa tu nombre de usuario" value=""
+      formControlName="username">
+  </div>
+
+  <div class="form-group">
+    <label class="control-label">Contraseña
+      <span class="text-danger">*</span>
+    </label>
+    <div class="input-group">
+      <input type="password" class="form-control" name="password" id="password" placeholder="Ingresa tu contraseña" value="" formControlName="password">
+    </div>
+    <small>
+      <a href="#">¿Olvidaste tu contraseña?</a>
+    </small>
+  </div>
+
+
+  <br>
+  <input [routerLink]="['/home']" name="submit" type="submit" value="Inicio " class="btn btn-primary" data-dismiss="modal">
+
+  <input *ngIf="registro.valid" [routerLink]="['/home']" name="submit" type="submit" value="Registrarse" class="btn btn-primary">
+
+</form>
