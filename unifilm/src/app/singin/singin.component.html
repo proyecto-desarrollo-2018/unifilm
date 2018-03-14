@@ -1,29 +1,29 @@
-
-<form class="form-group" name="signup" id="signup" enctype="multipart/form-data" [formGroup]="singin" (ngSubmit)="onSubmitL()">
-  <div class="form-group">
-    <label class="col-form-label">Usuario
-      <span class="text-danger">*</span>
-    </label>
-    <input type="text" class="form-control" name="username" id="username" placeholder="Ingresa tu nombre de usuario" value=""
-      formControlName="username">
-  </div>
-
-  <div class="form-group">
-    <label class="control-label">Contraseña
-      <span class="text-danger">*</span>
-    </label>
-    <div class="input-group">
-      <input type="password" class="form-control" name="password" id="password" placeholder="Ingresa tu contraseña" value="" formControlName="password">
-    </div>
-    <small>
-      <a href="#">¿Olvidaste tu contraseña?</a>
-    </small>
-  </div>
-
-
-  <br>
-  <input [routerLink]="['/home']" name="submit" type="submit" value="Inicio " class="btn btn-primary" data-dismiss="modal">
-
-  <input *ngIf="registro.valid" [routerLink]="['/home']" name="submit" type="submit" value="Registrarse" class="btn btn-primary">
-
-</form>
+<div class="fondo-singin">
+<div class="container-fluid d-flex" style="height: 800px" >
+  <div class="mx-auto my-auto text center" >
+    <h1 class="display-1 mx-auto my-auto" style="color: white; font-weight: bold;">Inicio de sesión</h1>
+    <br>
+    <br>
+    <br>
+    <br>    
+    <form>
+      <div class="col-md" style="color: white; font-weight: bold;">	
+      <!--Nombre de usuario-->  
+        <div class="form-group" style="color: white; font-weight: bold;">
+          <label >Nombre de usuario</label>
+          <span class="text-danger">*</span>
+          <input type="text" class="form-control" id="usuario" placeholder="Ingrese su usuario">
+        </div>
+      <!--Password-->
+        <div class="form-group" style="color: white; font-weight: bold;">
+          <label >Ingrese su contraseña</label>
+          <span class="text-danger">*</span>
+          <input type="password" class="form-control" id="password" placeholder="Ingrese Password">
+        </div>
+        <div align="center" >
+          <button type="button" class="btn btn-primary btn-md ">Aceptar</button>
+        <button type="button" class="btn btn-secondary btn-md ">Cancelar</button>
+      </div>
+      <br>
+      <br>
+ </div>
