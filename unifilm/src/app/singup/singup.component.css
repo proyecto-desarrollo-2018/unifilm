@@ -1,0 +1,5 @@
+.fondo-singup {
+    background-color: rgba(0, 0, 0, .8);
+    background-image: url(fondo.jpg);
+    background-blend-mode: darken
+  }

@@ -1,4 +1,5 @@
 import http from 'http'
+//import Debug from 'debug'
 import Debug from 'debug'
 import app from './app'
 
@@ -9,5 +10,5 @@ const debug = new Debug('unifilm:root')
 
 
 app.listen(PORT, () =>{
-    console.log( 'Server corriendo en el puerto ' + PORT )
+    debug( 'Server corriendo en el puerto ' + PORT )
 })
