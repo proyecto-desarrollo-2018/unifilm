@@ -6,6 +6,8 @@ import { UsuarioNewComponent } from './usuario/usuario-new.component';
 import { SinginComponent } from './singin/singin.component';
 import { SingupComponent } from './singup/singup.component';
 import { PeliculaListComponent } from './pelicula/pelicula-list.component';
+import { PeliculaNewComponent } from './pelicula/pelicula-new.component';
+
 
 const APP_ROUTES: Routes = [
     { path: '', component: PaginaPrincipalComponent, pathMatch: 'full'},
@@ -14,7 +16,8 @@ const APP_ROUTES: Routes = [
     { path: 'usuarios', children: USUARIO_ROUTES },
     { path: 'singin', component: SinginComponent },
     { path: 'singup', component: SingupComponent },
-    { path: 'pelicula-list', component: PeliculaListComponent }
+    { path: 'pelicula-list', component: PeliculaListComponent },
+    { path: 'pelicula-new', component: PeliculaNewComponent}
 
 
 

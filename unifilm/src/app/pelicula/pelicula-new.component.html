@@ -1,3 +1,85 @@
-<p>
-  pelicula-new works!
-</p>
+
+<div class="fondo-pelicula">
+  <div class="container-fluid d-flex" style="height: 1000px" >
+    <div class="mx-auto my-auto text center" >
+      <h1 class="display-1 mx-auto my-auto" style="color: white; font-weight: bold;">Alta contenido</h1>
+      <br>   
+      <!--Nombre de pelicula-->  
+        <div class="col-md" style="color: white; font-weight: bold;">	
+          <div class="form-group" style="color: white; font-weight: bold;">
+            <label >Nombre de la pelicula</label>
+            <span class="text-danger">*</span>
+            <input type="text" class="form-control" id="nombrePelicula" placeholder="Ingrese su usuario" formControlName="nombreP">
+          </div>
+        </div>
+            
+            <!--Genero pelicula-->
+            <div class="col-md" style="color: white; font-weight: bold;">	
+            <br>
+            <label >Genero de la pelicula</label>
+            <span class="text-danger">*</span>
+            <br>           
+            <div class="form-group ">
+
+                <select  class="form-control" formControlName="genero"  >
+                  <option value="Seleccione mes" selected>Seleccione el genero</option>
+                  <option value="Accion" >Accion</option>
+                  <option value="Aventura">Aventura</option>
+                  <option value="Animacion">Animacion</option>
+                  <option value="Comedia">Comedia</option>
+                  <option value="Crimen">Crimen</option>
+                  <option value="Documental">Documental</option>
+                  <option value="Drama">Drama</option>
+                  <option value="Fantasia">Fantasia</option>
+                  <option value="Terror">Terror</option>
+                  <option value="NoPor">NoPor</option>             
+                </select>
+            </div>
+          </div>  
+                <br>
+
+        <!--Director-->  
+        <div class="col-md" style="color: white; font-weight: bold;">	
+          <div class="form-group" style="color: white; font-weight: bold;">
+            <label >Nombre del director</label>
+            <span class="text-danger">*</span>
+            <input type="text" class="form-control" id="director" placeholder="Ingrese el nombre de director" formControlName="director">
+          </div>
+        </div>
+     
+        <!--Calificacion-->  
+         <div class="col-md" style="color: white; font-weight: bold;">	
+            <div class="form-group" style="color: white; font-weight: bold;">
+              <label >Calificacion</label>
+              <span class="text-danger">*</span>
+              <input type="number" class="form-control" style="width: 200px" id="calificacion" placeholder="Ingrese calificacion" formControlName="calificacion">
+             </div>
+        </div>
+          <!--Sinopsis-->  
+         <div class="col-md" style="color: white; font-weight: bold;">	
+              <div class="form-group" style="color: white; font-weight: bold;">
+                <label >Sinopsis</label>
+                <span class="text-danger">*</span>
+                <input type="textarea" class="form-control text-muted " style=" size: 32"  id="sinopsis" placeholder="Ingrese la sinopsis de la pelicuala" formControlName="codigoS"> 
+               
+              </div>  
+          </div>
+
+           <!--Archivo de pelicula-->   
+           <div class="col-md" style="color: white; font-weight: bold;">
+           <label >Seleccionar pelicula</label>
+             <input type="file" class="form-control-file" id="pelicula" >
+            </div> 
+             <br>
+           
+             <div align="center" >
+              <button  type="submit" [disabled]="registro.invalid" class="btn btn-primary btn-md ">Aceptar</button>
+            <button type="button" class="btn btn-secondary btn-md ">Cancelar</button>
+              <p class="alert alert-danger">registro.invalid: {{ registro.invalid }}</p>
+            </div>
+
+        <br>
+        <br>
+        </div>
+   </div>
+  </div>
