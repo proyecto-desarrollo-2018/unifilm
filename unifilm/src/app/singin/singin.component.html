@@ -1,29 +1,52 @@
 <div class="fondo-singin">
-<div class="container-fluid d-flex" style="height: 800px" >
-  <div class="mx-auto my-auto text center" >
-    <h1 class="display-1 mx-auto my-auto" style="color: white; font-weight: bold;">Inicio de sesión</h1>
-    <br>
-    <br>
-    <br>
-    <br>    
-    <form>
-      <div class="col-md" style="color: white; font-weight: bold;">	
-      <!--Nombre de usuario-->  
-        <div class="form-group" style="color: white; font-weight: bold;">
-          <label >Nombre de usuario</label>
-          <span class="text-danger">*</span>
-          <input type="text" class="form-control" id="usuario" placeholder="Ingrese su usuario">
-        </div>
-      <!--Password-->
-        <div class="form-group" style="color: white; font-weight: bold;">
-          <label >Ingrese su contraseña</label>
-          <span class="text-danger">*</span>
-          <input type="password" class="form-control" id="password" placeholder="Ingrese Password">
-        </div>
-        <div align="center" >
-          <button type="button" class="btn btn-primary btn-md ">Aceptar</button>
-        <button type="button" class="btn btn-secondary btn-md ">Cancelar</button>
-      </div>
+  <div class="container-fluid d-flex" style="height: 800px">
+    <div class="mx-auto my-auto text center">
+      <h1 class="display-1 mx-auto my-auto" style="color: white; font-weight: bold;">Inicio de sesión</h1>
       <br>
       <br>
- </div>
+      <br>
+      <br>
+      <form [formGroup]="loging" (ngSubmit)="iniciarSesion()" novalidate>
+        <div class="col-md" style="color: white; font-weight: bold;">
+          <!--Nombre de usuario-->
+          <div class="form-group" style="color: white; font-weight: bold;">
+            <label>Nombre de usuario</label>
+            <span class="text-danger">*</span>
+            <input type="text" class="form-control" id="usuario" placeholder="Ingrese su usuario" formControlName="nombreU" maxlength="35">
+          </div>
+          <div *ngIf="loging.get('nombreU').errors && loging.get('nombreU').dirty">
+            <p class="alert alert-danger" *ngIf="loging.get('nombreU').hasError('required')">El campo es requerido</p>
+            <p class="alert alert-danger" *ngIf="loging.get('nombreU').hasError('sinEspacios')">No puede haber espacios</p>
+            <!--<p class="alert alert-danger" *ngIf="registro.get('nombreU').hasError('maxlength')">El campo debe tener 5 caracteres</p>
+                    <p class="alert alert-danger" *ngIf="registro.get('nombreU').hasError('minlength')">El campo debe tener 5 caracteres</p>
+                    -->
+            <p class="alert alert-danger" *ngIf="loging.get('nombreU').hasError('pattern')">Nombre de usuario no valido debe tener 4-30 caracteres</p>
+
+          </div>
+          <!--Password-->
+          <div class="form-group" style="color: white; font-weight: bold;">
+            <label>Ingrese su contraseña</label>
+            <span class="text-danger">*</span>
+            <input type="password" class="form-control" id="password" placeholder="Ingrese Password" formControlName="contra" maxlength="30">
+          </div>
+          <div *ngIf="loging.get('contra').errors && loging.get('contra').dirty">
+            <p class="alert alert-danger" *ngIf="loging.get('contra').hasError('required')">El campo es requerido</p>
+            <p class="alert alert-danger" *ngIf="loging.get('contra').hasError('sinEspacios')">No puede haber espacios</p>
+
+            <p class="alert alert-danger" *ngIf="loging.get('contra').hasError('pattern')">No es un password debe tener entre 6 y 18 caracteres y no puede tener simbolos extraños [*,/?¡. etc]</p>
+
+          </div>
+          <div align="center">
+            <!-- <button type="submit" class="btn btn-primary btn-md " [disabled]="loging.invalid" [routerLink]="['/home-cliente']"> Aceptar</button>
+         -->
+            <button type="submit" class="btn btn-primary btn-md " [disabled]="loging.invalid"> Aceptar</button>
+
+            <button type="button" class="btn btn-secondary btn-md " [routerLink]="['/pagina-principal']"> Cancelar</button>
+            <br>
+            <a [routerLink]="['/singup']">¿Aun no tienes una cuenta? ¡Da click aqui para crear una!</a>
+            <p class="alert alert-danger">registro.invalid: {{ loging.invalid }}</p>
+
+          </div>
+          <br>
+          <br>
+        </div>

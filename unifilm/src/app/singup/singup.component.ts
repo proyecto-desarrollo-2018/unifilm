@@ -19,36 +19,28 @@ export class SingupComponent implements OnInit {
   ngOnInit() {
   }
 
-  constructor( public fb: FormBuilder){
+  constructor(public fb: FormBuilder) {
     this.registro = this.fb.group({
-      nombreU: ['',[Validators.required, Validaciones.verificarEspacios, Validators.minLength(5), Validators.maxLength(5)]],
+      nombreU: ['', [Validators.required, Validators.pattern("[a-zA-Z0-9-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,._'-]{4,20}"), Validaciones.verificarEspacios]],
       contra: ['', [Validators.required, Validators.pattern(/^[a-z0-9_-]{6,18}$/)]],
       contraC: ['', [Validators.required, Validators.pattern(/^[a-z0-9_-]{6,18}$/)]],
       nombre: ['', [Validators.required]],
       apellidoP: ['', [Validators.required, Validaciones.verificarEspacios]],
       apellidoM: ['', [Validators.required, Validaciones.verificarEspacios]],
-      correo: ['', [Validators.required, Validators.email, Validaciones.verificarEspacios]],
+      correo: ['', [Validators.required, Validators.pattern("^[a-zA-Z0-9-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"), Validaciones.verificarEspacios]],
       sexo: ['', [Validators.required]],
-      numeroTarjeta: ['', [Validators.required]],
+      numeroTarjeta: ['', [Validators.required, Validators.pattern(/^[0-9]{16}$/)]],
       mesFE: ['', [Validators.required]],
       anioFE: ['', [Validators.required]],
-      codigoS: ['', [Validators.required, Validaciones.verificarEspacios]]
-
-
-
-     /* company: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(10)]],
-      email: ['', [Validators.required, Validators.email]],
-      age: ['', [Validators.required]],
-      url: ['', [Validators.pattern(/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/)]],
-      password: ['', [Validators.pattern(/^[a-z0-9_-]{6,18}$/)]],*/
+      codigoS: ['', [Validators.required, Validaciones.verificarEspacios, Validators.pattern(/^[0-9]{3}$/)]]
     });
   }
   onSubmit() {
     if (this.registro.valid) {
       const { nombreU, contra, nombre, apellidoP,
-              apellidoM, correo, sexo,
-              numeroTarjeta, mesFE, anioFE, codigoS  } = this.registro.value;
-      const tarjeta : Tarjeta = new Tarjeta( null , numeroTarjeta, mesFE, anioFE, codigoS );
+        apellidoM, correo, sexo,
+        numeroTarjeta, mesFE, anioFE, codigoS } = this.registro.value;
+      const tarjeta: Tarjeta = new Tarjeta(null, numeroTarjeta, mesFE, anioFE, codigoS);
       const usuario = new Usuario(null,
         nombreU,
         nombre,
@@ -61,8 +53,8 @@ export class SingupComponent implements OnInit {
         contra,
         sexo,
         'cliente',
-        tarjeta,
-        null);
+        tarjeta
+        );
 
       console.log(usuario);
       this.usuarios.unshift(usuario);
@@ -80,7 +72,7 @@ export class SingupComponent implements OnInit {
     console.log(this.usuarios);
   }
 
-  cambioFE( event: any ) {
+  cambioFE(event: any) {
     //this.feSeleccionada = event.target.value;
     this.feSeleccionada = this.registro.get('mesFE').value;
   }
@@ -89,10 +81,21 @@ export class SingupComponent implements OnInit {
     this.meSeleccionado = this.registro.get('anioFE').value;
 
   }
-  guardarUsuario(){
+  guardarUsuario() {
     //alert(JSON.stringify(this.registro.value));
     this.onSubmit();
 
+  }
+  isValidMatchPassword() {
+    const contra = this.registro.get('contra').value;
+    const contraC = this.registro.get('contraC').value;
+    console.log('contra: ' + contra + ' contraC:' + contraC);
+
+    if (contra !== contraC) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
 }

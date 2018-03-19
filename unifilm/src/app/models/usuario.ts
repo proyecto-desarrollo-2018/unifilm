@@ -1,4 +1,3 @@
-import { Pago } from "./pago";
 import { Tarjeta } from "./tarjeta";
 
 export class Usuario {
@@ -15,8 +14,7 @@ export class Usuario {
         public contra?: string,
         public genero?: string,
         public tipoUsuario?: string,
-        public tarjeta?: Tarjeta,
-        public pagos?: Array<Pago>
+        public tarjeta?: Tarjeta
     ){}
     
 }
