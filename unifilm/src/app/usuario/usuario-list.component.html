@@ -1,3 +1,19 @@
-<p>
-  usuario works!
+
+
+<div class="container" *ngIf="loading" style="padding: 400px 50px ;">
+  <div class="progress" style="height: 40px;" >
+    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%" aria-valuenow="400" >Cargando Usuarios</div>
+  </div>
+</div>
+
+<div *ngIf="!loading">
+<p class="container">
+  LISTA DE USUARIOS
 </p>
+<div class="container" *ngFor="let usuario of usuarios">
+
+  <ul class="list-group">
+    <li class="list-group-item disabled">{{ usuario | json }}</li>
+  </ul>
+</div>
+</div>

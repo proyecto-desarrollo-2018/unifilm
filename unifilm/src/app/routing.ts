@@ -3,7 +3,6 @@ import { PaginaPrincipalComponent } from './pagina-principal/pagina-principal.co
 import { HomeClienteComponent } from './home/home-cliente.component';
 import { USUARIO_ROUTES } from './usuario/usuario.routing';
 import { PELICULA_ROUTES } from './pelicula/pelicula.routing';
-
 import { UsuarioNewComponent } from './usuario/usuario-new.component';
 import { SinginComponent } from './singin/singin.component';
 import { SingupComponent } from './singup/singup.component';

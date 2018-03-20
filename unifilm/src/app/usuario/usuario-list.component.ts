@@ -1,15 +1,26 @@
 import { Component, OnInit } from '@angular/core';
+import { UsuarioService } from './usuario.service';
+import { Usuario } from '../models/usuario';
 
 @Component({
   selector: 'app-usuario-list',
   templateUrl: './usuario-list.component.html',
-  styleUrls: ['./usuario-list.component.css']
+  styleUrls: ['./usuario-list.component.css'],
+  providers: [ UsuarioService ]
 })
 export class UsuarioListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private usuarioService: UsuarioService) { }
+  usuarios: Usuario[];
+  loading = true;
 
-  ngOnInit() {
+  ngOnInit() { 
+    this.usuarioService
+      .getUsuarios()
+      .then((usuarios: Usuario[]) => {
+        this.usuarios = usuarios;
+        this.loading = false;
+      });
   }
 
 }

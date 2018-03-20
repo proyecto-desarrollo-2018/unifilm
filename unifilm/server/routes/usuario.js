@@ -29,7 +29,12 @@ const usuario = {
 const usuarios = new Array(10).fill(usuario);
 
 // /api/usuarios
-app.get('/', (req, res ) => res.status(200).json(usuarios) );
+app.get('/', (req, res ) => {
+  setTimeout(() => {
+    res.status(200).json(usuarios) 
+
+  }, 4000);
+} );
 
 
 // /api/usuarios/:id
