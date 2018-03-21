@@ -15,11 +15,12 @@ export class Pelicula {
         public generos?: Array<Object>,
         public anioProduccion?: Date,
         public fechaAdicion?: Date,
+        public sinopsis?: string,
         public clasificacion?: Array<Object>,
         public duracion?: Number,
-        public casaProducora?: string,
+        public casaProductora?: string,
         public calificacion?: Array<Calificacion>,
-        public imagen?: string,
+        public urlPortada?: string,
         public urlPelicula?: string
     ) {}
 }

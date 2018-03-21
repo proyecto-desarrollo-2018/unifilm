@@ -1,5 +1,5 @@
 <div class="fondo-singup">
-  <div class="container-fluid d-flex" style="height: 1500px">
+  <div class="container-fluid d-flex" style="height: 100%">
     <div class="mx-auto my-auto text center">
       <h1 class="display-1 mx-auto my-auto" style="color: white; font-weight: bold;">Inicio de sesión</h1>
       <br>
@@ -174,10 +174,10 @@
               <label>Codigo de seguridad</label>
               <span class="text-danger">*</span>
               <input maxlength="50"  type="password" class="form-control text-muted " id="cvsT" placeholder="Ingrese su codigo de seguridad" formControlName="codigoS">
-              <div *ngIf="registro.get('codigoS').errors && registro.get('codigoS').dirty">
-                <p class="alert alert-danger" *ngIf="registro.get('codigoS').hasError('required')">El campo es requerido</p>
-                <p class="alert alert-danger" *ngIf="registro.get('codigoS').hasError('sinEspacios')">No puede haber espacios</p>
-                <p class="alert alert-danger" *ngIf="registro.get('codigoS').hasError('pattern')">No es un numero valido valores validos: (0-9) deben ser 3 digitos</p>
+              <div *ngIf="registro.get('titulo').errors && registro.get('titulo').dirty">
+                <p class="alert alert-danger" *ngIf="registro.get('titulo').hasError('required')">El campo es requerido</p>
+                <p class="alert alert-danger" *ngIf="registro.get('titulo').hasError('sinEspacios')">No puede haber espacios</p>
+                <p class="alert alert-danger" *ngIf="registro.get('titulo').hasError('pattern')">No es un titulo valido</p>
 
               </div>
             </div>

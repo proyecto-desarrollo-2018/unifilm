@@ -1,80 +1,174 @@
 
 <div class="fondo-pelicula">
-  <div class="container-fluid d-flex" style="height: 1000px" >
+  <div class="container-fluid d-flex" style="height: 100%" >
     <div class="mx-auto my-auto text center" >
       <h1 class="display-1 mx-auto my-auto" style="color: white; font-weight: bold;">Alta contenido</h1>
       <br>   
-      <form>
+      <form [formGroup]="registro" (ngSubmit)="guardarPelicula()" novalidate>
       <!--Nombre de pelicula-->  
         <div class="col-md" style="color: white; font-weight: bold;">	
           <div class="form-group" style="color: white; font-weight: bold;">
-            <label >Nombre de la pelicula</label>
+            <label >Titulo de la pelicula</label>
             <span class="text-danger">*</span>
-            <input type="text" class="form-control" id="nombrePelicula" placeholder="Ingrese su usuario">
+            <input type="text" class="form-control"  placeholder="Ingrese su usuario" formControlName="titulo" maxlength="50">
+          </div>
+          <div *ngIf="registro.get('titulo').errors && registro.get('titulo').dirty">
+            <p class="alert alert-danger" *ngIf="registro.get('titulo').hasError('required')">El campo es requerido</p>
+            <p class="alert alert-danger" *ngIf="registro.get('titulo').hasError('sinEspacios')">No puede haber espacios</p>
+            <p class="alert alert-danger" *ngIf="registro.get('titulo').hasError('pattern')">No es un titulo valido</p>
+          
           </div>
         </div>
-            
+        <br>
+              <!--Nombre del director-->
+
+            <div class="col-md" style="color: white; font-weight: bold;">
+              <div class="form-group" style="color: white; font-weight: bold;">
+                <label>Director de la pelicula</label>
+                <span class="text-danger">*</span>
+                <input type="text" class="form-control" placeholder="Nombre" formControlName="nombreD" maxlength="50"><br>
+                <div *ngIf="registro.get('nombreD').errors && registro.get('nombreD').dirty">
+                  <p class="alert alert-danger" *ngIf="registro.get('nombreD').hasError('required')">El campo es requerido</p>
+                  <p class="alert alert-danger" *ngIf="registro.get('nombreD').hasError('pattern')">No es un nombre valido</p>
+                </div>
+                <input type="text" class="form-control" placeholder="Apellido Paterno" formControlName="apPaternoD" maxlength="50"><br>
+                <div *ngIf="registro.get('apPaternoD').errors && registro.get('apPaternoD').dirty">
+                  <p class="alert alert-danger" *ngIf="registro.get('apPaternoD').hasError('required')">El campo es requerido</p>
+                  <p class="alert alert-danger" *ngIf="registro.get('apPaternoD').hasError('sinEspacios')">No puede haber espacios</p>
+                  <p class="alert alert-danger" *ngIf="registro.get('apPaternoD').hasError('pattern')">No es un apellido valido</p>
+                
+                </div>
+                <input type="text" class="form-control" placeholder="Apellido Materno" formControlName="apMaternoD" maxlength="50"><br>
+                <div *ngIf="registro.get('apMaternoD').errors && registro.get('apMaternoD').dirty">
+                  <p class="alert alert-danger" *ngIf="registro.get('apMaternoD').hasError('required')">El campo es requerido</p>
+                  <p class="alert alert-danger" *ngIf="registro.get('apMaternoD').hasError('sinEspacios')">No puede haber espacios</p>
+                  <p class="alert alert-danger" *ngIf="registro.get('apMaternoD').hasError('pattern')">No es un apellido valido</p>
+                
+                </div>
+                  <label>Tipo de Director</label>
+                  <span class="text-danger">*</span>
+                  <div class="form-group ">                
+                    <select class="form-control" formControlName="director" maxlength="50">
+                      <option value="pro.produccion" *ngFor="let pro  of producciones" selected>{{pro.produccion}}</option>
+                    </select>
+                 </div>
+                  <div *ngIf="registro.get('director').errors && registro.get('director').dirty">
+                    <p class="alert alert-danger" *ngIf="registro.get('director').hasError('required')">El campo es requerido</p>
+                  </div>
+                <br>
+              </div>
+            </div>
+            <!--Actores-->
+            <div class="col-md" style="color: white; font-weight: bold;">
+              <div class="form-group" style="color: white; font-weight: bold;">
+                <label>Actores de la pelicula</label>
+                <span class="text-danger">*</span>
+                <input type="text" class="form-control" placeholder="Nombre" formControlName="nombreA" maxlength="50">
+                <br>
+                <input type="text" class="form-control" placeholder="Apellido Paterno" formControlName="apPaternoA" maxlength="50"> 
+                <br>
+                <input type="text" class="form-control" placeholder="Apellido Materno" formControlName="apMaternoA" maxlength="50">
+                <br>
+                <label>Tipo de Actor</label>
+                <span class="text-danger">*</span>
+                <br>
+                <div class="form-group ">
+
+                  <select class="form-control" formControlName="tipoActor" maxlength="50">
+                    <option value="pro.produccion" *ngFor="let tipoA  of tipoActor">{{tipoA.tipoActor}}</option>
+                  </select>
+                </div>
+
+              </div>
+            </div>
+            <br>
             <!--Genero pelicula-->
             <div class="col-md" style="color: white; font-weight: bold;">	
-            <br>
+            
             <label >Genero de la pelicula</label>
             <span class="text-danger">*</span>
             <br>           
             <div class="form-group ">
 
-                <select  class="form-control">
+                <select  class="form-control" formControlName="genero" maxlength="50">
                   <option value="g.genero"  *ngFor="let g of generos" >{{g.genero}}</option>         
                 </select>
             </div>
           </div>  
                 <br>
+          <!--Fecha de produccion-->
 
-        <!--Director-->  
-        <div>
-          
-        </div>
-        <div class="col-md" style="color: white; font-weight: bold;">	
-          <div class="form-group" style="color: white; font-weight: bold;">
-            <label >Nombre del director</label>
-            <span class="text-danger">*</span>
-             
-
-            <input type="text" class="form-control" id="director" placeholder="Ingrese el nombre de director" >
-          </div>
-        </div>
-     
-        <!--Calificacion-->  
-         <div class="col-md" style="color: white; font-weight: bold;">	
+          <div class="col-md" style="color: white; font-weight: bold;">
             <div class="form-group" style="color: white; font-weight: bold;">
-              <label >Calificacion</label>
+              <label>Fecha de estreno</label>
               <span class="text-danger">*</span>
-              <input type="number" class="form-control" style="width: 200px" id="calificacion" placeholder="Ingrese calificacion" >
-             </div>
-        </div>
+              <input type="date" step="1" min="2013-01-01" max="2018-12-31" value="2013-01-01" formControlName="fechaProuccion" maxlength="50">
+            </div>
+          </div>
           <!--Sinopsis-->  
          <div class="col-md" style="color: white; font-weight: bold;">	
               <div class="form-group" style="color: white; font-weight: bold;">
                 <label >Sinopsis</label>
                 <span class="text-danger">*</span>
-                <input type="textarea" class="form-control text-muted " style=" size: 32"  id="sinopsis" placeholder="Ingrese la sinopsis de la pelicuala" > 
-               
+                <textarea class="form-control text-muted" aria-label="With textarea" style=" size: 32" placeholder="Ingrese la sinopsis de la pelicula" formControlName="sinopsis" maxlength="50"></textarea>
+
               </div>  
           </div>
+
+           <!--Clasificacion-->
+          <div class="col-md" style="color: white; font-weight: bold;">
+
+            <label>Clasificacion de la pelicula</label>
+            <span class="text-danger">*</span>
+            <br>
+            <div class="form-group ">
+
+              <select class="form-control" formControlName="clasificacion" maxlength="50">
+                <option value="clacificacion.clasificacion" *ngFor="let clacificacion of clasificaciones">{{clacificacion.clasificacion}}</option>
+              </select>
+            </div>
+          </div>
+          <!--Duracion-->
+
+          <div class="col-md" style="color: white; font-weight: bold;">
+            <div class="form-group" style="color: white; font-weight: bold;">
+              <label>Duracion</label>
+              <span class="text-danger">*</span>
+              <input type="text" class="form-control" style=" size: 32" placeholder="Duracion en minutos" formControlName="duracion" maxlength="50">
+          
+            </div>
+          </div>
+          <!--Casa productora-->
+          
+          <div class="col-md" style="color: white; font-weight: bold;">
+            <div class="form-group" style="color: white; font-weight: bold;">
+              <label>Casa Productora</label>
+              <span class="text-danger">*</span>
+              <input type="text" class="form-control" style=" size: 32" placeholder="Casa Prouctora" formControlName="casaProductora" maxlength="50">
+          
+            </div>
+          </div>
+
+          <!--Portada de pelicula-->
+          <div class="col-md" style="color: white; font-weight: bold;">
+            <label>Portada</label>
+            <input type="file" class="form-control-file"  formControlName="urlPortada" maxlength="50">
+          </div>
+          <br>
 
            <!--Archivo de pelicula-->   
            <div class="col-md" style="color: white; font-weight: bold;">
            <label >Seleccionar pelicula</label>
-             <input type="file" class="form-control-file" id="pelicula" >
+             <input type="file" class="form-control-file" formControlName="urlPelicula" maxlength="50" >
             </div> 
              <br>
            
              <div align="center" >
-              <button  type="submit" class="btn btn-primary btn-md ">Aceptar</button>
+              <button  type="submit" class="btn btn-primary btn-md " (click)="guardarPelicula()">Aceptar</button>
             <button type="button" class="btn btn-secondary btn-md ">Cancelar</button>
             </div>
+        <br>
 
-        <br>
-        <br>
         </form>
 
         </div>
