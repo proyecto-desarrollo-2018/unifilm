@@ -11,13 +11,12 @@
             <label >Titulo de la pelicula</label>
             <span class="text-danger">*</span>
             <input type="text" class="form-control"  placeholder="Ingrese su usuario" formControlName="titulo" maxlength="50">
+            <div *ngIf="registro.get('titulo').errors && registro.get('titulo').dirty">
+              <p class="alert alert-danger" *ngIf="registro.get('titulo').hasError('required')">El campo es requerido</p>
+              <p class="alert alert-danger" *ngIf="registro.get('titulo').hasError('pattern')">No es un titulo valido</p>
+            </div>
           </div>
-          <div *ngIf="registro.get('titulo').errors && registro.get('titulo').dirty">
-            <p class="alert alert-danger" *ngIf="registro.get('titulo').hasError('required')">El campo es requerido</p>
-            <p class="alert alert-danger" *ngIf="registro.get('titulo').hasError('sinEspacios')">No puede haber espacios</p>
-            <p class="alert alert-danger" *ngIf="registro.get('titulo').hasError('pattern')">No es un titulo valido</p>
           
-          </div>
         </div>
         <br>
               <!--Nombre del director-->
@@ -26,35 +25,43 @@
               <div class="form-group" style="color: white; font-weight: bold;">
                 <label>Director de la pelicula</label>
                 <span class="text-danger">*</span>
-                <input type="text" class="form-control" placeholder="Nombre" formControlName="nombreD" maxlength="50"><br>
+                <input type="text" class="form-control" placeholder="Nombre" formControlName="nombreD" maxlength="50">
                 <div *ngIf="registro.get('nombreD').errors && registro.get('nombreD').dirty">
                   <p class="alert alert-danger" *ngIf="registro.get('nombreD').hasError('required')">El campo es requerido</p>
                   <p class="alert alert-danger" *ngIf="registro.get('nombreD').hasError('pattern')">No es un nombre valido</p>
                 </div>
-                <input type="text" class="form-control" placeholder="Apellido Paterno" formControlName="apPaternoD" maxlength="50"><br>
+                <br>
+                <input type="text" class="form-control" placeholder="Apellido Paterno" formControlName="apPaternoD" maxlength="50">
                 <div *ngIf="registro.get('apPaternoD').errors && registro.get('apPaternoD').dirty">
                   <p class="alert alert-danger" *ngIf="registro.get('apPaternoD').hasError('required')">El campo es requerido</p>
                   <p class="alert alert-danger" *ngIf="registro.get('apPaternoD').hasError('sinEspacios')">No puede haber espacios</p>
                   <p class="alert alert-danger" *ngIf="registro.get('apPaternoD').hasError('pattern')">No es un apellido valido</p>
                 
                 </div>
-                <input type="text" class="form-control" placeholder="Apellido Materno" formControlName="apMaternoD" maxlength="50"><br>
+                <br>
+                <input type="text" class="form-control" placeholder="Apellido Materno" formControlName="apMaternoD" maxlength="50">
                 <div *ngIf="registro.get('apMaternoD').errors && registro.get('apMaternoD').dirty">
                   <p class="alert alert-danger" *ngIf="registro.get('apMaternoD').hasError('required')">El campo es requerido</p>
                   <p class="alert alert-danger" *ngIf="registro.get('apMaternoD').hasError('sinEspacios')">No puede haber espacios</p>
                   <p class="alert alert-danger" *ngIf="registro.get('apMaternoD').hasError('pattern')">No es un apellido valido</p>
-                
                 </div>
+                <br>
                   <label>Tipo de Director</label>
                   <span class="text-danger">*</span>
                   <div class="form-group ">                
                     <select class="form-control" formControlName="director" maxlength="50">
-                      <option value="pro.produccion" *ngFor="let pro  of producciones" selected>{{pro.produccion}}</option>
+                      <option >Director </option>
+                      <option >Director de Arte </option>
+                      <option >Director de sonido </option>
+                      <option >Director de fotografia</option>
+                      <option>Direcctor de produccion</option>
+                      <option>Director de Escenografia y Vesturario</option>
                     </select>
+                    <div *ngIf="registro.get('director').errors ">
+                      <p class="alert alert-danger" *ngIf="registro.get('director').hasError('required')">El campo es requerido</p>
+                    </div>
                  </div>
-                  <div *ngIf="registro.get('director').errors && registro.get('director').dirty">
-                    <p class="alert alert-danger" *ngIf="registro.get('director').hasError('required')">El campo es requerido</p>
-                  </div>
+                 
                 <br>
               </div>
             </div>
@@ -64,10 +71,24 @@
                 <label>Actores de la pelicula</label>
                 <span class="text-danger">*</span>
                 <input type="text" class="form-control" placeholder="Nombre" formControlName="nombreA" maxlength="50">
+                <div *ngIf="registro.get('nombreA').errors && registro.get('nombreA').dirty">
+                  <p class="alert alert-danger" *ngIf="registro.get('nombreA').hasError('required')">El campo es requerido</p>
+                  <p class="alert alert-danger" *ngIf="registro.get('nombreA').hasError('pattern')">No es un nombre valido</p>
+                </div>
                 <br>
                 <input type="text" class="form-control" placeholder="Apellido Paterno" formControlName="apPaternoA" maxlength="50"> 
+                <div *ngIf="registro.get('apPaternoA').errors && registro.get('apPaternoA').dirty">
+                  <p class="alert alert-danger" *ngIf="registro.get('apPaternoA').hasError('required')">El campo es requerido</p>
+                  <p class="alert alert-danger" *ngIf="registro.get('apPaternoA').hasError('sinEspacios')">No puede haber espacios</p>
+                  <p class="alert alert-danger" *ngIf="registro.get('apPaternoA').hasError('pattern')">No es un apellido valido</p>
+                </div>
                 <br>
                 <input type="text" class="form-control" placeholder="Apellido Materno" formControlName="apMaternoA" maxlength="50">
+                <div *ngIf="registro.get('apMaternoA').errors && registro.get('apMaternoA').dirty">
+                  <p class="alert alert-danger" *ngIf="registro.get('apMaternoA').hasError('required')">El campo es requerido</p>
+                  <p class="alert alert-danger" *ngIf="registro.get('apMaternoA').hasError('sinEspacios')">No puede haber espacios</p>
+                  <p class="alert alert-danger" *ngIf="registro.get('apMaternoA').hasError('pattern')">No es un apellido valido</p>
+                </div>
                 <br>
                 <label>Tipo de Actor</label>
                 <span class="text-danger">*</span>
@@ -75,9 +96,15 @@
                 <div class="form-group ">
 
                   <select class="form-control" formControlName="tipoActor" maxlength="50">
-                    <option value="pro.produccion" *ngFor="let tipoA  of tipoActor">{{tipoA.tipoActor}}</option>
+                    <option >Protagonista</option>
+                    <option >Antagonista</option>
+                    <option>Secundario</option>
                   </select>
+                  <div *ngIf="registro.get('tipoActor').errors">
+                    <p class="alert alert-danger" *ngIf="registro.get('tipoActor').hasError('required')">El campo es requerido</p>
+                  </div>
                 </div>
+               
 
               </div>
             </div>
@@ -91,9 +118,30 @@
             <div class="form-group ">
 
                 <select  class="form-control" formControlName="genero" maxlength="50">
-                  <option value="g.genero"  *ngFor="let g of generos" >{{g.genero}}</option>         
+                  <option>Drama</option>
+                  <option>Comedia</option>
+                  <option>Acción</option>
+                  <option>Ciencia ficción</option>
+                  <option>Fantasía</option>
+                  <option>Terror</option>
+                  <option>Romance</option>
+                  <option>Musical</option>
+                  <option>Melodrama</option>
+                  <option>Suspenso</option>
+                  <option>Histórico</option>
+                  <option>Bélico</option>
+                  <option>Policíaco</option>
+                  <option>Western</option>
+                  <option>Animación</option>
+                  <option>Para niños</option>
+                  <option>Cine arte</option>
+                  <option>Cine independiente</option>
                 </select>
+                <div *ngIf="registro.get('genero').errors ">
+                  <p class="alert alert-danger" *ngIf="registro.get('genero').hasError('required')">El campo es requerido</p>
+                </div>
             </div>
+             
           </div>  
                 <br>
           <!--Fecha de produccion-->
@@ -102,18 +150,27 @@
             <div class="form-group" style="color: white; font-weight: bold;">
               <label>Fecha de estreno</label>
               <span class="text-danger">*</span>
-              <input type="date" step="1" min="2013-01-01" max="2018-12-31" value="2013-01-01" formControlName="fechaProuccion" maxlength="50">
+              <input type="date" step="1" min="2013-01-01" max="2018-12-31" value="2013-01-01" formControlName="fechaProduccion" maxlength="50">
+              <div *ngIf="registro.get('fechaProduccion').errors && registro.get('fechaProduccion').dirty">
+                <p class="alert alert-danger" *ngIf="registro.get('fechaProduccion').hasError('required')">El campo es requerido</p>
+              </div>
             </div>
           </div>
+          
           <!--Sinopsis-->  
          <div class="col-md" style="color: white; font-weight: bold;">	
               <div class="form-group" style="color: white; font-weight: bold;">
                 <label >Sinopsis</label>
                 <span class="text-danger">*</span>
                 <textarea class="form-control text-muted" aria-label="With textarea" style=" size: 32" placeholder="Ingrese la sinopsis de la pelicula" formControlName="sinopsis" maxlength="50"></textarea>
-
-              </div>  
+                <div *ngIf="registro.get('sinopsis').errors && registro.get('sinopsis').dirty">
+                  <p class="alert alert-danger" *ngIf="registro.get('sinopsis').hasError('required')">El campo es requerido</p>
+                  <p class="alert alert-danger" *ngIf="registro.get('sinopsis').hasError('pattern')">No es un titulo valido</p>
+                </div>
+              </div> 
+             
           </div>
+          
 
            <!--Clasificacion-->
           <div class="col-md" style="color: white; font-weight: bold;">
@@ -124,9 +181,17 @@
             <div class="form-group ">
 
               <select class="form-control" formControlName="clasificacion" maxlength="50">
-                <option value="clacificacion.clasificacion" *ngFor="let clacificacion of clasificaciones">{{clacificacion.clasificacion}}</option>
+                <option >A Mayores de 6 años</option>
+                <option>B Para mayores de 12 años</option>
+                <option>B15 Para mayores de 15 años</option>
+                <option>C Para adultos, apto para mayores de 18 años</option>
+                <option>D Exclusivamente adultos</option>
               </select>
+              <div *ngIf="registro.get('clasificacion').errors">
+                <p class="alert alert-danger" *ngIf="registro.get('clasificacion').hasError('required')">El campo es requerido</p>
+              </div>
             </div>
+            
           </div>
           <!--Duracion-->
 
@@ -134,9 +199,14 @@
             <div class="form-group" style="color: white; font-weight: bold;">
               <label>Duracion</label>
               <span class="text-danger">*</span>
-              <input type="text" class="form-control" style=" size: 32" placeholder="Duracion en minutos" formControlName="duracion" maxlength="50">
-          
+              <input type="text" class="form-control" style=" size: 32" placeholder="Duracion en minutos" formControlName="duracion" maxlength="4">
+              <div *ngIf="registro.get('duracion').errors && registro.get('duracion').dirty">
+                <p class="alert alert-danger" *ngIf="registro.get('duracion').hasError('required')">El campo es requerido</p>
+                <p class="alert alert-danger" *ngIf="registro.get('duracion').hasError('pattern')">El campo debe ser un numero en minutos maximo 3 digitos</p>
+              
+              </div>
             </div>
+            
           </div>
           <!--Casa productora-->
           
@@ -145,7 +215,10 @@
               <label>Casa Productora</label>
               <span class="text-danger">*</span>
               <input type="text" class="form-control" style=" size: 32" placeholder="Casa Prouctora" formControlName="casaProductora" maxlength="50">
-          
+              <div *ngIf="registro.get('casaProductora').errors && registro.get('casaProductora').dirty">
+                <p class="alert alert-danger" *ngIf="registro.get('casaProductora').hasError('required')">El campo es requerido</p>
+                <p class="alert alert-danger" *ngIf="registro.get('casaProductora').hasError('pattern')">No es un nombre valido</p>
+              </div>
             </div>
           </div>
 
@@ -164,9 +237,11 @@
              <br>
            
              <div align="center" >
-              <button  type="submit" class="btn btn-primary btn-md " (click)="guardarPelicula()">Aceptar</button>
+              <button  type="submit" class="btn btn-primary btn-md " (click)="guardarPelicula()" >Aceptar</button>
             <button type="button" class="btn btn-secondary btn-md ">Cancelar</button>
-            </div>
+             <p class="alert alert-danger">registro.invalid: {{ registro.invalid }}</p>
+  
+          </div>
         <br>
 
         </form>

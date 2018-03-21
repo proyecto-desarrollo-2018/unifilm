@@ -14,56 +14,6 @@ import { Actor } from '../models/actor';
 export class PeliculaNewComponent implements OnInit {
   registro: FormGroup;
 
-  generos = [
-    { genero:  'Drama'},
-    { genero:  'Comedia' },
-    { genero:  'Acción' },
-    { genero:  'Ciencia ficción ' },
-    { genero:  'Fantasía' },
-    { genero:  'Terror ' },
-    { genero:  'Romance' },
-    { genero:  'Musical ' },
-    { genero:   'Melodrama' },
-    { genero:  'Suspenso' },
-    { genero:  'Histórico ' },
-    { genero:  'Bélico ' },
-    { genero:  'Policíaco' },
-    { genero:  'Western ' },
-    { genero:  'Animación ' },
-    { genero:  'Para niños' },
-    { genero:   'Cine arte' },
-    { genero: 'Cine independiente'}];
-
-  calificaciones = [{calificacion: 1},
-    { calificacion: 2 },
-    { calificacion: 3 },
-    { calificacion: 4 },
-    { calificacion: 5 },
-    { calificacion: 6 },
-    { calificacion: 7 },
-    { calificacion: 8 },
-    { calificacion: 9 },
-    { calificacion: 10 }];
-
-  producciones = [{ produccion: 'Director' },
-  { produccion: 'Director de Arte' },
-  { produccion: 'Director de sonido' },
-  { produccion: 'Director de fotografia' },
-  { produccion: 'Direcctor  de produccion' },
-  { produccion: 'Director de Escenografia y Vesturario' }];
-
-  clasificaciones = [{ clasificacion: ' AA  Todos los públicos pueden ver' },
-    { clasificacion: 'A  Mayores de 6 años.' },
-    { clasificacion: ' B  Para mayores de 12 años' },
-    { clasificacion: ' B15  Para mayores de 15 años'},
-    { clasificacion: 'C  Para adultos, apto para mayores de 18 años' },
-    { clasificacion: ' D  Exclusivamente adultos' }];
-
-  tipoActor = [{ tipoActor: 'Protagonista' },
-  { tipoActor: 'Antagonista' },
-  { tipoActor: 'Secundario' }];
-
-
   ngOnInit() {
   }
 
@@ -75,16 +25,16 @@ export class PeliculaNewComponent implements OnInit {
       apPaternoD: ['', [Validators.required, Validaciones.verificarEspacios, Validators.pattern("[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ]{4,20}")]],
       apMaternoD: ['', [Validators.required, Validaciones.verificarEspacios, Validators.pattern("[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ]{4,20}")]],
       director: ['', [Validators.required]],
-      nombreA: ['', [Validators.required, Validaciones.verificarEspacios]],
-      apPaternoA: ['', [Validators.required, Validators.pattern("^[a-zA-Z0-9-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"), Validaciones.verificarEspacios]],
-      apMaternoA: ['', [Validators.required]],
+      nombreA: ['', [Validators.required, Validators.pattern("[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ]{4,20}")]],
+      apPaternoA: ['', [Validators.required, Validaciones.verificarEspacios, Validators.pattern("[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ]{4,20}")]],
+      apMaternoA: ['', [Validators.required, Validaciones.verificarEspacios, Validators.pattern("[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ]{4,20}")]],
       tipoActor: ['', [Validators.required]],
       genero: ['', [Validators.required]],
-      fechaProuccion: ['', [Validators.required]],
-      sinopsis: ['', [Validators.required]],
+      fechaProduccion: ['', [Validators.required]],
+      sinopsis: ['', [Validators.required, Validators.pattern("[a-zA-Z0-9-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,._'-]{10,1000}")]],
       clasificacion: ['', [Validators.required]],
-      duracion: ['', [Validators.required]],
-      casaProductora: ['', [Validators.required]],
+      duracion: ['', [Validators.required, Validators.pattern("[0-9,]{3}")]],
+      casaProductora: ['', [Validators.required, Validators.pattern("[a-zA-Z0-9-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,._'-]{4,20}")]],
       urlPortada: ['', [Validators.required]],
       urlPelicula: ['', [Validators.required]]
     });
@@ -92,7 +42,7 @@ export class PeliculaNewComponent implements OnInit {
   onSubmit() {
     const idRa = (Math.random() * 100);
     const idS = idRa.toString();
-    if (this.registro.valid) {
+    if (!this.registro.valid) {
       const { titulo,
               nombreD,
               apPaternoD,
@@ -103,7 +53,7 @@ export class PeliculaNewComponent implements OnInit {
               apMaternoA,
               tipoActor,
               genero,
-              fechaProuccion,
+             fechaProduccion,
               sinopsis,
               clasificacion,
               duracion,
@@ -127,19 +77,21 @@ export class PeliculaNewComponent implements OnInit {
         titulo,
         [direc],
         [act],
-        genero,
-        fechaProuccion,
+        [genero],
+        fechaProduccion,
+        null,
         sinopsis,
         clasificacion,
         duracion,
         casaProductora,
+        null,
         urlPortada,
         urlPelicula
       );
-
+  
       alert('Pelicula agregada: ' + JSON.stringify(pelicula));
 
-      this.registro.reset();
+      //this.registro.reset();
     } else {
       console.log('Error en el formulario de pelicula');
     }
