@@ -1,4 +1,4 @@
-import { Tarjeta } from "./tarjeta";
+import { Tarjeta } from './tarjeta';
 
 export class Usuario {
     constructor(

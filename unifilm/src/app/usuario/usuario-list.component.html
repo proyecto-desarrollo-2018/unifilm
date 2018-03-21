@@ -13,7 +13,7 @@
 <div class="container" *ngFor="let usuario of usuarios">
 
   <ul class="list-group">
-    <li class="list-group-item disabled">{{ usuario | json }}</li>
+    <li class="list-group-item disabled"><a routerLink="/usuarios/{{usuario.idUsuario}}">{{ usuario.nombre  }} {{ usuario.apellidoP }} {{ usuario.apellidoM }}</a></li>
   </ul>
 </div>
 </div>

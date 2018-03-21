@@ -3,12 +3,15 @@ import { FormBuilder, NgForm, FormGroup, FormControl, Validators } from '@angula
 import { Usuario } from '../models/usuario';
 import { Tarjeta } from '../models/tarjeta';
 import { Validaciones } from '../validaciones/validaciones';
+import { UsuarioService } from '../usuario/usuario.service';
+import { Router } from '@angular/router';
 
 
 @Component({
   selector: 'app-singup',
   templateUrl: './singup.component.html',
-  styleUrls: ['./singup.component.css']
+  styleUrls: ['./singup.component.css'],
+  providers: [ UsuarioService ]
 })
 export class SingupComponent implements OnInit {
   @Input() usuarios: Array<Usuario> = [];
@@ -19,7 +22,9 @@ export class SingupComponent implements OnInit {
   ngOnInit() {
   }
 
-  constructor(public fb: FormBuilder) {
+  constructor(public fb: FormBuilder, 
+              private usuarioService: UsuarioService,
+              private router: Router ) {
     this.registro = this.fb.group({
       nombreU: ['', [Validators.required, Validators.pattern("[a-zA-Z0-9-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,._'-]{4,20}"), Validaciones.verificarEspacios]],
       contra: ['', [Validators.required, Validators.pattern(/^[a-z0-9_-]{6,18}$/)]],
@@ -36,12 +41,14 @@ export class SingupComponent implements OnInit {
     });
   }
   onSubmit() {
+    const idRa  =  (Math.random() * 100);
+    const idS = idRa.toString();
     if (this.registro.valid) {
       const { nombreU, contra, nombre, apellidoP,
         apellidoM, correo, sexo,
         numeroTarjeta, mesFE, anioFE, codigoS } = this.registro.value;
       const tarjeta: Tarjeta = new Tarjeta(null, numeroTarjeta, mesFE, anioFE, codigoS);
-      const usuario = new Usuario(null,
+      const usuario = new Usuario(idS,
         nombreU,
         nombre,
         apellidoP,
@@ -56,10 +63,13 @@ export class SingupComponent implements OnInit {
         tarjeta
         );
 
-      console.log(usuario);
-      this.usuarios.unshift(usuario);
-      this.mostrarUsuarios();
       alert('Usuario agregado: ' + JSON.stringify(usuario));
+      this.usuarioService.addUsuario(usuario)
+        .subscribe(
+          ({ idUsuario }) => this.router.navigate(['/usuarios'], idUsuario),
+          error => console.log(error)
+        );
+
       this.registro.reset();
     } else {
       console.log('Error en el formulario de registro');
@@ -67,20 +77,6 @@ export class SingupComponent implements OnInit {
   }
 
 
-
-  mostrarUsuarios() {
-    console.log(this.usuarios);
-  }
-
-  cambioFE(event: any) {
-    //this.feSeleccionada = event.target.value;
-    this.feSeleccionada = this.registro.get('mesFE').value;
-  }
-  cambioME(event: any) {
-    //this.meSeleccionado = event.target.value;
-    this.meSeleccionado = this.registro.get('anioFE').value;
-
-  }
   guardarUsuario() {
     //alert(JSON.stringify(this.registro.value));
     this.onSubmit();
@@ -89,8 +85,6 @@ export class SingupComponent implements OnInit {
   isValidMatchPassword() {
     const contra = this.registro.get('contra').value;
     const contraC = this.registro.get('contraC').value;
-    console.log('contra: ' + contra + ' contraC:' + contraC);
-
     if (contra !== contraC) {
       return false;
     } else {
