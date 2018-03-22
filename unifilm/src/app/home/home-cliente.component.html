@@ -17,14 +17,14 @@
               Categorias
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" >Accion</a>
-              <a class="dropdown-item" >Amor</a>
-              <a class="dropdown-item" >Comedia</a>
-              <a class="dropdown-item" >Drama</a>
-              <a class="dropdown-item" >Terror</a>
-              <a class="dropdown-item" >Series</a>
-              <a class="dropdown-item" >Nopor</a>
-              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" (click)="getGenero('Accion')">Accion</a>
+              <a class="dropdown-item" (click)="getGenero('Amor')">Amor</a>
+              <a class="dropdown-item" (click)="getGenero('Comedia')">Comedia</a>
+              <a class="dropdown-item" (click)="getGenero('Drama')">Drama</a>
+              <a class="dropdown-item" (click)="getGenero('Terror')">Terror</a>
+              <a class="dropdown-item" (click)="getGenero('Series')">Series</a>
+              <a class="dropdown-item" (click)="getGenero('Nopor')" >Nopor</a>
+              <div class="dropdown-divider" ></div>
               <a class="dropdown-item" >Mas...</a>
             </div>
           </li>	
@@ -69,11 +69,11 @@
 
 <!-- Categorias de peliculas-->
 
-<app-pelicula-list *ngIf="catalogo"></app-pelicula-list>
+<app-pelicula-list *ngIf="compCatalogo" [genero]="genero"></app-pelicula-list>
 
 <!-- Quienes Somos -->
 
-<div class="container" *ngIf="quienesSomos" style="color: white;">
+<div class="container" *ngIf="quienesSomos" style="color: white; height: 720px;">
   <h1> QUIENES SOMOS</h1>
   <P>detalle quienes somos</P>
 </div>

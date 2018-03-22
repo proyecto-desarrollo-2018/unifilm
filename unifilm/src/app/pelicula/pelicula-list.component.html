@@ -8,12 +8,19 @@
   <p class="container">
     LISTA DE Peliculas
   </p>
-  <div class="container" *ngFor="let pelicula of peliculas">
 
-    <ul class="list-group">
-      <li class="list-group-item disabled">
-        <a routerLink="/peliculas/{{pelicula.idPelicula}}">{{ pelicula.titulo }} {{ pelicula.generos }} {{ pelicula.duracion}}</a>
-      </li>
-    </ul>
-  </div>
+  <ng-container *ngIf="genero == 'Todos' ">
+    <div class="container" *ngFor="let pelicula of peliculas">
+    
+      <ul class="list-group">
+        <li class="list-group-item disabled">
+          <a routerLink="/peliculas/{{pelicula.idPelicula}}">{{ pelicula.titulo }} {{ pelicula.generos }} {{ pelicula.duracion}}</a>
+        </li>
+      </ul>
+    
+    </div>
+  </ng-container>
+
+      <p style="color:white;"> Genero seleccionado: {{ genero }}</p>
+
 </div>
