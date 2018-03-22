@@ -12,90 +12,76 @@
             <label>Nombre de usuario</label>
             <span class="text-danger">*</span>
             <input type="text" class="form-control" id="usuario" placeholder="Ingrese su usuario" formControlName="nombreU" maxlength="50">
+            <div *ngIf="registro.get('nombreU').errors && registro.get('nombreU').dirty">
+              <p class="alert alert-danger" *ngIf="registro.get('nombreU').hasError('required')">El campo es requerido</p>
+              <p class="alert alert-danger" *ngIf="registro.get('nombreU').hasError('sinEspacios')">No puede haber espacios</p>
+              <p class="alert alert-danger" *ngIf="registro.get('nombreU').hasError('pattern')">Nombre de usuario no valido debe tener 4-20 caracteres</p>
+            </div>
           </div>
-          <div *ngIf="registro.get('nombreU').errors && registro.get('nombreU').dirty">
-            <p class="alert alert-danger" *ngIf="registro.get('nombreU').hasError('required')">El campo es requerido</p>
-            <p class="alert alert-danger" *ngIf="registro.get('nombreU').hasError('sinEspacios')">No puede haber espacios</p>
-            <!--<p class="alert alert-danger" *ngIf="registro.get('nombreU').hasError('maxlength')">El campo debe tener 5 caracteres</p>
-            <p class="alert alert-danger" *ngIf="registro.get('nombreU').hasError('minlength')">El campo debe tener 5 caracteres</p>
-            -->
-            <p class="alert alert-danger" *ngIf="registro.get('nombreU').hasError('pattern')">Nombre de usuario no valido debe tener 4-20 caracteres</p>
-
-          </div>
+          
           <!--Contraseña-->
           <div class="form-group" style="color: white; font-weight: bold;">
             <label>Ingrese su contraseña</label>
             <span class="text-danger">*</span>
             <input maxlength="50" type="password" class="form-control" id="password" placeholder="Ingrese Password" formControlName="contra">
-          </div>
-          <div *ngIf="registro.get('contra').errors && registro.get('contra').dirty">
-            <p class="alert alert-danger" *ngIf="registro.get('contra').hasError('required')">El campo es requerido</p>
-            <p class="alert alert-danger" *ngIf="registro.get('contra').hasError('pattern')">No es un password</p>
-            <p class="alert alert-danger" *ngIf="registro.get('contra').hasError('sinEspacios')">No puede haber espacios</p>
-
+            <div *ngIf="registro.get('contra').errors && registro.get('contra').dirty">
+              <p class="alert alert-danger" *ngIf="registro.get('contra').hasError('required')">El campo es requerido</p>
+              <p class="alert alert-danger" *ngIf="registro.get('contra').hasError('pattern')">No es un password</p>
+              <p class="alert alert-danger" *ngIf="registro.get('contra').hasError('sinEspacios')">No puede haber espacios</p>
+            </div>
           </div>
           <!--Confirmacion de contraseña-->
           <div class="form-group">
             <label>Confirme su passwrod</label>
             <span class="text-danger">*</span>
             <input maxlength="50" type="password" class="form-control" id="contraC" placeholder="Ingrese su apellido paterno" formControlName="contraC">
+            <div *ngIf="registro.get('contraC').errors && registro.get('contraC').dirty">
+              <p class="alert alert-danger" *ngIf="registro.get('contraC').hasError('required')">El campo es requerido</p>
+              <p class="alert alert-danger" *ngIf="registro.get('contraC').hasError('pattern')">No es un password</p>
+              <p class="alert alert-danger" *ngIf="registro.get('contraC').hasError('sinEspacios')">No puede haber espacios</p>
+              <!--<p class="alert alert-danger" *ngIf="registro.get('contraC').hasError('MatchPassword')">Las contraseñas no coinciden</p>-->
+            </div>
+            <p class="alert alert-danger" *ngIf="!isValidMatchPassword()">Las contraseñas no coinciden</p>
           </div>
-          <div *ngIf="registro.get('contraC').errors && registro.get('contraC').dirty">
-            <p class="alert alert-danger" *ngIf="registro.get('contraC').hasError('required')">El campo es requerido</p>
-            <p class="alert alert-danger" *ngIf="registro.get('contraC').hasError('pattern')">No es un password</p>
-            <p class="alert alert-danger" *ngIf="registro.get('contraC').hasError('sinEspacios')">No puede haber espacios</p>
-            <!--<p class="alert alert-danger" *ngIf="registro.get('contraC').hasError('MatchPassword')">Las contraseñas no coinciden</p>-->
-
-
-          </div>
-
-          <p class="alert alert-danger" *ngIf="!isValidMatchPassword()">Las contraseñas no coinciden</p>
-
-
-
           <!--Nombre-->
           <div class="form-group">
             <label>Nombre</label>
             <span class="text-danger">*</span>
             <input maxlength="50" type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre" formControlName="nombre">
-          </div>
-          <div *ngIf="registro.get('nombre').errors && registro.get('nombre').dirty">
-            <p class="alert alert-danger" *ngIf="registro.get('nombre').hasError('required')">El campo es requerido</p>
-
+            <div *ngIf="registro.get('nombre').errors && registro.get('nombre').dirty">
+              <p class="alert alert-danger" *ngIf="registro.get('nombre').hasError('required')">El campo es requerido</p>
+            </div>
           </div>
           <!--ApellidoP-->
           <div class="form-group">
             <label>Apellido Paterno</label>
             <span class="text-danger">*</span>
             <input maxlength="50" type="text" class="form-control" id="apellidoP" placeholder="Ingrese su apellido paterno" formControlName="apellidoP">
-          </div>
-          <div *ngIf="registro.get('apellidoP').errors && registro.get('apellidoP').dirty">
-            <p class="alert alert-danger" *ngIf="registro.get('apellidoP').hasError('required')">El campo es requerido</p>
-            <p class="alert alert-danger" *ngIf="registro.get('apellidoP').hasError('sinEspacios')">No puede haber espacios</p>
-
+            <div *ngIf="registro.get('apellidoP').errors && registro.get('apellidoP').dirty">
+              <p class="alert alert-danger" *ngIf="registro.get('apellidoP').hasError('required')">El campo es requerido</p>
+              <p class="alert alert-danger" *ngIf="registro.get('apellidoP').hasError('sinEspacios')">No puede haber espacios</p>
+            </div>
           </div>
           <!--ApellidoM-->
           <div class="form-group">
             <label>Apellido Materno</label>
             <span class="text-danger">*</span>
             <input maxlength="50" type="text" class="form-control" id="apellidoM" placeholder="Ingrese su apellido paterno" formControlName="apellidoM">
-          </div>
-          <div *ngIf="registro.get('apellidoM').errors && registro.get('apellidoM').dirty">
-            <p class="alert alert-danger" *ngIf="registro.get('apellidoM').hasError('required')">El campo es requerido</p>
-            <p class="alert alert-danger" *ngIf="registro.get('apellidoM').hasError('sinEspacios')">No puede haber espacios</p>
-
+            <div *ngIf="registro.get('apellidoM').errors && registro.get('apellidoM').dirty">
+              <p class="alert alert-danger" *ngIf="registro.get('apellidoM').hasError('required')">El campo es requerido</p>
+              <p class="alert alert-danger" *ngIf="registro.get('apellidoM').hasError('sinEspacios')">No puede haber espacios</p>
+            </div>
           </div>
           <!--Correro Electronico-->
           <div class="form-group">
             <label>Correo Electronico</label>
             <span class="text-danger">*</span>
             <input maxlength="50" type="email" class="form-control" id="correo" placeholder="Ingrese su apellido paterno" formControlName="correo">
-          </div>
-          <div *ngIf="registro.get('correo').errors && registro.get('correo').dirty">
-            <p class="alert alert-danger" *ngIf="registro.get('correo').hasError('required')">El campo es requerido</p>
-            <p class="alert alert-danger" *ngIf="registro.get('correo').hasError('pattern')">No es un email</p>
-            <p class="alert alert-danger" *ngIf="registro.get('correo').hasError('sinEspacios')">No puede haber espacios</p>
-
+            <div *ngIf="registro.get('correo').errors && registro.get('correo').dirty">
+              <p class="alert alert-danger" *ngIf="registro.get('correo').hasError('required')">El campo es requerido</p>
+              <p class="alert alert-danger" *ngIf="registro.get('correo').hasError('pattern')">No es un email</p>
+              <p class="alert alert-danger" *ngIf="registro.get('correo').hasError('sinEspacios')">No puede haber espacios</p>
+            </div>
           </div>
           <!--Sexo-->
           <div class="form-group ">
@@ -109,6 +95,9 @@
               <label>
                 <input name="sexo" type="radio" value="F" formControlName="sexo"> Femenino
               </label>
+              <div *ngIf="registro.get('sexo').errors ">
+                <p class="alert alert-danger" *ngIf="registro.get('numeroTarjeta').hasError('required')">El campo es requerido</p>
+              </div>
             </div>
           </div>
           <!--Datos tarjeta de credito-->
@@ -119,19 +108,17 @@
               <label>Numero de tarjeta de credito</label>
               <span class="text-danger">*</span>
               <input maxlength="50" type="text" class="form-control" id="tarjeta" placeholder="Ingrese el numero de tarjeta" formControlName="numeroTarjeta">
+              <div *ngIf="registro.get('numeroTarjeta').errors && registro.get('numeroTarjeta').dirty">
+                <p class="alert alert-danger" *ngIf="registro.get('numeroTarjeta').hasError('required')">El campo es requerido</p>
+                <p class="alert alert-danger" *ngIf="registro.get('numeroTarjeta').hasError('sinEspacios')">No puede haber espacios</p>
+                <p class="alert alert-danger" *ngIf="registro.get('numeroTarjeta').hasError('pattern')">No es un numero valido valores validos: (0-9) deben ser 16 digitos</p>
+              </div>
             </div>
-            <div *ngIf="registro.get('numeroTarjeta').errors && registro.get('numeroTarjeta').dirty">
-              <p class="alert alert-danger" *ngIf="registro.get('numeroTarjeta').hasError('required')">El campo es requerido</p>
-              <p class="alert alert-danger" *ngIf="registro.get('numeroTarjeta').hasError('sinEspacios')">No puede haber espacios</p>
-              <p class="alert alert-danger" *ngIf="registro.get('numeroTarjeta').hasError('pattern')">No es un numero valido valores validos: (0-9) deben ser 16 digitos</p>
-
-            </div>
-
             <div class="form-group ">
-              <label>Fecha de expiracion</label>
+              <label>Mes de expiracion</label>
+              <span class="text-danger">*</span>
               <br>
               <select class="form-control" formControlName="mesFE" >
-                <option value="Seleccione mes" selected>Seleccione mes</option>
                 <option value="Enero">Enero</option>
                 <option value="Febrero">Febrero</option>
                 <option value="Marzo">Marzo</option>
@@ -146,26 +133,20 @@
                 <option value="Diciembre">Diciembre</option>
 
               </select>
-              <div *ngIf="registro.get('mesFE').errors && registro.get('mesFE').dirty">
+              <div *ngIf="registro.get('mesFE').errors">
                 <p class="alert alert-danger" *ngIf="registro.get('mesFE').hasError('required')">El campo es requerido</p>
-
               </div>
-              <div>
-                <!--<p class="alert alert-warning"> {{registro.get('mesFE').errors | json}}</p>
-                  <p class="alert alert-warning"> {{feSeleccionada}} </p>-->
-
-              </div>
+              <label>Año de expiracion</label>
+              <span class="text-danger">*</span>
               <br>
               <select class="form-control" formControlName="anioFE" >
-                <option selected value="Seleccione año">Seleccione año</option>
                 <option value="2018">2018</option>
                 <option value="2019">2019</option>
                 <option value="2020">2020</option>
                 <option value="2021">2021</option>
                 <option value="2022">2022</option>
-
               </select>
-              <div *ngIf="registro.get('anioFE').errors && registro.get('anioFE').dirty">
+              <div *ngIf="registro.get('anioFE').errors">
                 <p class="alert alert-danger" *ngIf="registro.get('anioFE').hasError('required')">El campo es requerido</p>
               </div>
             </div>
@@ -173,19 +154,13 @@
             <div class="form-group">
               <label>Codigo de seguridad</label>
               <span class="text-danger">*</span>
-              <input maxlength="50"  type="password" class="form-control text-muted " id="cvsT" placeholder="Ingrese su codigo de seguridad" formControlName="codigoS">
-              <div *ngIf="registro.get('titulo').errors && registro.get('titulo').dirty">
-                <p class="alert alert-danger" *ngIf="registro.get('titulo').hasError('required')">El campo es requerido</p>
-                <p class="alert alert-danger" *ngIf="registro.get('titulo').hasError('sinEspacios')">No puede haber espacios</p>
-                <p class="alert alert-danger" *ngIf="registro.get('titulo').hasError('pattern')">No es un titulo valido</p>
-
+              <input maxlength="4"  type="password" class="form-control text-muted " id="cvsT" placeholder="Ingrese su codigo de seguridad" formControlName="codigoS">
+              <div *ngIf="registro.get('codigoS').errors && registro.get('codigoS').dirty">
+                <p class="alert alert-danger" *ngIf="registro.get('codigoS').hasError('required')">El campo es requerido</p>
+                <p class="alert alert-danger" *ngIf="registro.get('codigoS').hasError('sinEspacios')">No puede haber espacios</p>
+                <p class="alert alert-danger" *ngIf="registro.get('codigoS').hasError('pattern')">No es un codigo deben ser numeros y contener 3 digitos</p>
               </div>
             </div>
-
-            <!--Foto de perfil-->
-            <label>Seleccionar foto de perfil</label>
-            <input type="file" class="form-control-file" id="fotoPerfil">
-
             <br>
           </div>
           <div align="center">
