@@ -4,19 +4,25 @@ import { Validaciones } from '../validaciones/validaciones';
 import { Pelicula } from '../models/pelicula';
 import { Director } from '../models/director';
 import { Actor } from '../models/actor';
+import { PeliculaService } from './pelicula.service';
+import { Router } from '@angular/router';
+
 
 
 @Component({
   selector: 'app-pelicula-new',
   templateUrl: './pelicula-new.component.html',
-  styleUrls: ['./pelicula-new.component.css']
+  styleUrls: ['./pelicula-new.component.css'],
+  providers: [PeliculaService]
+
 })
 export class PeliculaNewComponent implements OnInit {
   registro: FormGroup;
   ngOnInit() {
   }
 
-  constructor(public fb: FormBuilder
+  constructor(public fb: FormBuilder, private peliculaService: PeliculaService,
+    private router: Router
     ) {
     this.registro = this.fb.group({
       titulo: ['', [Validators.required, Validators.pattern("[a-zA-Z0-9-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,._'-]{4,20}")]],
@@ -87,9 +93,17 @@ export class PeliculaNewComponent implements OnInit {
         urlPortada,
         urlPelicula
       );
-  
-      alert(JSON.stringify(this.registro.value));
-      console.log(pelicula);
+      
+      alert('Usuario agregado: ' + JSON.stringify(pelicula));
+      this.peliculaService.addPelicula(pelicula)
+        .subscribe(
+          ({ idPelicula }) => this.router.navigate(['/peliculas'], idPelicula),
+          error => console.log(error)
+        );
+
+
+
+
       this.registro.reset();
     } else {
       console.log('Error en el formulario de pelicula');

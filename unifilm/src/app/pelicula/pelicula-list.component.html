@@ -1,5 +1,19 @@
-<div class="container">
-  <p>Lista de Peliculas</p>
-  <div>
+<div class="container" *ngIf="loading" style="padding: 400px 50px ;">
+  <div class="progress" style="height: 40px;">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%" aria-valuenow="400">Cargando Peliculas</div>
+  </div>
+</div>
+
+<div *ngIf="!loading">
+  <p class="container">
+    LISTA DE Peliculas
+  </p>
+  <div class="container" *ngFor="let pelicula of peliculas">
+
+    <ul class="list-group">
+      <li class="list-group-item disabled">
+        <a routerLink="/peliculas/{{pelicula.idPelicula}}">{{ pelicula.titulo }} {{ pelicula.generos }} {{ pelicula.duracion}}</a>
+      </li>
+    </ul>
   </div>
 </div>

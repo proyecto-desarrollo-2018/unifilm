@@ -1,3 +1,20 @@
-<p>
-  pelicula-new works!
-</p>
+<div class="container">
+  <div class="container" *ngIf="loading" style="padding: 400px 50px ;">
+    <div class="progress" style="height: 40px;">
+      <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%" aria-valuenow="400">CARGANDO DETALLE Pelicula</div>
+    </div>
+  </div>
+
+  <div *ngIf="!loading">
+    <p class="container">
+      DETALLE DE Pelicula
+    </p>
+    <div>
+      <ul class="list-group">
+        <li class="list-group-item disabled"><pre>{{ pelicula | json }}</pre></li>
+      </ul>
+    </div>
+  </div>
+
+
+</div>

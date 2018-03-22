@@ -17,8 +17,7 @@ export class SingupComponent implements OnInit {
   @Input() usuarios: Array<Usuario> = [];
 
   registro: FormGroup;
-  feSeleccionada: String = '';
-  meSeleccionado: String = '';
+
   ngOnInit() {
   }
 

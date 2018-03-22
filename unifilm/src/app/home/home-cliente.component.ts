@@ -6,10 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home-cliente.component.css']
 })
 export class HomeClienteComponent implements OnInit {
+  quienesSomos = false;
+  catalogo = true;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  activarQuienesSomos() {
+    this.quienesSomos = true;
+    this.catalogo = false;
   }
 
 }

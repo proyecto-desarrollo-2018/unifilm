@@ -1,12 +1,12 @@
 <div class="fondo-home">
 <header >
-  <div class="container" style="height: 800px">
+  <div class="container" style="height: 100%">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand text-left" href="home.html">
+      <a class="navbar-brand text-left" [routerLink]="['/home-cliente']">
         <img src="https://scontent.fmex7-1.fna.fbcdn.net/v/t1.0-9/28951578_912389928920762_479248453935824896_n.jpg?oh=1b12231c04c757ae897c07620ede89d6&oe=5B4530DE" width="50" height="50" alt="" >
       </a>					
-      <a class="navbar-brand" href="home.html">Inicio</a>
-      <a class="nav-link-disable text-secondary" href="home.html">¿Quienes Somos?</a>
+      <a class="navbar-brand" [routerLink]="['/home-cliente']">Inicio</a>
+      <a class="nav-link-disable text-secondary" (click)="activarQuienesSomos()">¿Quienes Somos?</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -25,18 +25,18 @@
               <a class="dropdown-item" >Series</a>
               <a class="dropdown-item" >Nopor</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Mas...</a>
+              <a class="dropdown-item" >Mas...</a>
             </div>
           </li>	
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="categoriasNinos" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" id="categoriasNinos" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Niños
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Caricaturas</a>
-              <a class="dropdown-item" href="#">Series</a>
+              <a class="dropdown-item" >Caricaturas</a>
+              <a class="dropdown-item" >Series</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Mas...</a>
+              <a class="dropdown-item">Mas...</a>
             </div>
           </li>
 
@@ -55,10 +55,10 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" [routerLink]="['/usuarios/1']">Perfil</a>
-                  <a class="dropdown-item" href="#">Configuracion</a>
+                  <a class="dropdown-item" >Configuracion</a>
                   <a class="dropdown-item" [routerLink]="['/pagina-principal']" >Cerrar sesión en Unifilm</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Mas...</a>
+                  <a class="dropdown-item">Mas...</a>
                 </div>
             </form>
 
@@ -69,9 +69,14 @@
 
 <!-- Categorias de peliculas-->
 
-<app-pelicula-list></app-pelicula-list>
+<app-pelicula-list *ngIf="catalogo"></app-pelicula-list>
 
+<!-- Quienes Somos -->
 
+<div class="container" *ngIf="quienesSomos" style="color: white;">
+  <h1> QUIENES SOMOS</h1>
+  <P>detalle quienes somos</P>
+</div>
 
 
 
