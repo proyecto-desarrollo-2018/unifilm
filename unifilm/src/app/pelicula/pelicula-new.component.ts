@@ -13,7 +13,6 @@ import { Actor } from '../models/actor';
 })
 export class PeliculaNewComponent implements OnInit {
   registro: FormGroup;
-
   ngOnInit() {
   }
 
@@ -42,7 +41,7 @@ export class PeliculaNewComponent implements OnInit {
   onSubmit() {
     const idRa = (Math.random() * 100);
     const idS = idRa.toString();
-    if (!this.registro.valid) {
+    if (this.registro.valid) {
       const { titulo,
               nombreD,
               apPaternoD,
@@ -81,7 +80,7 @@ export class PeliculaNewComponent implements OnInit {
         fechaProduccion,
         null,
         sinopsis,
-        clasificacion,
+        [clasificacion],
         duracion,
         casaProductora,
         null,
@@ -89,9 +88,9 @@ export class PeliculaNewComponent implements OnInit {
         urlPelicula
       );
   
-      alert('Pelicula agregada: ' + JSON.stringify(pelicula));
-
-      //this.registro.reset();
+      alert(JSON.stringify(this.registro.value));
+      console.log(pelicula);
+      this.registro.reset();
     } else {
       console.log('Error en el formulario de pelicula');
     }
@@ -102,4 +101,6 @@ export class PeliculaNewComponent implements OnInit {
     this.onSubmit();
 
   }
+
+
 }

@@ -224,22 +224,41 @@
 
           <!--Portada de pelicula-->
           <div class="col-md" style="color: white; font-weight: bold;">
-            <label>Portada</label>
-            <input type="file" class="form-control-file"  formControlName="urlPortada" maxlength="50">
+            <label>Colocar URL de la portada</label>
+            <span class="text-danger">*</span>
+            <input type="text" class="form-control" placeholder="ejemplo: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiv77RtuuI2i0CzDw2TJEQ085-pfZaBzXiTB62EQ1heFIKqy2zHQ"
+  formControlName="urlPortada">
+<div *ngIf="registro.get('urlPortada').errors && registro.get('urlPortada').dirty ">
+  <p class="alert alert-danger" *ngIf="registro.get('urlPortada').hasError('required')">El campo es requerido</p>
+
+</div>
+
+
           </div>
           <br>
-
            <!--Archivo de pelicula-->   
            <div class="col-md" style="color: white; font-weight: bold;">
-           <label >Seleccionar pelicula</label>
-             <input type="file" class="form-control-file" formControlName="urlPelicula" maxlength="50" >
+           <label >Colocar URl de la pelicula</label>
+          <span class="text-danger">*</span>
+<input type="text" class="form-control" placeholder="ejemplo: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiv77RtuuI2i0CzDw2TJEQ085-pfZaBzXiTB62EQ1heFIKqy2zHQ"
+  formControlName="urlPelicula">
+<div *ngIf="registro.get('urlPelicula').errors && registro.get('urlPelicula').dirty ">
+<p class="alert alert-danger" *ngIf="registro.get('urlPelicula').hasError('required')">El campo es requerido</p>
+
+</div>
+
+
+
+
             </div> 
              <br>
+
            
              <div align="center" >
-              <button  type="submit" class="btn btn-primary btn-md " (click)="guardarPelicula()" >Aceptar</button>
-            <button type="button" class="btn btn-secondary btn-md ">Cancelar</button>
-             <p class="alert alert-danger">registro.invalid: {{ registro.invalid }}</p>
+              <button  type="submit" class="btn btn-primary btn-md " [disabled]="registro.invalid" (click)="guardarPelicula()" >Aceptar</button>
+<button type="button" class="btn btn-secondary btn-md " >Cancelar</button>
+
+             <p class="alert alert-danger">registro.valid: {{ registro.valid  }}</p>
   
           </div>
         <br>
