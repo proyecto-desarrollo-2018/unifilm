@@ -59,7 +59,7 @@ const pelicula = {
         comentario: '',
         fechaCal: ''
                 }] ,
-   urlPortada: '',
+  urlPortada: 'https://vignette.wikia.nocookie.net/superman/images/d/d3/Man_of_Steel_Poster.png/revision/latest?cb=20131230190352&path-prefix=es',
    urlPelicula: ''     
 
 };

@@ -1,6 +1,11 @@
 import { AbstractControl } from '@angular/forms';
 
+
+
 export class Validaciones {
+
+
+
     static verificarEspacios(c: AbstractControl) {
         if( c.value == null ) return null;
 
@@ -10,5 +15,4 @@ export class Validaciones {
 
         return null;
     }
-  
 }

@@ -1,6 +1,6 @@
 <div class="fondo-home">
 <header >
-  <div class="container" style="height: 100%">
+  <div class="container-fluid" style="height: 100%">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand text-left" [routerLink]="['/home-cliente']">
         <img src="https://scontent.fmex7-1.fna.fbcdn.net/v/t1.0-9/28951578_912389928920762_479248453935824896_n.jpg?oh=1b12231c04c757ae897c07620ede89d6&oe=5B4530DE" width="50" height="50" alt="" >
@@ -23,7 +23,7 @@
               <a class="dropdown-item" (click)="getGenero('Drama')">Drama</a>
               <a class="dropdown-item" (click)="getGenero('Terror')">Terror</a>
               <a class="dropdown-item" (click)="getGenero('Series')">Series</a>
-              <a class="dropdown-item" (click)="getGenero('Nopor')" >Nopor</a>
+              <a class="dropdown-item" (click)="getGenero('Todos')" >Todos</a>
               <div class="dropdown-divider" ></div>
               <a class="dropdown-item" >Mas...</a>
             </div>
@@ -73,7 +73,7 @@
 
 <!-- Quienes Somos -->
 
-<div class="container" *ngIf="quienesSomos" style="color: white; height: 720px;">
+<div class="container-fluid" *ngIf="quienesSomos" style="color: white; height: 720px;">
   <h1> QUIENES SOMOS</h1>
   <P>detalle quienes somos</P>
 </div>
@@ -82,7 +82,7 @@
 
 <!-- barra de abajo -->
 <footer>
-<div class="container" style="height: 100px; background: dark">
+<div class="container-fluid" style="height: 100px; background: dark">
   <h1 align="center">PROXIMAMENTE....</h1>
 
 </div>

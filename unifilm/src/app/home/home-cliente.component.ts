@@ -42,11 +42,11 @@ export class HomeClienteComponent implements OnInit {
       case 'Series':
         this.genero = 'Series';
         break;
-      case 'Nopor':
-        this.genero = 'Nopor';
+      case 'Todos':
+        this.genero = 'Todos';
         break;
       default :
-        this.genero = 'No se selecciono genero';
+        this.genero = 'Todos';
         break;
     }
 

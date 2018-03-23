@@ -4,23 +4,59 @@
   </div>
 </div>
 
-<div *ngIf="!loading">
+<div *ngIf="!loading" class="container-fluid">
   <p class="container">
-    LISTA DE Peliculas
+    LISTA DE PELICULAS
   </p>
 
-  <ng-container *ngIf="genero == 'Todos' ">
-    <div class="container" *ngFor="let pelicula of peliculas">
-    
-      <ul class="list-group">
-        <li class="list-group-item disabled">
-          <a routerLink="/peliculas/{{pelicula.idPelicula}}">{{ pelicula.titulo }} {{ pelicula.generos }} {{ pelicula.duracion}}</a>
-        </li>
-      </ul>
-    
-    </div>
-  </ng-container>
 
-      <p style="color:white;"> Genero seleccionado: {{ genero }}</p>
+    <div  *ngIf="genero === 'Todos'">
+      <h1 class="text-white" style="text-align: left;"> Todos</h1>
+      <div class="row">
+        <div class="card-deck" *ngFor="let p of peliculas">
+          <div class="card text-white bg-dark" >
+            <a routerLink="/peliculas/{{p.idPelicula}}"><img class="card-img-top " src="{{p.urlPortada}}" alt="Card image cap"></a>
+            <div class="card-body">
+                <dl class="dl-horizontal card-text">
+                  <dt>Titulo: </dt>
+                  <dd>{{ p.titulo }}</dd>
+                  <dt>Genero:</dt>
+                  <dd>{{ p.generos }}</dd>
+                  <dt>Duracion:</dt>
+                  <dd>
+                     {{p.duracion}} minutos
+                  </dd>
+                </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div *ngIf="genero != 'Todos'">
+      <h1 class="text-white" style="text-align: left;"> {{genero}}</h1>
+      <div class="row">
+        <div class="card-deck" *ngFor="let p of peliculas" [ngSwitch]="p.generos">
+          <div class="card text-white bg-dark" *ngSwitchCase="genero">
+            <a routerLink="/peliculas/{{p.idPelicula}}">
+              <img class="card-img-top " src="{{p.urlPortada}}" alt="Card image cap">
+            </a>
+            <div class="card-body">
+              <dl class="dl-horizontal card-text">
+                <dt>Titulo: </dt>
+                <dd>{{ p.titulo }}</dd>
+                <dt>Genero:</dt>
+                <dd>{{ p.generos }}</dd>
+                <dt>Duracion:</dt>
+                <dd>
+                  {{p.duracion}} minutos
+                </dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
 </div>
