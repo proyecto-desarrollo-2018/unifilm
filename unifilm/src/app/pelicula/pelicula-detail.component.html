@@ -1,4 +1,4 @@
-<div class="container-fluid  fondo-login">
+<div class="container-fluid  fondo-login" style="height: 900px">
   <div  *ngIf="loading" style="padding: 400px 300px ;">
     <div class="progress" style="height: 40px;">
       <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%" aria-valuenow="400">CARGANDO DETALLE Pelicula</div>
@@ -10,11 +10,38 @@
       DETALLE DE Pelicula
     </p>
     <div>
-      <ul class="list-group">
-        <li class="list-group-item disabled"><pre>{{ pelicula | json }}</pre></li>
-      </ul>
+      <div class="row">
+        <div class="card-deck" >
+          <div class="card text-white bg-dark" >
+            <a routerLink="/peliculas/{{pelicula.idPelicula}}">
+              <img class="card-img-top " src="{{pelicula.urlPortada}}" alt="Card image cap">
+            </a>
+            <div class="card-body">
+              <dl class="dl-horizontal card-text">
+                <dt>Titulo: </dt>
+                <dd>{{ pelicula.titulo }}</dd>
+                <dt>Sinopsis:</dt>
+                <dd>
+                  {{pelicula.sinopsis}} 
+                </dd>
+                <dt>Genero:</dt>
+                <dd>{{ pelicula.generos }}</dd>
+                <dt>Duracion:</dt>
+                <dd>
+                  {{pelicula.duracion}} minutos
+                </dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+        <div>
+            <iframe width="1300" height="700" src="https://www.youtube.com/embed/85MppyLJHz0?controls=1" allowfullscreen></iframe>
+        </div>
+      </div>
     </div>
   </div>
+
+  <button [routerLink]="['/home-cliente']" class="btn btn-primary">Regresar</button>
 
 
 </div>
