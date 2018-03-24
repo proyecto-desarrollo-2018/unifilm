@@ -126,7 +126,7 @@ const peliculas =[ {
 
   {
     idPelicula: 2,
-    titulo: 'Superman',
+    titulo: 'Avengers',
     directores: null,
     actores:null,
     generos: ['Accion'],

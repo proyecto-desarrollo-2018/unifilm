@@ -30,12 +30,29 @@
                 <dd>
                   {{pelicula.duracion}} minutos
                 </dd>
+                <dt>Calificar:</dt>
+                <dd>
+                  <select class="form-control"  maxlength="50">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+
+                  </select>
+                </dd>
               </dl>
             </div>
           </div>
         </div>
-        <div>
-            <iframe width="1300" height="700" src="https://www.youtube.com/embed/85MppyLJHz0?controls=1" allowfullscreen></iframe>
+        <div>{{pelicula.urlPelicula}}
+            <iframe width="640" height="360" src="https://www.youtube.com/embed/RdqOgBnZhxo" frameborder="0" allow="autoplay; encrypted-media"
+              allowfullscreen></iframe>
         </div>
       </div>
     </div>
