@@ -12,7 +12,7 @@ const currentUser = {
   fNacimiento: new Date(),
   telefono: '7687678765',
   correo: 'ge_call@hotmail.com',
-  contra: '12345',
+  contra: '123456',
   genero: '12345',
   tipoUsuario: 'admin',
   tarjeta: {
@@ -46,7 +46,7 @@ const usuario = {
          fNacimiento  : new Date(),
          telefono  : '7687678765',
          correo  : 'ge_call@hotmail.com',
-         contra  : '12345',
+         contra  : '123456',
          genero  : '12345',
          tipoUsuario  : 'admin',
          tarjeta  : {

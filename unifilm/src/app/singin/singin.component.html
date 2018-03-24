@@ -12,7 +12,10 @@
           <div class="form-group" style="color: white; font-weight: bold;">
             <label>Nombre de usuario</label>
             <span class="text-danger">*</span>
-            <input type="text" class="form-control" id="usuario" placeholder="Ingrese su usuario" formControlName="nombreU" maxlength="35">
+<input type="text" class="form-control" #nombreU  id="nombreU" placeholder="Ingrese su usuario" formControlName="nombreU"
+  maxlength="35">
+
+
           </div>
           <div *ngIf="loging.get('nombreU').errors && loging.get('nombreU').dirty">
             <p class="alert alert-danger" *ngIf="loging.get('nombreU').hasError('required')">El campo es requerido</p>
@@ -27,7 +30,9 @@
           <div class="form-group" style="color: white; font-weight: bold;">
             <label>Ingrese su contraseña</label>
             <span class="text-danger">*</span>
-            <input type="password" class="form-control" id="password" placeholder="Ingrese Password" formControlName="contra" maxlength="30">
+<input type="password" class="form-control" id="contra" #contra placeholder="Ingrese Password" formControlName="contra" maxlength="30">
+
+
           </div>
           <div *ngIf="loging.get('contra').errors && loging.get('contra').dirty">
             <p class="alert alert-danger" *ngIf="loging.get('contra').hasError('required')">El campo es requerido</p>
@@ -39,7 +44,7 @@
           <div align="center">
             <!-- <button type="submit" class="btn btn-primary btn-md " [disabled]="loging.invalid" [routerLink]="['/home-cliente']"> Aceptar</button>
          -->
-            <button type="submit" class="btn btn-primary btn-md " [disabled]="loging.invalid" (click)="validarUserName()"> Aceptar</button>
+            <button type="submit" class="btn btn-primary btn-md " [disabled]="loging.invalid" > Aceptar</button>
 
             <button type="button" class="btn btn-secondary btn-md " [routerLink]="['/pagina-principal']"> Cancelar</button>
             <br>
