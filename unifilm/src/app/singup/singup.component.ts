@@ -40,14 +40,12 @@ export class SingupComponent implements OnInit {
     });
   }
   onSubmit() {
-    const idRa  =  (Math.random() * 100);
-    const idS = idRa.toString();
     if (this.registro.valid) {
       const { nombreU, contra, nombre, apellidoP,
         apellidoM, correo, sexo,
         numeroTarjeta, mesFE, anioFE, codigoS } = this.registro.value;
       const tarjeta: Tarjeta = new Tarjeta(null, numeroTarjeta, mesFE, anioFE, codigoS);
-      const usuario = new Usuario(idS,
+      const usuario = new Usuario(null,
         nombreU,
         nombre,
         apellidoP,

@@ -6,6 +6,7 @@ import urljoin from 'url-join';
 import 'rxjs/add/operator/toPromise';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
+import { Calificacion } from '../models/calificacion';
 
 
 @Injectable()
@@ -40,6 +41,15 @@ export class PeliculaService {
         const headers = new Headers({ 'Content-Type': 'application/json'});
 
         return this.http.post(this.peliculaUrl, body , {headers})
+            .map((response: Response) => response.json())
+            .catch((error: Response) => Observable.throw(error.json()));
+    }
+    addCalificacion(calificacion: Calificacion) {
+        const body = JSON.stringify(calificacion);
+        const url = this.peliculaUrl + '/' + calificacion.pelicula.idPelicula + '/calificaciones';
+        const headers = new Headers({ 'Content-Type': 'application/json'});
+
+        return this.http.post(url, body , {headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }

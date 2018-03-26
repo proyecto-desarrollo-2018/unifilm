@@ -45,8 +45,6 @@ export class PeliculaNewComponent implements OnInit {
     });
   }
   onSubmit() {
-    const idRa = (Math.random() * 100);
-    const idS = idRa.toString();
     if (this.registro.valid) {
       const { titulo,
               nombreD,
@@ -78,7 +76,7 @@ export class PeliculaNewComponent implements OnInit {
         tipoActor);
 
 
-      const pelicula = new Pelicula(idS,
+      const pelicula = new Pelicula(null,
         titulo,
         [direc],
         [act],
@@ -97,7 +95,7 @@ export class PeliculaNewComponent implements OnInit {
       alert('Usuario agregado: ' + JSON.stringify(pelicula));
       this.peliculaService.addPelicula(pelicula)
         .subscribe(
-          ({ idPelicula }) => this.router.navigate(['/peliculas'], idPelicula),
+        ({ idPelicula }) => this.router.navigate(['/home-cliente'] ),
           error => console.log(error)
         );
 

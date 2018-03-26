@@ -3,14 +3,41 @@ import express from 'express';
 const app = express.Router();
 
 
+const currentUser = {
+  idUsuario: 1,
+  nomUsuario: 'Gerardo92',
+  nombre: 'Gerardo',
+  apellidoP: 'Alderete',
+  apellidoM: 'Flores',
+  direccion: 'Ojo de Agua',
+  fNacimiento: new Date(),
+  telefono: '7687678765',
+  correo: 'ge_call@hotmail.com',
+  contra: '12345',
+  genero: '12345',
+  tipoUsuario: 'admin',
+  tarjeta: {
+    idTarjeta: '1',
+    numTarjeta: '1234567890098765',
+    mesExpiracion: 'Enero',
+    anioExpiracion: '2019',
+    codigoSeguridad: '123'
+  }
+};
+
 function peliculaMiddleware(req, res, next) {
   const { id } = req.params
   req.pelicula = peliculas.find(({ idPelicula }) => idPelicula === +id)
   next()
 }
 
+function userMiddleware(req, res, next) {
+  req.usuario = currentUser
+  next()
+}
 
-/*const pelicula = {
+
+const pelicula = {
    idPelicula: 1,
    titulo: 'Superman',
    directores: [{idDirector: '',
@@ -35,340 +62,21 @@ function peliculaMiddleware(req, res, next) {
     calificacion: [{
         idCalificacion: '',
         calificacion: '',
-        usuarioCalifico: {
-              idUsuario: 1,
-              nomUsuario: 'Gerardo92',
-              nombre: 'Gerardo',
-              apellidoP: 'Alderete',
-              apellidoM: 'Flores',
-              direccion: 'Ojo de Agua',
-              fNacimiento: new Date(),
-              telefono: '7687678765',
-              correo: 'ge_call@hotmail.com',
-              contra: '12345',
-              genero: '12345',
-              tipoUsuario: 'admin',
-              tarjeta: {
-                        idTarjeta: '1',
-                        numTarjeta: '1234567890098765',
-                        mesExpiracion: 'Enero',
-                        anioExpiracion: '2019',
-                        codigoSeguridad: '123'
-                      }
-                         },
+        pelicula: null,
+        usuarioCalifico: null,
         comentario: '',
         fechaCal: ''
                 }] ,
   urlPortada: 'https://vignette.wikia.nocookie.net/superman/images/d/d3/Man_of_Steel_Poster.png/revision/latest?cb=20131230190352&path-prefix=es',
    urlPelicula: ''     
 
-};*/
+};
 
 
 
 
 
-const peliculas =[ {
-  idPelicula: 1,
-  titulo: 'Superman',
-  directores: [{
-    idDirector: '',
-    nombre: '',
-    apPaterno: '',
-    apMaterno: '',
-    tipoDirector: ''
-  }],
-  actores: [{
-    idActor: '',
-    nombre: '',
-    apPaterno: '',
-    apMaterno: '',
-    tipoActor: ''
-  }],
-  generos: ['Accion'],
-  anioProduccion: new Date(),
-  fechaAdicion: new Date(),
-  sinopsis: '',
-  clasificacion: ['AA'],
-  duracion: 123,
-  casaProductora: '',
-  calificacion: [{
-    idCalificacion: '',
-    calificacion: '',
-    usuarioCalifico: {
-      idUsuario: 1,
-      nomUsuario: 'Gerardo92',
-      nombre: 'Gerardo',
-      apellidoP: 'Alderete',
-      apellidoM: 'Flores',
-      direccion: 'Ojo de Agua',
-      fNacimiento: new Date(),
-      telefono: '7687678765',
-      correo: 'ge_call@hotmail.com',
-      contra: '12345',
-      genero: '12345',
-      tipoUsuario: 'admin',
-      tarjeta: {
-        idTarjeta: '1',
-        numTarjeta: '1234567890098765',
-        mesExpiracion: 'Enero',
-        anioExpiracion: '2019',
-        codigoSeguridad: '123'
-      }
-    },
-    comentario: '',
-    fechaCal: ''
-  }],
-  urlPortada: 'https://vignette.wikia.nocookie.net/superman/images/d/d3/Man_of_Steel_Poster.png/revision/latest?cb=20131230190352&path-prefix=es',
-  urlPelicula: ''
-
-},
-
-  {
-    idPelicula: 2,
-    titulo: 'Avengers',
-    directores: null,
-    actores:null,
-    generos: ['Accion'],
-    anioProduccion: new Date(),
-    fechaAdicion: new Date(),
-    sinopsis: '',
-    clasificacion: ['AA'],
-    duracion: 123,
-    casaProductora: '',
-    calificacion: null,
-    urlPortada: 'https://vignette.wikia.nocookie.net/superman/images/d/d3/Man_of_Steel_Poster.png/revision/latest?cb=20131230190352&path-prefix=es',
-    urlPelicula: ''
-  },
-
-  {
-    idPelicula: 3,
-    titulo: 'Superman',
-    directores: null,
-    actores: null,
-    generos: ['Accion'],
-    anioProduccion: new Date(),
-    fechaAdicion: new Date(),
-    sinopsis: '',
-    clasificacion: ['AA'],
-    duracion: 123,
-    casaProductora: '',
-    calificacion: null,
-    urlPortada: 'https://vignette.wikia.nocookie.net/superman/images/d/d3/Man_of_Steel_Poster.png/revision/latest?cb=20131230190352&path-prefix=es',
-    urlPelicula: ''
-  },
-  {
-    idPelicula: 4,
-    titulo: 'Superman',
-    directores: null,
-    actores: null,
-    generos: ['Accion'],
-    anioProduccion: new Date(),
-    fechaAdicion: new Date(),
-    sinopsis: '',
-    clasificacion: ['AA'],
-    duracion: 123,
-    casaProductora: '',
-    calificacion: null,
-    urlPortada: 'https://vignette.wikia.nocookie.net/superman/images/d/d3/Man_of_Steel_Poster.png/revision/latest?cb=20131230190352&path-prefix=es',
-    urlPelicula: ''
-  },
-
-  {
-    idPelicula: 5,
-    titulo: 'Superman',
-    directores: null,
-    actores: null,
-    generos: ['Accion'],
-    anioProduccion: new Date(),
-    fechaAdicion: new Date(),
-    sinopsis: '',
-    clasificacion: ['AA'],
-    duracion: 123,
-    casaProductora: '',
-    calificacion: null,
-    urlPortada: 'https://vignette.wikia.nocookie.net/superman/images/d/d3/Man_of_Steel_Poster.png/revision/latest?cb=20131230190352&path-prefix=es',
-    urlPelicula: ''
-  },
-  {
-    idPelicula: 6,
-    titulo: 'Superman',
-    directores: null,
-    actores: null,
-    generos: ['Accion'],
-    anioProduccion: new Date(),
-    fechaAdicion: new Date(),
-    sinopsis: '',
-    clasificacion: ['AA'],
-    duracion: 123,
-    casaProductora: '',
-    calificacion: null,
-    urlPortada: 'https://vignette.wikia.nocookie.net/superman/images/d/d3/Man_of_Steel_Poster.png/revision/latest?cb=20131230190352&path-prefix=es',
-    urlPelicula: ''
-  },
-  {
-    idPelicula: 7,
-    titulo: 'Superman',
-    directores: null,
-    actores: null,
-    generos: ['Accion'],
-    anioProduccion: new Date(),
-    fechaAdicion: new Date(),
-    sinopsis: '',
-    clasificacion: ['AA'],
-    duracion: 123,
-    casaProductora: '',
-    calificacion: null,
-    urlPortada: 'https://vignette.wikia.nocookie.net/superman/images/d/d3/Man_of_Steel_Poster.png/revision/latest?cb=20131230190352&path-prefix=es',
-    urlPelicula: ''
-  },
-  {
-    idPelicula: 8,
-    titulo: 'Superman',
-    directores: null,
-    actores: null,
-    generos: ['Accion'],
-    anioProduccion: new Date(),
-    fechaAdicion: new Date(),
-    sinopsis: '',
-    clasificacion: ['AA'],
-    duracion: 123,
-    casaProductora: '',
-    calificacion: null,
-    urlPortada: 'https://vignette.wikia.nocookie.net/superman/images/d/d3/Man_of_Steel_Poster.png/revision/latest?cb=20131230190352&path-prefix=es',
-    urlPelicula: ''
-  },
-  {
-    idPelicula: 9,
-    titulo: 'Superman',
-    directores: null,
-    actores: null,
-    generos: ['Accion'],
-    anioProduccion: new Date(),
-    fechaAdicion: new Date(),
-    sinopsis: '',
-    clasificacion: ['AA'],
-    duracion: 123,
-    casaProductora: '',
-    calificacion: null,
-    urlPortada: 'https://vignette.wikia.nocookie.net/superman/images/d/d3/Man_of_Steel_Poster.png/revision/latest?cb=20131230190352&path-prefix=es',
-    urlPelicula: ''
-  },
-
-  {
-    idPelicula: 10,
-    titulo: 'Superman',
-    directores: null,
-    actores: null,
-    generos: ['Accion'],
-    anioProduccion: new Date(),
-    fechaAdicion: new Date(),
-    sinopsis: '',
-    clasificacion: ['AA'],
-    duracion: 123,
-    casaProductora: '',
-    calificacion: null,
-    urlPortada: 'https://vignette.wikia.nocookie.net/superman/images/d/d3/Man_of_Steel_Poster.png/revision/latest?cb=20131230190352&path-prefix=es',
-    urlPelicula: ''
-  },
-  {
-    idPelicula: 11,
-    titulo: 'Superman',
-    directores: null,
-    actores: null,
-    generos: ['Accion'],
-    anioProduccion: new Date(),
-    fechaAdicion: new Date(),
-    sinopsis: '',
-    clasificacion: ['AA'],
-    duracion: 123,
-    casaProductora: '',
-    calificacion: null,
-    urlPortada: 'https://vignette.wikia.nocookie.net/superman/images/d/d3/Man_of_Steel_Poster.png/revision/latest?cb=20131230190352&path-prefix=es',
-    urlPelicula: ''
-  },
-  {
-    idPelicula: 12,
-    titulo: 'Superman',
-    directores: null,
-    actores: null,
-    generos: ['Accion'],
-    anioProduccion: new Date(),
-    fechaAdicion: new Date(),
-    sinopsis: '',
-    clasificacion: ['AA'],
-    duracion: 123,
-    casaProductora: '',
-    calificacion: null,
-    urlPortada: 'https://vignette.wikia.nocookie.net/superman/images/d/d3/Man_of_Steel_Poster.png/revision/latest?cb=20131230190352&path-prefix=es',
-    urlPelicula: ''
-  },
-  {
-    idPelicula: 13,
-    titulo: 'Superman',
-    directores: null,
-    actores: null,
-    generos: ['Accion'],
-    anioProduccion: new Date(),
-    fechaAdicion: new Date(),
-    sinopsis: '',
-    clasificacion: ['AA'],
-    duracion: 123,
-    casaProductora: '',
-    calificacion: null,
-    urlPortada: 'https://vignette.wikia.nocookie.net/superman/images/d/d3/Man_of_Steel_Poster.png/revision/latest?cb=20131230190352&path-prefix=es',
-    urlPelicula: ''
-  },
-  {
-    idPelicula: 14,
-    titulo: 'Superman',
-    directores: null,
-    actores: null,
-    generos: ['Accion'],
-    anioProduccion: new Date(),
-    fechaAdicion: new Date(),
-    sinopsis: '',
-    clasificacion: ['AA'],
-    duracion: 123,
-    casaProductora: '',
-    calificacion: null,
-    urlPortada: 'https://vignette.wikia.nocookie.net/superman/images/d/d3/Man_of_Steel_Poster.png/revision/latest?cb=20131230190352&path-prefix=es',
-    urlPelicula: ''
-  },
-  {
-    idPelicula: 15,
-    titulo: 'Superman',
-    directores: null,
-    actores: null,
-    generos: ['Accion'],
-    anioProduccion: new Date(),
-    fechaAdicion: new Date(),
-    sinopsis: '',
-    clasificacion: ['AA'],
-    duracion: 123,
-    casaProductora: '',
-    calificacion: null,
-    urlPortada: 'https://vignette.wikia.nocookie.net/superman/images/d/d3/Man_of_Steel_Poster.png/revision/latest?cb=20131230190352&path-prefix=es',
-    urlPelicula: ''
-  },
-  {
-    idPelicula: 16,
-    titulo: 'Superman',
-    directores: null,
-    actores: null,
-    generos: ['Accion'],
-    anioProduccion: new Date(),
-    fechaAdicion: new Date(),
-    sinopsis: '',
-    clasificacion: ['AA'],
-    duracion: 123,
-    casaProductora: '',
-    calificacion: null,
-    urlPortada: 'https://vignette.wikia.nocookie.net/superman/images/d/d3/Man_of_Steel_Poster.png/revision/latest?cb=20131230190352&path-prefix=es',
-    urlPelicula: ''
-  },
-
-]
+const peliculas = new Array(10).fill(pelicula);
 
 
 ;
@@ -381,7 +89,7 @@ app.get('/', (req, res ) => {
 } );
 
 
-// GET /api/usuarios/:id
+// GET /api/peliculas/:id
 app.get('/:id', peliculaMiddleware, ( req, res )  =>{
   setTimeout( () => {
     
@@ -398,11 +106,25 @@ app.get('/:id', peliculaMiddleware, ( req, res )  =>{
   res.status(201).json(usuario)
 })*/
 
-app.post('/', (req, res) => {
+// POST /api/peliculas
+
+app.post('/', userMiddleware, (req, res) => {
   const pelicula = req.body
   pelicula.idPelicula = +new Date()
+  pelicula.usuarioCalifico = req.usuario
   peliculas.push(pelicula)
   res.status(201).json(pelicula)
+})
+
+// POST /api/peliculas/:id/calificaciones
+
+app.post('/:id/calificaciones', peliculaMiddleware, userMiddleware, (req, res) => {
+  const calificacion = req.body
+  const p = req.pelicula
+  calificacion.fechaCal = new Date()
+  calificacion.usuarioCalifico = req.usuario
+  p.calificacion.push(calificacion)
+  res.status(201).json(calificacion)
 })
 
 export default app;
