@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-home-cliente',
@@ -9,7 +10,7 @@ export class HomeClienteComponent implements OnInit {
   quienesSomos = false;
   compCatalogo = true;
   genero: string;
-  constructor() { 
+  constructor( private authService: AuthService ) { 
     this.genero = 'Todos';
   }
 
@@ -53,6 +54,18 @@ export class HomeClienteComponent implements OnInit {
     console.log('genero: ' + this.genero);
 
 
+  }
+
+  isLoggedIn() {
+    return this.authService.isLoggedIn();
+  }
+
+  fullName() {
+    return this.authService.currentUser.nombre + ' ' + this.authService.currentUser.apellidoP  + ' ' + this.authService.currentUser.apellidoM ;
+  }
+
+  logout() {
+    this.authService.logout();
   }
 
 }

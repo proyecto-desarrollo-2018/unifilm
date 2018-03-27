@@ -1,7 +1,6 @@
 import express from 'express'
 import bodyParser from 'body-parser'
-import { usuario } from './routes'
-import { pelicula } from './routes'
+import { pelicula, usuario, auth } from './routes'
 
 
 const app = express()
@@ -18,9 +17,11 @@ app.use(bodyParser.urlencoded({ extended: true }))
     })
 //}
 
-app.use('/api/usuarios', usuario)
 
 app.use('/api/peliculas', pelicula)
+
+app.use('/api/auth', auth)
+
 
 
 export default app

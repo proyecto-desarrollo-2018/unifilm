@@ -3,15 +3,15 @@ import { FormBuilder, NgForm, FormGroup, FormControl, Validators } from '@angula
 import { Usuario } from '../models/usuario';
 import { Tarjeta } from '../models/tarjeta';
 import { Validaciones } from '../validaciones/validaciones';
-import { UsuarioService } from '../usuario/usuario.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
 
 
 @Component({
   selector: 'app-singup',
   templateUrl: './singup.component.html',
   styleUrls: ['./singup.component.css'],
-  providers: [ UsuarioService ]
+  providers: [  ]
 })
 export class SingupComponent implements OnInit {
   @Input() usuarios: Array<Usuario> = [];
@@ -22,8 +22,8 @@ export class SingupComponent implements OnInit {
   }
 
   constructor(public fb: FormBuilder, 
-              private usuarioService: UsuarioService,
-              private router: Router ) {
+              private router: Router,
+              private authService: AuthService ) {
     this.registro = this.fb.group({
       nombreU: ['', [Validators.required, Validators.pattern("[a-zA-Z0-9-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,._'-]{4,20}"), Validaciones.verificarEspacios]],
       contra: ['', [Validators.required, Validators.pattern(/^[a-z0-9_-]{6,18}$/)]],
@@ -60,25 +60,16 @@ export class SingupComponent implements OnInit {
         tarjeta
         );
 
-      alert('Usuario agregado: ' + JSON.stringify(usuario));
-      this.usuarioService.addUsuario(usuario)
-        .subscribe(
-          ({ idUsuario }) => this.router.navigate(['/usuarios'], idUsuario),
-          error => console.log(error)
-        );
-
-      this.registro.reset();
+        this.authService.singup(usuario)
+          .subscribe(
+            this.authService.login,
+            err => console.log(err)
+          );
     } else {
       console.log('Error en el formulario de registro');
     }
   }
 
-
-  guardarUsuario() {
-    //alert(JSON.stringify(this.registro.value));
-    this.onSubmit();
-
-  }
   isValidMatchPassword() {
     const contra = this.registro.get('contra').value;
     const contraC = this.registro.get('contraC').value;

@@ -22,6 +22,7 @@ import { PeliculaNewComponent } from './pelicula/pelicula-new.component';
 import { PeliculaListComponent } from './pelicula/pelicula-list.component';
 import { PeliculaDetailComponent } from './pelicula/pelicula-detail.component';
 
+import { AuthService } from './auth/auth.service';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,7 @@ import { PeliculaDetailComponent } from './pelicula/pelicula-detail.component';
     HttpModule,
     Ng2FileInputModule.forRoot()
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

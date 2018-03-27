@@ -12,18 +12,18 @@
           <div class="form-group" style="color: white; font-weight: bold;">
             <label>Nombre de usuario</label>
             <span class="text-danger">*</span>
-<input type="text" class="form-control" #nombreU  id="nombreU" placeholder="Ingrese su usuario" formControlName="nombreU"
+<input type="text" class="form-control" #nombreU  id="nombreU" placeholder="Ingrese su usuario" formControlName="correo"
   maxlength="35">
 
 
           </div>
-          <div *ngIf="loging.get('nombreU').errors && loging.get('nombreU').dirty">
-            <p class="alert alert-danger" *ngIf="loging.get('nombreU').hasError('required')">El campo es requerido</p>
-            <p class="alert alert-danger" *ngIf="loging.get('nombreU').hasError('sinEspacios')">No puede haber espacios</p>
+          <div *ngIf="loging.get('correo').errors && loging.get('correo').dirty">
+            <p class="alert alert-danger" *ngIf="loging.get('correo').hasError('required')">El campo es requerido</p>
+            <p class="alert alert-danger" *ngIf="loging.get('correo').hasError('sinEspacios')">No puede haber espacios</p>
             <!--<p class="alert alert-danger" *ngIf="registro.get('nombreU').hasError('maxlength')">El campo debe tener 5 caracteres</p>
                     <p class="alert alert-danger" *ngIf="registro.get('nombreU').hasError('minlength')">El campo debe tener 5 caracteres</p>
                     -->
-            <p class="alert alert-danger" *ngIf="loging.get('nombreU').hasError('pattern')">Nombre de usuario no valido debe tener 4-30 caracteres</p>
+            <p class="alert alert-danger" *ngIf="loging.get('correo').hasError('pattern')">Nombre de usuario no valido debe tener 4-30 caracteres</p>
 
           </div>
           <!--Password-->
