@@ -34,7 +34,7 @@ export class SinginComponent implements OnInit {
       this.authService.singin(usuario)
         .subscribe(
           this.authService.login,
-          err => console.log(err)
+          this.authService.handleError
         );
     }
   }

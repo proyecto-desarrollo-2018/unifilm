@@ -9,6 +9,7 @@ import { AuthService } from '../auth/auth.service';
 export class HomeClienteComponent implements OnInit {
   quienesSomos = false;
   compCatalogo = true;
+  agregarPelicula = false;
   genero: string;
   constructor( private authService: AuthService ) { 
     this.genero = 'Todos';
@@ -19,6 +20,14 @@ export class HomeClienteComponent implements OnInit {
 
   activarQuienesSomos() {
     this.quienesSomos = true;
+    this.compCatalogo = false;
+    this.agregarPelicula = false;
+
+  }
+
+  activarAgregarPelicula() {
+    this.agregarPelicula = true;
+    this.quienesSomos = false;
     this.compCatalogo = false;
   }
 
@@ -52,7 +61,9 @@ export class HomeClienteComponent implements OnInit {
     }
 
     console.log('genero: ' + this.genero);
-
+    this.agregarPelicula = false;
+    this.quienesSomos = false;
+    this.compCatalogo = true;
 
   }
 

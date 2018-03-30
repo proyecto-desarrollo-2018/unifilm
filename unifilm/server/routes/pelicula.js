@@ -1,35 +1,13 @@
 import express from 'express';
+import { required } from '../middleware'
+import { pelicula } from '../db-api'
+import { handleError } from '../utils'
 
 const app = express.Router();
 
 
-const currentUser = {
-  idUsuario: 1,
-  nomUsuario: 'Gerardo92',
-  nombre: 'Gerardo',
-  apellidoP: 'Alderete',
-  apellidoM: 'Flores',
-  direccion: 'Ojo de Agua',
-  fNacimiento: new Date(),
-  telefono: '7687678765',
-  correo: 'ge_call@hotmail.com',
-  contra: '12345',
-  genero: '12345',
-  tipoUsuario: 'admin',
-  tarjeta: {
-    idTarjeta: '1',
-    numTarjeta: '1234567890098765',
-    mesExpiracion: 'Enero',
-    anioExpiracion: '2019',
-    codigoSeguridad: '123'
-  }
-};
 
-function peliculaMiddleware(req, res, next) {
-  const { id } = req.params
-  req.pelicula = peliculas.find(({ idPelicula }) => idPelicula === +id)
-  next()
-}
+
 
 function userMiddleware(req, res, next) {
   req.usuario = currentUser
@@ -37,65 +15,30 @@ function userMiddleware(req, res, next) {
 }
 
 
-const pelicula = {
-   idPelicula: 1,
-   titulo: 'Superman',
-   directores: [{idDirector: '',
-                nombre: '',
-                apPaterno: '',
-                apMaterno: '',
-                tipoDirector: ''}],
-    actores: [{
-              idActor: '',
-              nombre: '',
-              apPaterno: '',
-              apMaterno: '',
-              tipoActor: ''
-            }],
-    generos: ['Accion'],
-    anioProduccion: new Date(),
-    fechaAdicion: new Date(),
-    sinopsis: '',
-    clasificacion: ['AA'],
-    duracion: 123,
-    casaProductora: '',
-    calificacion: [{
-        idCalificacion: '',
-        calificacion: '',
-        pelicula: null,
-        usuarioCalifico: null,
-        comentario: '',
-        fechaCal: ''
-                }] ,
-  urlPortada: 'https://vignette.wikia.nocookie.net/superman/images/d/d3/Man_of_Steel_Poster.png/revision/latest?cb=20131230190352&path-prefix=es',
-   urlPelicula: ''     
-
-};
 
 
-
-
-
-const peliculas = new Array(10).fill(pelicula);
-
-
-;
 // GET /api/peliculas
-app.get('/', (req, res ) => {
-  setTimeout(() => {
-    res.status(200).json(peliculas) 
-
-  }, 2000);
+app.get('/', async (req, res ) => {
+    try {
+      const peliculas = await pelicula.findAll()
+      res.status(200).json(peliculas)
+    } catch(error) {
+      handleError(error, res)
+    }
 } );
 
 
 // GET /api/peliculas/:id
-app.get('/:id', peliculaMiddleware, ( req, res )  =>{
-  setTimeout( () => {
+app.get('/:id', async ( req, res )  =>{
     
-    res.status(200).json(req.pelicula)
-  }, 2000);
-} );
+    try {
+      const p  = await pelicula.findById(req.params.id)
+      res.status(200).json(p)
+    } catch ( error ){
+      handleError(error, res)
+    }
+
+});
 
 // POST /api/usuarios
 /*app.post('/',currentUserMiddleware, (req, res) => {
@@ -108,7 +51,7 @@ app.get('/:id', peliculaMiddleware, ( req, res )  =>{
 
 // POST /api/peliculas
 
-app.post('/', userMiddleware, (req, res) => {
+app.post('/', required, (req, res) => {
   const pelicula = req.body
   pelicula.idPelicula = +new Date()
   pelicula.usuarioCalifico = req.usuario
@@ -118,7 +61,7 @@ app.post('/', userMiddleware, (req, res) => {
 
 // POST /api/peliculas/:id/calificaciones
 
-app.post('/:id/calificaciones', peliculaMiddleware, userMiddleware, (req, res) => {
+app.post('/:id/calificaciones', required, (req, res) => {
   const calificacion = req.body
   const p = req.pelicula
   calificacion.fechaCal = new Date()

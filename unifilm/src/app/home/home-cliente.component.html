@@ -7,6 +7,8 @@
       </a>					
       <a class="navbar-brand" [routerLink]="['/home-cliente']">Inicio</a>
       <a class="nav-link-disable text-secondary" (click)="activarQuienesSomos()">¿Quienes Somos?</a>
+      <a class="nav-link-disable text-secondary" (click)="activarAgregarPelicula()">Agregar Pelicula</a>
+
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -79,7 +81,7 @@
   <P>detalle quienes somos</P>
 </div>
 
-
+<app-pelicula-new *ngIf="agregarPelicula"></app-pelicula-new>
 
 <!-- barra de abajo -->
 <footer>

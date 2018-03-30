@@ -6,6 +6,7 @@ import { Director } from '../models/director';
 import { Actor } from '../models/actor';
 import { PeliculaService } from './pelicula.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
 
 
 
@@ -22,6 +23,7 @@ export class PeliculaNewComponent implements OnInit {
   }
 
   constructor(public fb: FormBuilder, private peliculaService: PeliculaService,
+    private authService: AuthService,
     private router: Router
     ) {
     this.registro = this.fb.group({
@@ -45,6 +47,11 @@ export class PeliculaNewComponent implements OnInit {
     });
   }
   onSubmit() {
+    if ( !this.authService.isLoggedIn()) {
+      alert('Para agregar pelculas debes estar logeado');
+      this.router.navigateByUrl('/singin');
+    }
+
     if (this.registro.valid) {
       const { titulo,
               nombreD,
@@ -89,14 +96,14 @@ export class PeliculaNewComponent implements OnInit {
         casaProductora,
         null,
         urlPortada,
-        urlPelicula
+        urlPelicula,
+        null
       );
       
-      alert('Usuario agregado: ' + JSON.stringify(pelicula));
       this.peliculaService.addPelicula(pelicula)
         .subscribe(
         ({ idPelicula }) => this.router.navigate(['/home-cliente'] ),
-          error => console.log(error)
+          this.authService.handleError
         );
 
 

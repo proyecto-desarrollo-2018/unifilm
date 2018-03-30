@@ -66,8 +66,24 @@ export class AuthService {
     logout() {
         localStorage.clear();
         this.currentUser = null;
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/singin');
     }
 
+    showError(message) {
+        alert(message);
+    }
+
+    public handleError = ( error: any ) => {
+        const {  error: { name }, message } = error
+        if ( name === 'TokenExpiredError' ) {
+            this.showError('Tu sesion ha expirado');
+        } else if ( name === 'JsonWebTokenError') {
+            this.showError('Ha habido un error con tu sesion');
+        } else {
+            this.showError(message || 'Ha ocurrido un error. Intentalo nuevamente');
+        }
+
+        this.logout();
+    }
 
 }

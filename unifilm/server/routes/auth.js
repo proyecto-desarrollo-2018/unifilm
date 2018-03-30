@@ -1,95 +1,21 @@
 import express from 'express'
 import jwt from 'jsonwebtoken'
+import { secret } from '../config'
+import { Usuario, Tarjeta } from '../models'
+import {
+    hashSync as hash,
+    compareSinc as comparePassword
+
+} from 'bcryptjs'
 
 const app = express.Router()
 
 export default app
-
-const secret = 'miclavesecreta' 
-
-const users = [{
-        idUsuario: 1,
-        nomUsuario: 'Gerardo',
-        nombre: 'Gerardo',
-        apellidoP: 'Alderete',
-        apellidoM: 'Flores',
-        direccion: 'Ojo de Agua',
-        fNacimiento: new Date(),
-        telefono: '7687678765',
-        correo: 'ge_call@hotmail.com',
-        contra: 'gerardo',
-        genero: '12345',
-        tipoUsuario: 'admin',
-        tarjeta: {
-            idTarjeta: '1',
-            numTarjeta: '1234567890098765',
-            mesExpiracion: 'Enero',
-            anioExpiracion: '2019',
-            codigoSeguridad: '123'
-
-        }
-
-    },
-    {
-        idUsuario: 2,
-        nomUsuario: 'Alfredo',
-        nombre: 'Alfredo',
-        apellidoP: 'Sanchez',
-        apellidoM: 'Nieto',
-        direccion: null,
-        fNacimiento: null,
-        telefono: null,
-        correo: 'alfredo@hotmail.com',
-        contra: 'alfredo',
-        genero: null,
-        tipoUsuario: 'admin',
-        tarjeta: null
-    },
-
-    {
-        idUsuario: 3,
-        nomUsuario: 'Kevin',
-        nombre: 'Kevin Sebastian',
-        apellidoP: 'Valles',
-        apellidoM: 'Guerrero',
-        direccion: null,
-        fNacimiento: null,
-        telefono: null,
-        correo: 'kevin@hotmail.com',
-        contra: 'kevin',
-        genero: null,
-        tipoUsuario: 'admin',
-        tarjeta: null
-    },
-    {
-        idUsuario: 4,
-        nomUsuario: 'Alejandra',
-        nombre: 'Alejandra Iris',
-        apellidoP: 'Barojas',
-        apellidoM: 'Hernandez',
-        direccion: null,
-        fNacimiento: null,
-        telefono: null,
-        correo: 'alejandra@hotmail.com',
-        contra: 'alejandra',
-        genero: null,
-        tipoUsuario: 'admin',
-        tarjeta: null
-    }
-
-
-]
-
-const findUserByEmail = e => users.find(({ correo }) => correo === e )
-
-function comparePassword ( providedPassword, userPassword ) {
-    return providedPassword === userPassword
-}
-
+ 
 // /api/auth/singin
-app.post('/singin', (req,res,next) => {
+app.post('/singin', async (req,res,next) => {
     const { correo, contra } = req.body
-    const user = findUserByEmail(correo)
+    const user = await Usuario.findOne({ correo })
 
     if( !user ) {
         console.log('Usuario con email ' + correo + ' no encontrado ')
@@ -115,45 +41,41 @@ app.post('/singin', (req,res,next) => {
 })
 
 // /api/auth/singup
-app.post('/singup', (req, res,) => {
-    const { nombreU, contra, nombre, apellidoP, apellidoM, correo, sexo,
+app.post('/singup', async (req, res,) => {
+    const { nomUsuario, contra, nombre, apellidoP, apellidoM, correo, genero,
         numeroTarjeta, mesFE, anioFE, codigoS } = req.body;
-    const user = {
-        idUsuario: +new Date(),
-        nomUsuario: nombreU ,
+    const u = new Usuario({
+        nomUsuario: nomUsuario ,
         nombre: nombre,
         apellidoP: apellidoP,
         apellidoM: apellidoM,
-        direccion: null,
+        direccion: 'direccion',
         fNacimiento: new Date(),
-        telefono: null,
+        telefono: '787878787878',
         correo: correo,
-        contra: contra,
-        genero: sexo,
+        contra: hash(contra,10),
+        genero: genero,
         tipoUsuario: 'admin',
-        tarjeta: {
-            idTarjeta: +new Date(),
+        tarjeta: new Tarjeta ({
             numTarjeta: numeroTarjeta,
             mesExpiracion: mesFE ,
             anioExpiracion: anioFE ,
             codigoSeguridad: codigoS
 
-        }
+        })
+    })
 
-    
-    }
-
-    console.log('Creando nuevo usuario: ' + user )
-    users.push( user )
-    const token = createToken( user )
+    console.log('Creando nuevo usuario: ' + u )
+    const usuario = await u.save()
+    const token = createToken( usuario )
     res.status(200).json({
         message: 'Usuario salvado',
         token,
-        userId: user.idUsuario,
-        firsName: user.nombre,
-        lastNameP: user.apellidoP,
-        lastNameM: user.apellidoM,
-        email: user.correo
+        userId: usuario._id,
+        firsName: usuario.nombre,
+        lastNameP: usuario.apellidoP,
+        lastNameM: usuario.apellidoM,
+        email: usuario.correo
     })
 })
 
