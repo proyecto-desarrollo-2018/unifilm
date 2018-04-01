@@ -4,7 +4,7 @@ import { secret } from '../config'
 import { Usuario, Tarjeta } from '../models'
 import {
     hashSync as hash,
-    compareSinc as comparePassword
+    compareSync as comparePassword
 
 } from 'bcryptjs'
 
@@ -19,7 +19,7 @@ app.post('/singin', async (req,res,next) => {
 
     if( !user ) {
         console.log('Usuario con email ' + correo + ' no encontrado ')
-        return handleLoginFailed(res)
+        return handleLoginFailed(res,'El email no existe')
     }
 
     if( !comparePassword(contra, user.contra)){

@@ -41,7 +41,6 @@
                 <br>
                 <input type="text" class="form-control" placeholder="Apellido Materno" formControlName="apMaternoD" maxlength="50">
                 <div *ngIf="registro.get('apMaternoD').errors && registro.get('apMaternoD').dirty">
-                  <p class="alert alert-danger" *ngIf="registro.get('apMaternoD').hasError('required')">El campo es requerido</p>
                   <p class="alert alert-danger" *ngIf="registro.get('apMaternoD').hasError('sinEspacios')">No puede haber espacios</p>
                   <p class="alert alert-danger" *ngIf="registro.get('apMaternoD').hasError('pattern')">No es un apellido valido</p>
                 </div>
@@ -85,7 +84,6 @@
                 <br>
                 <input type="text" class="form-control" placeholder="Apellido Materno" formControlName="apMaternoA" maxlength="50">
                 <div *ngIf="registro.get('apMaternoA').errors && registro.get('apMaternoA').dirty">
-                  <p class="alert alert-danger" *ngIf="registro.get('apMaternoA').hasError('required')">El campo es requerido</p>
                   <p class="alert alert-danger" *ngIf="registro.get('apMaternoA').hasError('sinEspacios')">No puede haber espacios</p>
                   <p class="alert alert-danger" *ngIf="registro.get('apMaternoA').hasError('pattern')">No es un apellido valido</p>
                 </div>
@@ -120,7 +118,7 @@
                 <select  class="form-control" formControlName="genero" maxlength="50">
                   <option>Drama</option>
                   <option>Comedia</option>
-                  <option>Acción</option>
+                  <option>Accion</option>
                   <option>Ciencia ficción</option>
                   <option>Fantasía</option>
                   <option>Terror</option>
@@ -129,10 +127,10 @@
                   <option>Melodrama</option>
                   <option>Suspenso</option>
                   <option>Histórico</option>
-                  <option>Bélico</option>
+                  <option>Belico</option>
                   <option>Policíaco</option>
                   <option>Western</option>
-                  <option>Animación</option>
+                  <option>Animacion</option>
                   <option>Para niños</option>
                   <option>Cine arte</option>
                   <option>Cine independiente</option>
@@ -148,11 +146,44 @@
 
           <div class="col-md" style="color: white; font-weight: bold;">
             <div class="form-group" style="color: white; font-weight: bold;">
-              <label>Fecha de estreno</label>
+              <label>Año de estreno</label>
               <span class="text-danger">*</span>
-              <input type="date" step="1" min="2013-01-01" max="2018-12-31" value="2013-01-01" formControlName="fechaProduccion" maxlength="50">
-              <div *ngIf="registro.get('fechaProduccion').errors && registro.get('fechaProduccion').dirty">
-                <p class="alert alert-danger" *ngIf="registro.get('fechaProduccion').hasError('required')">El campo es requerido</p>
+<select class="form-control" formControlName="anioProduccion" maxlength="50">
+
+                                <option>1990</option>
+                                <option>1991</option>
+                                <option>1992</option>
+                                <option>1993</option>
+                                <option>1994</option>
+                                <option>1995</option>
+                                <option>1996</option>
+                                <option>1997</option>
+                                <option>1998</option>
+                                <option>1999</option>
+                                <option>2000</option>
+                                <option>2001</option>
+                                <option>2002</option>
+                                <option>2003</option>
+                                <option>2004</option>
+                                <option>2005</option>
+                                <option>2006</option>
+                                <option>2007</option>
+                                <option>2008</option>
+                                <option>2009</option>
+                                <option>2010</option>
+                                <option>2011</option>
+                                <option>2012</option>
+                                <option>2013</option>
+                                <option>2014</option>
+                                <option>2015</option>
+                                <option>2016</option>
+                                <option>2017</option>
+                                <option>2018</option>                                
+              </select>
+<div *ngIf="registro.get('anioProduccion').errors ">
+
+
+                <p class="alert alert-danger" *ngIf="registro.get('anioProduccion').hasError('required')">El campo es requerido</p>
               </div>
             </div>
           </div>
@@ -162,10 +193,9 @@
               <div class="form-group" style="color: white; font-weight: bold;">
                 <label >Sinopsis</label>
                 <span class="text-danger">*</span>
-                <textarea class="form-control text-muted" aria-label="With textarea" style=" size: 32" placeholder="Ingrese la sinopsis de la pelicula" formControlName="sinopsis" maxlength="50"></textarea>
+                <textarea class="form-control text-muted" aria-label="With textarea" style=" size: 32" placeholder="Ingrese la sinopsis de la pelicula" formControlName="sinopsis" maxlength="2000"></textarea>
                 <div *ngIf="registro.get('sinopsis').errors && registro.get('sinopsis').dirty">
                   <p class="alert alert-danger" *ngIf="registro.get('sinopsis').hasError('required')">El campo es requerido</p>
-                  <p class="alert alert-danger" *ngIf="registro.get('sinopsis').hasError('pattern')">No es un titulo valido</p>
                 </div>
               </div> 
              

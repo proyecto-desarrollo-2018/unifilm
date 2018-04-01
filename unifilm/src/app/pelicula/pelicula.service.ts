@@ -44,9 +44,11 @@ export class PeliculaService {
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }
+ 
     addCalificacion(calificacion: Calificacion) {
         const body = JSON.stringify(calificacion);
-        const url = this.peliculaUrl + '/' + calificacion.pelicula.idPelicula + '/calificaciones';
+        console.log('id pelicula body: ' + calificacion.pelicula._id);
+        const url = this.peliculaUrl + '/' + calificacion.pelicula._id + '/calificaciones';
         const headers = new Headers({ 'Content-Type': 'application/json'});
         const token = this.getToken();
 

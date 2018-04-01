@@ -1,14 +1,14 @@
-import { Pelicula } from '../models'
+import { Pelicula, Calificacion } from '../models'
 
 export default {
-    findAll: async () => {
+    findAll:  () => {
         console.log('Buscando todas las peliculas')
-        return await Pelicula.find().populate('calificacion')
+        return  Pelicula.find().populate('calificacion')
     },
 
-    findById: async ( _id ) => {
+    findById:  ( _id ) => {
         console.log('Buscando una pelcula')
-        return await Pelicula
+        return  Pelicula
             .findOne({ _id })
             .populate('usuarioAgrego')
             .populate({
@@ -20,5 +20,26 @@ export default {
                 }
             })
 
+    },
+    create:  (p) => {
+        console.log('Creando una nueva pelicula: ' + JSON.stringify(p))
+        const pelicula = new Pelicula(p)
+        return pelicula.save() 
+    },
+
+    createCalificacion: async (p,c) => {
+        const ca = new Calificacion(c)
+        const pel = new Pelicula(p)
+
+        const savedCalificacion = await ca.save()
+
+
+        pel.calificacion.push(savedCalificacion)
+
+        await pel.save()
+        return ca
+
     }
+
+
 }

@@ -2,7 +2,7 @@ import { Tarjeta } from './tarjeta';
 
 export class Usuario {
     constructor(
-        public idUsuario?: string,
+        public _id?: string,
         public nomUsuario?: string,
         public nombre?: string,
         public apellidoP?: string,

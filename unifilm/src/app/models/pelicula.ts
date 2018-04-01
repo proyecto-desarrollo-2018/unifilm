@@ -9,10 +9,10 @@ import { Usuario } from './usuario';
 
 export class Pelicula {
     constructor(
-        public idPelicula: string,
+        public _id: string,
         public titulo?: string,
-        public directores?: Array<Director>,
-        public actores?: Array<Actor>,
+        public directores?: Director,
+        public actores?: Actor,
         public generos?: Array<Object>,
         public anioProduccion?: string,
         public fechaAdicion?: Date,

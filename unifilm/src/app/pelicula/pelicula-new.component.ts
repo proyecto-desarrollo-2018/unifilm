@@ -30,15 +30,15 @@ export class PeliculaNewComponent implements OnInit {
       titulo: ['', [Validators.required, Validators.pattern("[a-zA-Z0-9-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,._'-]{4,20}")]],
       nombreD: ['', [Validators.required, Validators.pattern("[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ]{4,20}")]],
       apPaternoD: ['', [Validators.required, Validaciones.verificarEspacios, Validators.pattern("[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ]{4,20}")]],
-      apMaternoD: ['', [Validators.required, Validaciones.verificarEspacios, Validators.pattern("[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ]{4,20}")]],
+      apMaternoD: ['', [Validaciones.verificarEspacios, Validators.pattern("[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ]{4,20}")]],
       director: ['', [Validators.required]],
       nombreA: ['', [Validators.required, Validators.pattern("[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ]{4,20}")]],
       apPaternoA: ['', [Validators.required, Validaciones.verificarEspacios, Validators.pattern("[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ]{4,20}")]],
-      apMaternoA: ['', [Validators.required, Validaciones.verificarEspacios, Validators.pattern("[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ]{4,20}")]],
+      apMaternoA: ['', [Validaciones.verificarEspacios, Validators.pattern("[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ]{4,20}")]],
       tipoActor: ['', [Validators.required]],
       genero: ['', [Validators.required]],
-      fechaProduccion: ['', [Validators.required]],
-      sinopsis: ['', [Validators.required, Validators.pattern("[a-zA-Z0-9-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,._'-]{10,1000}")]],
+      anioProduccion: ['', [Validators.required]],
+      sinopsis: ['', [Validators.required]],
       clasificacion: ['', [Validators.required]],
       duracion: ['', [Validators.required, Validators.pattern("[0-9,]{3}")]],
       casaProductora: ['', [Validators.required, Validators.pattern("[a-zA-Z0-9-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,._'-]{4,20}")]],
@@ -63,7 +63,7 @@ export class PeliculaNewComponent implements OnInit {
               apMaternoA,
               tipoActor,
               genero,
-             fechaProduccion,
+        anioProduccion,
               sinopsis,
               clasificacion,
               duracion,
@@ -85,24 +85,24 @@ export class PeliculaNewComponent implements OnInit {
 
       const pelicula = new Pelicula(null,
         titulo,
-        [direc],
-        [act],
-        [genero],
-        fechaProduccion,
+        direc,
+        act,
+        genero,
+        anioProduccion,
         null,
         sinopsis,
-        [clasificacion],
+        clasificacion,
         duracion,
         casaProductora,
-        null,
+        [],
         urlPortada,
         urlPelicula,
         null
       );
-      
+
       this.peliculaService.addPelicula(pelicula)
         .subscribe(
-        ({ idPelicula }) => this.router.navigate(['/home-cliente'] ),
+        //({ _id }) => this.router.navigate(['/home-cliente'] ),
           this.authService.handleError
         );
 

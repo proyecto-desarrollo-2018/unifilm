@@ -25,6 +25,8 @@ export class HomeClienteComponent implements OnInit {
 
   }
 
+
+
   activarAgregarPelicula() {
     this.agregarPelicula = true;
     this.quienesSomos = false;
@@ -32,25 +34,67 @@ export class HomeClienteComponent implements OnInit {
   }
 
   getGenero(g: string) {
-
+    
+    
+    
+  
     switch (g) {
+      case 'Drama':
+        this.genero = 'Drama';
+          break;
       case 'Accion':
         this.genero = 'Accion';
-          break;
-      case 'Amor':
-        this.genero = 'Amor';
         break;
       case 'Comedia':
         this.genero = 'Comedia';
         break;
-      case 'Drama':
-        this.genero = 'Drama';
+      case 'Romance':
+        this.genero = 'Romance';
+        break;
+      case 'Musical':
+        this.genero = 'Musical';
+        break;
+      case 'Melodrama':
+        this.genero = 'Melodrama';
+        break;
+      case 'Suspenso':
+        this.genero = 'Suspenso';
+        break;
+      case 'Amor':
+        this.genero = 'Amor';
+        break;
+      case 'Para niños':
+        this.genero = 'Para niños';
+        break;
+      case 'Western':
+        this.genero = 'Western';
+        break;
+      case 'Animacion':
+        this.genero = 'Animacion';
+        break;
+      case 'Cine arte':
+        this.genero = 'Cine arte';
+        break;
+      case 'Cine independiente':
+        this.genero = 'Cine independiente';
+        break;
+      case 'Policíaco':
+        this.genero = 'Policíaco';
+        break;
+      case 'Belico':
+        this.genero = 'Belico';
+        break;
+      case 'Histórico':
+        this.genero = 'Histórico';
         break;
       case 'Terror':
         this.genero = 'Terror';
         break;
-      case 'Series':
-        this.genero = 'Series';
+      case 'Fantasía':
+        this.genero = 'Fantasía';
+        break;
+      case 'Ciencia ficción':
+        this.genero = 'Ciencia ficción';
         break;
       case 'Todos':
         this.genero = 'Todos';
@@ -60,7 +104,6 @@ export class HomeClienteComponent implements OnInit {
         break;
     }
 
-    console.log('genero: ' + this.genero);
     this.agregarPelicula = false;
     this.quienesSomos = false;
     this.compCatalogo = true;
@@ -73,7 +116,13 @@ export class HomeClienteComponent implements OnInit {
 
   fullName() {
     return this.authService.currentUser.nombre + ' ' + this.authService.currentUser.apellidoP  + ' ' + this.authService.currentUser.apellidoM ;
+
   }
+
+  idUsuario(){
+    return this.authService.currentUser._id;
+  }
+
 
   logout() {
     this.authService.logout();

@@ -22,6 +22,8 @@ app.use('/api/peliculas', pelicula)
 
 app.use('/api/auth', auth)
 
+app.use('/api/usuarios', usuario)
+
 
 
 export default app

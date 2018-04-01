@@ -1,7 +1,9 @@
 import express from 'express';
-import { required } from '../middleware'
+import { required, peliculaMiddleware } from '../middleware'
 import { pelicula } from '../db-api'
 import { handleError } from '../utils'
+import { Pelicula, Director, Actor,Usuario , Calificacion} from '../models'
+
 
 const app = express.Router();
 
@@ -29,45 +31,114 @@ app.get('/', async (req, res ) => {
 
 
 // GET /api/peliculas/:id
-app.get('/:id', async ( req, res )  =>{
+app.get('/:id', peliculaMiddleware ,async ( req, res )  =>{
     
     try {
-      const p  = await pelicula.findById(req.params.id)
-      res.status(200).json(p)
+      res.status(200).json(req.pelicula)
     } catch ( error ){
       handleError(error, res)
     }
 
 });
 
-// POST /api/usuarios
-/*app.post('/',currentUserMiddleware, (req, res) => {
-  const usuario = req.body
-  usuario.idUsuario = +new Date()
-  usuario.tarjeta = req.currentUser      ejemplo de como deve ingresarse una tarjea que se esta usuando
-  usuarios.push(usuario)
-  res.status(201).json(usuario)
-})*/
 
 // POST /api/peliculas
 
-app.post('/', required, (req, res) => {
-  const pelicula = req.body
-  pelicula.idPelicula = +new Date()
-  pelicula.usuarioCalifico = req.usuario
-  peliculas.push(pelicula)
-  res.status(201).json(pelicula)
+app.post('/', required, async (req, res) => {
+  const { titulo,
+    nombreD,
+    apPaternoD,
+    apMaternoD,
+    director,
+    nombreA,
+    apPaternoA,
+    apMaternoA,
+    tipoActor,
+    generos,
+    anioProduccion,
+    sinopsis,
+    clasificacion,
+    duracion,
+    casaProductora,
+    calificacion,
+    urlPortada,
+    urlPelicula
+           } = req.body
+
+  const p = new Pelicula({
+    titulo,
+    directores: new Director({
+      nombre: nombreD,
+      apPaterno: apPaternoD,
+      apMaterno: apMaternoD,
+      tipoDirector: director
+    }),
+    actores: new Actor({
+      nombre: nombreA,
+      apPaterno: apPaternoA,
+      apMaterno: apMaternoA,
+      tipoActor: tipoActor
+    }),
+    generos,
+    anioProduccion,
+    fechaAdicion : new Date(),
+    sinopsis,
+    clasificacion,
+    duracion,
+    casaProductora,
+    calificacion: calificacion,
+    urlPortada,
+    urlPelicula,
+    usuarioAgrego: req.user._id
+  })
+  try{
+    const savedPelicula = await pelicula.create(p)
+    res.status(201).json(savedPelicula)
+  }catch(error){
+    handleError(error,res)
+  }
+
 })
 
 // POST /api/peliculas/:id/calificaciones
 
-app.post('/:id/calificaciones', required, (req, res) => {
-  const calificacion = req.body
-  const p = req.pelicula
-  calificacion.fechaCal = new Date()
-  calificacion.usuarioCalifico = req.usuario
-  p.calificacion.push(calificacion)
-  res.status(201).json(calificacion)
+app.post('/:id/calificaciones', required, peliculaMiddleware, async (req, res) => {
+
+const p = req.pelicula
+
+  const { calificacion,
+    comentario,
+    fechaCal } = req.body
+
+  console.log('Comentario: ' + comentario);
+  const c = new Calificacion({
+      calificacion,
+      comentario,
+      fechaCal: new Date(),
+      usuario: new Usuario(req.user),
+  })
+  //console.log('CALIFICACION: ' + JSON.stringify(c));
+
+    
+
+    const savedCalificacion = await c.save()
+
+
+    p.calificacion.push(savedCalificacion)
+
+  const pel = new Pelicula(p)
+
+    //console.log('PEL: ' + JSON.stringify(pel));
+
+    await pel.save()
+    
+    
+    
+    
+    
+   // console.log( 'SAVEDCALIFICACION: ' + savedCalificacion);
+    res.status(201).json(savedCalificacion)
+
 })
 
 export default app;

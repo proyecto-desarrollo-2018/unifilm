@@ -13,21 +13,9 @@
     <div  *ngIf="genero === 'Todos'">
       <h1 class="text-white" style="text-align: left;"> Todos</h1>
       <div class="row">
-        <div class="card-deck" *ngFor="let p of peliculas">
+        <div class="card-deck col-sm-3" *ngFor="let p of peliculas">
           <div class="card text-white bg-dark" >
-            <a routerLink="/peliculas/{{p.idPelicula}}"><img class="card-img-top " src="{{p.urlPortada}}" alt="Card image cap"></a>
-            <div class="card-body">
-                <dl class="dl-horizontal card-text">
-                  <dt>Titulo: </dt>
-                  <dd>{{ p.titulo }}</dd>
-                  <dt>Genero:</dt>
-                  <dd>{{ p.generos }}</dd>
-                  <dt>Duracion:</dt>
-                  <dd>
-                     {{p.duracion}} minutos
-                  </dd>
-                </dl>
-            </div>
+            <a routerLink="/peliculas/{{p._id}}" class="card-link"><img class="card-img-top " src="{{p.urlPortada}}" alt="Portada Pelicula {{p.titulo}}" width="100" height="250"></a>
           </div>
         </div>
       </div>
@@ -37,25 +25,15 @@
     <div *ngIf="genero != 'Todos'">
       <h1 class="text-white" style="text-align: left;"> {{genero}}</h1>
       <div class="row">
-        <div class="card-deck" *ngFor="let p of peliculas" [ngSwitch]="p.generos">
+        <div class="card-deck col-sm-3" *ngFor="let p of peliculas" [ngSwitch]="p.generos">
           <div class="card text-white bg-dark" *ngSwitchCase="genero">
-            <a routerLink="/peliculas/{{p.idPelicula}}">
-              <img class="card-img-top " src="{{p.urlPortada}}" alt="Card image cap">
-            </a>
-            <div class="card-body">
-              <dl class="dl-horizontal card-text">
-                <dt>Titulo: </dt>
-                <dd>{{ p.titulo }}</dd>
-                <dt>Genero:</dt>
-                <dd>{{ p.generos }}</dd>
-                <dt>Duracion:</dt>
-                <dd>
-                  {{p.duracion}} minutos
-                </dd>
-              </dl>
-            </div>
+                    <a routerLink="/peliculas/{{p._id}}" class="card-link"><img class="card-img-top " src="{{p.urlPortada}}" alt="Portada Pelicula {{p.titulo}}" width="50" height="200"></a>
+
           </div>
+
         </div>
+
+        
       </div>
     </div>
 

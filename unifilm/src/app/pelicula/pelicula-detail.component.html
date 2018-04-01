@@ -1,4 +1,4 @@
-<div class="container-fluid  fondo-login" style="height: 900px">
+<div class="container-fluid  fondo-login" style="height: 100%">
   <div  *ngIf="loading" style="padding: 400px 300px ;">
     <div class="progress" style="height: 40px;">
       <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%" aria-valuenow="400">CARGANDO DETALLE Pelicula</div>
@@ -11,54 +11,76 @@
     </p>
     <div>
       <div class="row">
-        <div class="card-deck" >
+        <div class="card-deck col-sm-4" >
           <div class="card text-white bg-dark" >
-            <a routerLink="/peliculas/{{pelicula.idPelicula}}">
-              <img class="card-img-top " src="{{pelicula.urlPortada}}" alt="Card image cap">
-            </a>
-            <div class="card-body">
-              <dl class="dl-horizontal card-text">
-                <dt>Titulo: </dt>
-                <dd>{{ pelicula.titulo }}</dd>
-                <dt>Sinopsis:</dt>
-                <dd>
-                  {{pelicula.sinopsis}} 
-                </dd>
-                <dt>Genero:</dt>
-                <dd>{{ pelicula.generos }}</dd>
-                <dt>Duracion:</dt>
-                <dd>
-                  {{pelicula.duracion}} minutos
-                </dd>
-                <dt>Calificar:</dt>
-                <dd>
-                  <select class="form-control"  maxlength="50">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-
-                  </select>
-                </dd>
-              </dl>
-            </div>
+            <form [formGroup]="calificacionForm" novalidate>
+              <img class="card-img-top " src="{{pelicula.urlPortada}}" alt="Portada Pelicula {{pelicula.titulo}}" width="50" height="320"> 
+              <div class="card-body">
+                <dl class="dl-horizontal card-text">
+                  <dt class="card-subtitle mb-2 text-muted">Titulo: </dt>
+                  <dd class="card-text">{{ pelicula.titulo }}</dd>
+                    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Sinopsis</button>
+                    <div id="demo" class="collapse">
+                           {{pelicula.sinopsis}}
+                    </div>
+                  <dt class="card-subtitle mb-2 text-muted">Genero:</dt>
+                  <dd class="card-text">{{ pelicula.generos }}</dd>
+                  <dt class="card-subtitle mb-2 text-muted">Duracion:</dt>
+                  <dd class="card-text">
+                    {{pelicula.duracion}} minutos
+                  </dd>
+                  <div style="border: 2px solid red;padding: 10px;border-radius: 50px 20px;">
+                          <dt class="card-subtitle mb-2 text-muted">Calificar:</dt>
+                          <dd >
+                            <select class="form-control" formControlName="calificacion" >
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                              <option>6</option>
+                              <option>7</option>
+                              <option>8</option>
+                              <option>9</option>
+                              <option>10</option>
+                          
+                            </select>
+                            <div *ngIf="calificacionForm.get('calificacion').errors && calificacionForm.get('calificacion').dirty">
+                              <p class="alert alert-danger" *ngIf="calificacionForm.get('calificacion').hasError('required')">El campo es requerido</p>
+                            </div>
+                          </dd>
+                          <dt class="card-subtitle mb-2 text-muted">Comentar:</dt>
+                          <dd class="card-text">
+                            <textarea formControlName="comentario" class="form-control" rows="5"></textarea>
+                            <div *ngIf="calificacionForm.get('comentario').errors && calificacionForm.get('comentario').dirty">
+                              <p class="alert alert-danger" *ngIf="calificacionForm.get('comentario').hasError('required')">El campo es requerido</p>
+                            </div>
+                          </dd>
+                          <button (click)="calificar()" class="btn btn-primary" [disabled]="calificacionForm.invalid">Enviar</button>
+                  </div>
+                </dl>
+              </div>
+            </form>
           </div>
         </div>
-        <div>{{pelicula.urlPelicula}}
-            <iframe width="640" height="360" src="https://www.youtube.com/embed/RdqOgBnZhxo" frameborder="0" allow="autoplay; encrypted-media"
-              allowfullscreen></iframe>
+
+
+
+
+
+        <div class="col-sm-8">  
+          <iframe width="820" height="610" src="https://www.youtube.com/embed/ye8-GQNf8p0" frameborder="0" allow="autoplay; encrypted-media"
+            allowfullscreen></iframe>
         </div>
+
+
+
+
       </div>
     </div>
   </div>
 
-  <button [routerLink]="['/home-cliente']" class="btn btn-primary">Regresar</button>
+  <button [routerLink]="['/home-cliente']"  class="btn btn-primary">Regresar</button>
 
 
 </div>

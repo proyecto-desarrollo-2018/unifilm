@@ -1,4 +1,4 @@
-import { Component, OnInit,  } from '@angular/core';
+import { Component, OnInit, ViewChild,  } from '@angular/core';
 import { FormBuilder, NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Validaciones } from '../validaciones/validaciones';
 import { Usuario } from '../models/usuario';
@@ -13,6 +13,8 @@ import { AuthService } from '../auth/auth.service';
 })
 export class SinginComponent implements OnInit {
   loging: FormGroup;
+  @ViewChild('usuario') us: any;
+
 
 
   constructor(public fb: FormBuilder, private authService: AuthService ) {
@@ -34,7 +36,8 @@ export class SinginComponent implements OnInit {
       this.authService.singin(usuario)
         .subscribe(
           this.authService.login,
-          this.authService.handleError
+          this.authService.handleError,
+          this.us.nativeElement.focus()
         );
     }
   }

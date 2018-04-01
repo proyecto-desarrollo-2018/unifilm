@@ -1,10 +1,10 @@
 import mongoose, { Schema } from 'mongoose'
 
 const DirectorSchema = Schema({
-    nombre : { type: String, required: true },
-    apPaterno : { type: String, required: true },
-    apMaterno : { type: String, required: true },
-    tipoDirector : { type: String, required: true }
+    nombre : { type: String, required: false},
+    apPaterno : { type: String, required: false },
+    apMaterno : { type: String, required: false },
+    tipoDirector : { type: String, required: false }
 })
 
 export default mongoose.model('Director', DirectorSchema)

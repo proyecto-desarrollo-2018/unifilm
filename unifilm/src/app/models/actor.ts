@@ -1,5 +1,5 @@
 export class Actor {
-    constructor(public idActor?: string,
+    constructor(public _id?: string,
         public nombre?: string,
         public apPaterno?: string,
         public apMaterno?: string,

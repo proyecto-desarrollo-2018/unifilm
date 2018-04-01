@@ -80,7 +80,7 @@ export class AuthService {
         } else if ( name === 'JsonWebTokenError') {
             this.showError('Ha habido un error con tu sesion');
         } else {
-            this.showError(message || 'Ha ocurrido un error. Intentalo nuevamente');
+            this.showError(message || 'Usuario o contraseña incorretos');   
         }
 
         this.logout();
