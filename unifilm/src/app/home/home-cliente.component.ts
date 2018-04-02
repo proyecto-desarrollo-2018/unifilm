@@ -9,35 +9,34 @@ import { AuthService } from '../auth/auth.service';
 export class HomeClienteComponent implements OnInit {
   quienesSomos = false;
   compCatalogo = true;
-  agregarPelicula = false;
   genero: string;
+  tipoUsuario: string;
+
   constructor( private authService: AuthService ) { 
     this.genero = 'Todos';
   }
 
   ngOnInit() {
+    this.tipoUsuario = this.authService.currentUser.tipoUsuario;
   }
 
   activarQuienesSomos() {
     this.quienesSomos = true;
     this.compCatalogo = false;
-    this.agregarPelicula = false;
+
 
   }
 
+  validarTipoUsuario(){
+    if( this.tipoUsuario === 'administrador' || this.tipoUsuario === 'soporte' ) {
+      return true;
+    }
 
-
-  activarAgregarPelicula() {
-    this.agregarPelicula = true;
-    this.quienesSomos = false;
-    this.compCatalogo = false;
+    return false;
   }
 
-  getGenero(g: string) {
-    
-    
-    
-  
+
+  getGenero(g: string) {   
     switch (g) {
       case 'Drama':
         this.genero = 'Drama';
@@ -104,10 +103,8 @@ export class HomeClienteComponent implements OnInit {
         break;
     }
 
-    this.agregarPelicula = false;
     this.quienesSomos = false;
     this.compCatalogo = true;
-
   }
 
   isLoggedIn() {

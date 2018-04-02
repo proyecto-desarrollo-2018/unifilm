@@ -1,86 +1,90 @@
-<div class="fondo-home">
-<header >
-  <div class="container-fluid" style="height: 100%">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand text-left" [routerLink]="['/home-cliente']" (click)="getGenero()">
-        <img src="https://scontent.fmex7-1.fna.fbcdn.net/v/t1.0-9/28951578_912389928920762_479248453935824896_n.jpg?oh=1b12231c04c757ae897c07620ede89d6&oe=5B4530DE" width="50" height="50" alt="" >
-      </a>					
-      <a class="navbar-brand" [routerLink]="['/home-cliente']" (click)="getGenero()">Inicio</a>
-      <a class="nav-link text-secondary"  [routerLink]="" (click)="activarQuienesSomos()">¿Quienes Somos?</a>
-      <a class="nav-link text-secondary" [routerLink]="" (click)="activarAgregarPelicula()">Agregar Pelicula</a>
+<div class="fondo-home"  style="height: 100%">
 
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="barraTop">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" [routerLink]="" id="categorias" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Categorias
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" [routerLink]="" (click)="getGenero('Todos')">Todos</a>
-              <a class="dropdown-item" [routerLink]="" (click)="getGenero('Drama')">Drama</a>
-              <a class="dropdown-item" [routerLink]="" (click)="getGenero('Accion')">Accion</a>
-              <a class="dropdown-item" [routerLink]="" (click)="getGenero('Comedia')">Comedia</a>
-              <a class="dropdown-item" [routerLink]="" (click)="getGenero('Ciencia ficción')">Ciencia ficción</a>
-              <a class="dropdown-item" [routerLink]="" (click)="getGenero('Fantasía')">Fantasía</a>
-              <a class="dropdown-item" [routerLink]="" (click)="getGenero('Terror')">Terror</a>
-              <a class="dropdown-item" [routerLink]="" (click)="getGenero('Romance')">Romance</a>
-              <a class="dropdown-item" [routerLink]="" (click)="getGenero('Musical')">Musical</a>
-              <a class="dropdown-item" [routerLink]="" (click)="getGenero('Melodrama')">Melodrama</a>
-              <a class="dropdown-item" [routerLink]="" (click)="getGenero('Suspenso')">Suspenso</a>
-              <a class="dropdown-item" [routerLink]="" (click)="getGenero('Histórico')">Histórico</a>
-              <a class="dropdown-item" [routerLink]="" (click)="getGenero('Belico')">Belico</a>
-              <a class="dropdown-item" [routerLink]="" (click)="getGenero('Policíaco')">Policíaco</a>
-              <a class="dropdown-item" [routerLink]="" (click)="getGenero('Western')">Western</a>
-              <a class="dropdown-item" [routerLink]="" (click)="getGenero('Animacion')">Animacion</a>
-              <a class="dropdown-item" [routerLink]="" (click)="getGenero('Para niños')">Para niños</a>
-              <a class="dropdown-item" [routerLink]="" (click)="getGenero('Cine arte')">Cine arte</a>
-             <a class="dropdown-item" [routerLink]="" (click)="getGenero('Cine independiente')">Cine independiente</a>
+<!--HOME SOCIO-->
+  <header>
+    <div class="container-fluid" style="height: 100%">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand text-left" [routerLink]="['/home-cliente']" (click)="getGenero()">
+          <img src="https://scontent.fmex7-1.fna.fbcdn.net/v/t1.0-9/28951578_912389928920762_479248453935824896_n.jpg?oh=1b12231c04c757ae897c07620ede89d6&oe=5B4530DE"
+            width="50" height="50" alt="">
+        </a>
+        <a class="navbar-brand" [routerLink]="['/home-cliente']" (click)="getGenero()">Inicio</a>
+        <a class="nav-link text-secondary" [routerLink]="" (click)="activarQuienesSomos()">¿Quienes Somos?</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="barraTop">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" [routerLink]="" id="categorias" role="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                Categorias
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" [routerLink]="" (click)="getGenero('Todos')">Todos</a>
+                <a class="dropdown-item" [routerLink]="" (click)="getGenero('Drama')">Drama</a>
+                <a class="dropdown-item" [routerLink]="" (click)="getGenero('Accion')">Accion</a>
+                <a class="dropdown-item" [routerLink]="" (click)="getGenero('Comedia')">Comedia</a>
+                <a class="dropdown-item" [routerLink]="" (click)="getGenero('Ciencia ficción')">Ciencia ficción</a>
+                <a class="dropdown-item" [routerLink]="" (click)="getGenero('Fantasía')">Fantasía</a>
+                <a class="dropdown-item" [routerLink]="" (click)="getGenero('Terror')">Terror</a>
+                <a class="dropdown-item" [routerLink]="" (click)="getGenero('Romance')">Romance</a>
+                <a class="dropdown-item" [routerLink]="" (click)="getGenero('Musical')">Musical</a>
+                <a class="dropdown-item" [routerLink]="" (click)="getGenero('Melodrama')">Melodrama</a>
+                <a class="dropdown-item" [routerLink]="" (click)="getGenero('Suspenso')">Suspenso</a>
+                <a class="dropdown-item" [routerLink]="" (click)="getGenero('Histórico')">Histórico</a>
+                <a class="dropdown-item" [routerLink]="" (click)="getGenero('Belico')">Belico</a>
+                <a class="dropdown-item" [routerLink]="" (click)="getGenero('Policíaco')">Policíaco</a>
+                <a class="dropdown-item" [routerLink]="" (click)="getGenero('Western')">Western</a>
+                <a class="dropdown-item" [routerLink]="" (click)="getGenero('Animacion')">Animacion</a>
+                <a class="dropdown-item" [routerLink]="" (click)="getGenero('Para niños')">Para niños</a>
+                <a class="dropdown-item" [routerLink]="" (click)="getGenero('Cine arte')">Cine arte</a>
+                <a class="dropdown-item" [routerLink]="" (click)="getGenero('Cine independiente')">Cine independiente</a>
 
-            </div>
-          </li>	
-        </ul>
-      </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <a class="nav-link text-secondary" *ngIf="validarTipoUsuario()" [routerLink]="['/reportes']">Dashboard</a>
 
-            
-            <form class="nav-item dropdown form-inline">
-                <a class="nav-link dropdown-toggle" href="#" id="perfil" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <h5>{{ fullName() }}</h5>
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" routerLink="/usuarios/idUsuario()">Perfil</a>
-                  <a class="dropdown-item" >Configuracion</a>
-                  <a class="dropdown-item" *ngIf="isLoggedIn()" (click)="logout()" >Cerrar sesión en Unifilm</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item">Mas...</a>
-                </div>
-            </form>
 
-    
-  </nav>
-</div>		
-</header>
+        <form class="nav-item dropdown form-inline">
+          <a class="nav-link dropdown-toggle" href="#" id="perfil" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <h5>{{ fullName() }}</h5>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" routerLink="/usuarios/{{idUsuario()}}">Perfil</a>
+            <a class="dropdown-item">Configuracion</a>
+            <a class="dropdown-item" *ngIf="isLoggedIn()" (click)="logout()">Cerrar sesión en Unifilm</a>
+          </div>
+        </form>
 
-<!-- Categorias de peliculas-->
 
-<app-pelicula-list *ngIf="compCatalogo" [genero]="genero"></app-pelicula-list>
+      </nav>
+    </div>
+  </header>
 
-<!-- Quienes Somos -->
+  <!-- Categorias de peliculas-->
 
-<div class="container-fluid" *ngIf="quienesSomos" style="color: white; height: 720px;">
-  <h1> QUIENES SOMOS</h1>
-  <P>detalle quienes somos</P>
-</div>
+  <app-pelicula-list *ngIf="compCatalogo" [genero]="genero"></app-pelicula-list>
 
-<app-pelicula-new *ngIf="agregarPelicula"></app-pelicula-new>
+  <!-- Quienes Somos -->
 
-<!-- barra de abajo -->
-<footer>
-<div class="container-fluid" style="height: 100px; background: dark">
-  <h1 align="center">PROXIMAMENTE....</h1>
+  <div class="container-fluid" *ngIf="quienesSomos" style="color: white; height: 720px;">
+    <h1> QUIENES SOMOS</h1>
+    <P>detalle quienes somos</P>
+  </div>
 
-</div>
-</footer>
-</div>
+  <app-pelicula-new *ngIf="agregarPelicula"></app-pelicula-new>
+
+  <!-- barra de abajo -->
+  <footer>
+    <div class="container-fluid" style="height: 100px; background: dark">
+      <h1 align="center">PROXIMAMENTE....</h1>
+
+    </div>
+  </footer>
+
+<!--FIN HOME SOCIO -->
+

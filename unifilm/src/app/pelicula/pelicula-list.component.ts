@@ -23,6 +23,7 @@ export class PeliculaListComponent implements OnInit {
         this.peliculas = peliculas;
         this.loading = false;
       });
+
   }
 
 }

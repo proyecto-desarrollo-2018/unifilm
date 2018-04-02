@@ -1,13 +1,12 @@
 
-<div class="fondo-pelicula">
   <div class="container-fluid d-flex" style="height: 100%" >
     <div class="mx-auto my-auto text center" >
-      <h1 class="display-1 mx-auto my-auto" style="color: white; font-weight: bold;">Alta contenido</h1>
+      <h5 class="display-1 mx-auto my-auto" >Agregar Pelicula</h5>
       <br>   
       <form [formGroup]="registro" (ngSubmit)="guardarPelicula()" novalidate>
       <!--Nombre de pelicula-->  
-        <div class="col-md" style="color: white; font-weight: bold;">	
-          <div class="form-group" style="color: white; font-weight: bold;">
+        <div class="col-md" >	
+          <div class="form-group">
             <label >Titulo de la pelicula</label>
             <span class="text-danger">*</span>
             <input type="text" class="form-control"  placeholder="Ingrese su usuario" formControlName="titulo" maxlength="50">
@@ -18,33 +17,32 @@
           </div>
           
         </div>
-        <br>
               <!--Nombre del director-->
 
-            <div class="col-md" style="color: white; font-weight: bold;">
-              <div class="form-group" style="color: white; font-weight: bold;">
-                <label>Director de la pelicula</label>
-                <span class="text-danger">*</span>
-                <input type="text" class="form-control" placeholder="Nombre" formControlName="nombreD" maxlength="50">
-                <div *ngIf="registro.get('nombreD').errors && registro.get('nombreD').dirty">
-                  <p class="alert alert-danger" *ngIf="registro.get('nombreD').hasError('required')">El campo es requerido</p>
-                  <p class="alert alert-danger" *ngIf="registro.get('nombreD').hasError('pattern')">No es un nombre valido</p>
+            <div class="col-md">
+
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="">Director de la pelicula</span>
                 </div>
-                <br>
-                <input type="text" class="form-control" placeholder="Apellido Paterno" formControlName="apPaternoD" maxlength="50">
-                <div *ngIf="registro.get('apPaternoD').errors && registro.get('apPaternoD').dirty">
-                  <p class="alert alert-danger" *ngIf="registro.get('apPaternoD').hasError('required')">El campo es requerido</p>
-                  <p class="alert alert-danger" *ngIf="registro.get('apPaternoD').hasError('sinEspacios')">No puede haber espacios</p>
-                  <p class="alert alert-danger" *ngIf="registro.get('apPaternoD').hasError('pattern')">No es un apellido valido</p>
-                
-                </div>
-                <br>
-                <input type="text" class="form-control" placeholder="Apellido Materno" formControlName="apMaternoD" maxlength="50">
-                <div *ngIf="registro.get('apMaternoD').errors && registro.get('apMaternoD').dirty">
-                  <p class="alert alert-danger" *ngIf="registro.get('apMaternoD').hasError('sinEspacios')">No puede haber espacios</p>
-                  <p class="alert alert-danger" *ngIf="registro.get('apMaternoD').hasError('pattern')">No es un apellido valido</p>
-                </div>
-                <br>
+                    <input type="text" class="form-control" placeholder="Nombre" formControlName="nombreD" maxlength="50">
+                    <input type="text" class="form-control" placeholder="Apellido Paterno" formControlName="apPaternoD" maxlength="50">
+                    <input type="text" class="form-control" placeholder="Apellido Materno" formControlName="apMaternoD" maxlength="50">
+              </div>
+              <div *ngIf="registro.get('nombreD').errors && registro.get('nombreD').dirty">
+                <p class="alert alert-danger" *ngIf="registro.get('nombreD').hasError('required')">El nombre es requerido</p>
+                <p class="alert alert-danger" *ngIf="registro.get('nombreD').hasError('pattern')">No es un nombre valido</p>
+              </div>
+              <div *ngIf="registro.get('apPaternoD').errors && registro.get('apPaternoD').dirty">
+                <p class="alert alert-danger" *ngIf="registro.get('apPaternoD').hasError('required')">El apellido paterno requerido</p>
+                <p class="alert alert-danger" *ngIf="registro.get('apPaternoD').hasError('sinEspacios')">No puede haber espacios en el apellido paterno</p>
+                <p class="alert alert-danger" *ngIf="registro.get('apPaternoD').hasError('pattern')">No es un apellido paterno valido</p>
+
+              </div>
+              <div *ngIf="registro.get('apMaternoD').errors && registro.get('apMaternoD').dirty">
+                <p class="alert alert-danger" *ngIf="registro.get('apMaternoD').hasError('sinEspacios')">No puede haber espacios en el apellido materno</p>
+                <p class="alert alert-danger" *ngIf="registro.get('apMaternoD').hasError('pattern')">No es un apellido materno valido</p>
+              </div>
                   <label>Tipo de Director</label>
                   <span class="text-danger">*</span>
                   <div class="form-group ">                
@@ -62,32 +60,32 @@
                  </div>
                  
                 <br>
-              </div>
             </div>
             <!--Actores-->
-            <div class="col-md" style="color: white; font-weight: bold;">
-              <div class="form-group" style="color: white; font-weight: bold;">
-                <label>Actores de la pelicula</label>
-                <span class="text-danger">*</span>
-                <input type="text" class="form-control" placeholder="Nombre" formControlName="nombreA" maxlength="50">
-                <div *ngIf="registro.get('nombreA').errors && registro.get('nombreA').dirty">
-                  <p class="alert alert-danger" *ngIf="registro.get('nombreA').hasError('required')">El campo es requerido</p>
-                  <p class="alert alert-danger" *ngIf="registro.get('nombreA').hasError('pattern')">No es un nombre valido</p>
+            <div class="col-md" >
+
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="">Actores de la pelicula</span>
+                  <input type="text" class="form-control" placeholder="Nombre" formControlName="nombreA" maxlength="50">
+                  <input type="text" class="form-control" placeholder="Apellido Paterno" formControlName="apPaternoA" maxlength="50">
+                  <input type="text" class="form-control" placeholder="Apellido Materno" formControlName="apMaternoA" maxlength="50">
+                </div>                
+              </div>
+              <div *ngIf="registro.get('nombreA').errors && registro.get('nombreA').dirty">
+                <p class="alert alert-danger" *ngIf="registro.get('nombreA').hasError('required')">El nombre requerido</p>
+                <p class="alert alert-danger" *ngIf="registro.get('nombreA').hasError('pattern')">No es un nombre valido</p>
+              </div>
+              <div *ngIf="registro.get('apPaternoA').errors && registro.get('apPaternoA').dirty">
+                <p class="alert alert-danger" *ngIf="registro.get('apPaternoA').hasError('required')">El apellido paterno es requerido</p>
+                <p class="alert alert-danger" *ngIf="registro.get('apPaternoA').hasError('sinEspacios')">No puede haber espacios en el apellido paterno</p>
+                <p class="alert alert-danger" *ngIf="registro.get('apPaternoA').hasError('pattern')">No es un apellido paterno valido</p>
+              </div>
+              <div *ngIf="registro.get('apMaternoA').errors && registro.get('apMaternoA').dirty">
+                <p class="alert alert-danger" *ngIf="registro.get('apMaternoA').hasError('sinEspacios')">No puede haber espacios en el apellido materno</p>
+                <p class="alert alert-danger" *ngIf="registro.get('apMaternoA').hasError('pattern')">No es un apellido materno valido</p>
                 </div>
-                <br>
-                <input type="text" class="form-control" placeholder="Apellido Paterno" formControlName="apPaternoA" maxlength="50"> 
-                <div *ngIf="registro.get('apPaternoA').errors && registro.get('apPaternoA').dirty">
-                  <p class="alert alert-danger" *ngIf="registro.get('apPaternoA').hasError('required')">El campo es requerido</p>
-                  <p class="alert alert-danger" *ngIf="registro.get('apPaternoA').hasError('sinEspacios')">No puede haber espacios</p>
-                  <p class="alert alert-danger" *ngIf="registro.get('apPaternoA').hasError('pattern')">No es un apellido valido</p>
-                </div>
-                <br>
-                <input type="text" class="form-control" placeholder="Apellido Materno" formControlName="apMaternoA" maxlength="50">
-                <div *ngIf="registro.get('apMaternoA').errors && registro.get('apMaternoA').dirty">
-                  <p class="alert alert-danger" *ngIf="registro.get('apMaternoA').hasError('sinEspacios')">No puede haber espacios</p>
-                  <p class="alert alert-danger" *ngIf="registro.get('apMaternoA').hasError('pattern')">No es un apellido valido</p>
-                </div>
-                <br>
+                
                 <label>Tipo de Actor</label>
                 <span class="text-danger">*</span>
                 <br>
@@ -104,11 +102,10 @@
                 </div>
                
 
-              </div>
             </div>
             <br>
             <!--Genero pelicula-->
-            <div class="col-md" style="color: white; font-weight: bold;">	
+            <div class="col-md">	
             
             <label >Genero de la pelicula</label>
             <span class="text-danger">*</span>
@@ -144,8 +141,8 @@
                 <br>
           <!--Fecha de produccion-->
 
-          <div class="col-md" style="color: white; font-weight: bold;">
-            <div class="form-group" style="color: white; font-weight: bold;">
+          <div class="col-md" >
+            <div class="form-group" >
               <label>Año de estreno</label>
               <span class="text-danger">*</span>
 <select class="form-control" formControlName="anioProduccion" maxlength="50">
@@ -189,8 +186,8 @@
           </div>
           
           <!--Sinopsis-->  
-         <div class="col-md" style="color: white; font-weight: bold;">	
-              <div class="form-group" style="color: white; font-weight: bold;">
+         <div class="col-md" >	
+              <div class="form-group" >
                 <label >Sinopsis</label>
                 <span class="text-danger">*</span>
                 <textarea class="form-control text-muted" aria-label="With textarea" style=" size: 32" placeholder="Ingrese la sinopsis de la pelicula" formControlName="sinopsis" maxlength="2000"></textarea>
@@ -203,7 +200,7 @@
           
 
            <!--Clasificacion-->
-          <div class="col-md" style="color: white; font-weight: bold;">
+          <div class="col-md" >
 
             <label>Clasificacion de la pelicula</label>
             <span class="text-danger">*</span>
@@ -225,8 +222,8 @@
           </div>
           <!--Duracion-->
 
-          <div class="col-md" style="color: white; font-weight: bold;">
-            <div class="form-group" style="color: white; font-weight: bold;">
+          <div class="col-md" >
+            <div class="form-group" >
               <label>Duracion</label>
               <span class="text-danger">*</span>
               <input type="text" class="form-control" style=" size: 32" placeholder="Duracion en minutos" formControlName="duracion" maxlength="4">
@@ -240,8 +237,8 @@
           </div>
           <!--Casa productora-->
           
-          <div class="col-md" style="color: white; font-weight: bold;">
-            <div class="form-group" style="color: white; font-weight: bold;">
+          <div class="col-md" >
+            <div class="form-group" >
               <label>Casa Productora</label>
               <span class="text-danger">*</span>
               <input type="text" class="form-control" style=" size: 32" placeholder="Casa Prouctora" formControlName="casaProductora" maxlength="50">
@@ -253,7 +250,7 @@
           </div>
 
           <!--Portada de pelicula-->
-          <div class="col-md" style="color: white; font-weight: bold;">
+          <div class="col-md">
             <label>Colocar URL de la portada</label>
             <span class="text-danger">*</span>
             <input type="text" class="form-control" placeholder="ejemplo: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiv77RtuuI2i0CzDw2TJEQ085-pfZaBzXiTB62EQ1heFIKqy2zHQ"
@@ -267,7 +264,7 @@
           </div>
           <br>
            <!--Archivo de pelicula-->   
-           <div class="col-md" style="color: white; font-weight: bold;">
+           <div class="col-md" >
            <label >Colocar URl de la pelicula</label>
           <span class="text-danger">*</span>
 <input type="text" class="form-control" placeholder="ejemplo: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiv77RtuuI2i0CzDw2TJEQ085-pfZaBzXiTB62EQ1heFIKqy2zHQ"
@@ -285,11 +282,7 @@
 
            
              <div align="center" >
-              <button  type="submit" class="btn btn-primary btn-md " [disabled]="registro.invalid" (click)="guardarPelicula()" >Aceptar</button>
-<button type="button" class="btn btn-secondary btn-md " >Cancelar</button>
-
-             <p class="alert alert-danger">registro.valid: {{ registro.valid  }}</p>
-  
+              <button  type="submit" class="btn btn-primary btn-md " [disabled]="registro.invalid" (click)="guardarPelicula()" >Aceptar</button>  
           </div>
         <br>
 
@@ -297,4 +290,3 @@
 
         </div>
    </div>
-  </div>

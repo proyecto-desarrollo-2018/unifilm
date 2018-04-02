@@ -14,11 +14,9 @@ import { AuthService } from '../auth/auth.service';
   providers: [  ]
 })
 export class SingupComponent implements OnInit {
-  @Input() usuarios: Array<Usuario> = [];
 
   registro: FormGroup;
   
-
   ngOnInit() {
   }
 
@@ -55,9 +53,9 @@ export class SingupComponent implements OnInit {
         null,
         null,
         correo,
-        contra,
+        contra, 
         sexo,
-        'cliente',
+        'socio',
         tarjeta
         );
 
@@ -66,6 +64,7 @@ export class SingupComponent implements OnInit {
             this.authService.login,
             err => console.log(err)
           );
+      this.router.navigateByUrl('/home-cliente');
     } else {
       console.log('Error en el formulario de registro');
     }

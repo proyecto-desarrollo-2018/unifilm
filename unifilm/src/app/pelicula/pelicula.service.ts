@@ -19,8 +19,6 @@ export class PeliculaService {
 
     }
     getPeliculas(): Promise<void | Pelicula[]> {
-        console.log('url: desde getPelicula() = ' + this.peliculaUrl);
-
         return this.http.get(this.peliculaUrl)
                 .toPromise()
                 .then( response => response.json() as Pelicula[] )

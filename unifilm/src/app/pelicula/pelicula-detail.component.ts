@@ -63,7 +63,7 @@ calificar() {
     .subscribe(    
     this.authService.handleError
     );
-
+    alert('Calificacion Enviada exitosamente');
     this.calificacionForm.reset();
 
 }

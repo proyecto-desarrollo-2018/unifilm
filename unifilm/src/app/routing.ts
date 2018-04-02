@@ -8,7 +8,7 @@ import { SinginComponent } from './singin/singin.component';
 import { SingupComponent } from './singup/singup.component';
 import { PeliculaListComponent } from './pelicula/pelicula-list.component';
 import { PeliculaNewComponent } from './pelicula/pelicula-new.component';
-
+import { ReporteComponent } from './reporte/reporte.component';
 
 const APP_ROUTES: Routes = [
     { path: '', component: PaginaPrincipalComponent, pathMatch: 'full'},
@@ -18,6 +18,7 @@ const APP_ROUTES: Routes = [
     { path: 'peliculas', children: PELICULA_ROUTES },
     { path: 'singin', component: SinginComponent },
     { path: 'singup', component: SingupComponent },
+    { path: 'reportes', component: ReporteComponent }
 
 
 

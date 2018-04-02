@@ -27,6 +27,7 @@ export class AuthService {
             .map((response: Response) => {
                 const json = response.json();
                 this.login(json);
+                alert('Usuario agregado exitosamente');
                 return json;
             })
             .catch((error: Response) => {
@@ -37,11 +38,13 @@ export class AuthService {
 
     singin(user: Usuario){
         const body = JSON.stringify(user);
+
         const headers = new Headers({ 'Content-Type': 'application/json'});
         return this.http.post(this.usersUrl + '/singin', body, {headers} )
             .map((response: Response) => {
                 const json = response.json();
                 this.login(json);
+                this.router.navigateByUrl('/home-cliente');
                 return json;
             })
             .catch((error: Response) => {
@@ -49,13 +52,17 @@ export class AuthService {
                 throw Observable.throw(error.json());
             });
 
+
+
     }
 
-    login = ({ token, userId, firsName, lastNameP, lastNameM,email}) => {
-        this.currentUser = new Usuario(userId, null, firsName, lastNameP, lastNameM,null, null, null, email,null,null,null,null );
+    login = ({ token, userId, nomUsuario, firsName, lastNameP, lastNameM, direccion, fNacimiento, telefono, email, contra, genero, tipoUsuario, tarjeta}) => {
+        this.currentUser = new Usuario(userId, nomUsuario, firsName, lastNameP, lastNameM, direccion, fNacimiento, telefono, email, contra, genero, tipoUsuario, tarjeta );
+        
         localStorage.setItem('token', token);
         localStorage.setItem('usuario', JSON.stringify({ userId, firsName, lastNameP, lastNameM, email}));
-        this.router.navigateByUrl('/home-cliente');
+       // this.router.navigateByUrl('/home-cliente');
+
     }
 
     isLoggedIn() {

@@ -31,11 +31,19 @@ app.post('/singin', async (req,res,next) => {
     res.status(200).json({
         message: 'Login exitoso',
         token,
-        userId: user.idUsuario,
+        userId: user._id,
+        nomUsuario: user.nomUsuario,
         firsName: user.nombre,
         lastNameP: user.apellidoP ,
         lastNameM: user.apellidoM,
-        email: user.correo
+        direccion: user.direccion,
+        fNacimiento: user.fNacimiento,
+        telefono: user.fNacimiento,
+        email: user.correo,
+        contra: user.contra,
+        genero: user.genero,
+        tipoUsuario: user.tipoUsuario,
+        tarjeta: user.tarjeta  
     })
 
 })
@@ -43,26 +51,29 @@ app.post('/singin', async (req,res,next) => {
 // /api/auth/singup
 app.post('/singup', async (req, res,) => {
     const { nomUsuario, contra, nombre, apellidoP, apellidoM, correo, genero,
-        numeroTarjeta, mesFE, anioFE, codigoS } = req.body;
+        tarjeta, tipoUsuario } = req.body;
+    const t = new Tarjeta({
+        numTarjeta: tarjeta.numTarjeta,
+        mesExpiracion:  tarjeta.mesExpiracion,
+        anioExpiracion: tarjeta.anioExpiracion,
+        codigoSeguridad : tarjeta.codigoSeguridad
+    })
+
+    console.log('Tarjeta: ' + JSON.stringify(t))
+
     const u = new Usuario({
         nomUsuario: nomUsuario ,
         nombre: nombre,
         apellidoP: apellidoP,
         apellidoM: apellidoM,
-        direccion: 'direccion',
+        direccion: null,
         fNacimiento: new Date(),
-        telefono: '787878787878',
+        telefono: null,
         correo: correo,
         contra: hash(contra,10),
         genero: genero,
-        tipoUsuario: 'admin',
-        tarjeta: new Tarjeta ({
-            numTarjeta: numeroTarjeta,
-            mesExpiracion: mesFE ,
-            anioExpiracion: anioFE ,
-            codigoSeguridad: codigoS
-
-        })
+        tipoUsuario: tipoUsuario ,
+        tarjeta: t
     })
 
     console.log('Creando nuevo usuario: ' + u )

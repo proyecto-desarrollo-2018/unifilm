@@ -1,105 +1,178 @@
-<div class="container-fluid d-flex fondo-login" style="height:100%">
+<div class="fondo-singup">
+  <div class="container-fluid d-flex" >
+    <div class="mx-auto my-auto text center">
+      <h6 class="display-1 mx-auto my-auto" >Agregar Usuario</h6>
+      <br>
+      <br>
 
 
-<div style="justify-content:center">
-<form  class="form-group" [formGroup]="registro" (ngSubmit)="onSubmit()" name="signup" enctype="multipart/form-data">
+      <form [formGroup]="registro" (ngSubmit)="onSubmit()" novalidate>
+        <!--Nombre de usuario-->
+        <div class="col-md" >
+          <div class="input-group">
+            <div class="input-group-prepend">
+            <span class="input-group-text">Nombre Usuario</span>
+            <input type="text" class="form-control" id="usuario" placeholder="Ingrese su usuario" formControlName="nombreU" maxlength="50">
+            <span class="input-group-text">Tipo Usuario</span>
+            <select class="form-control" formControlName="tipoUsuario" placeholder="Tipo de usuario">
+              <option value="administrador">administrador</option>
+              <option value="cliente">cliente</option>
+              <option value="soporte">soporte</option>
+            </select>
+            </div>
+          </div>
+        
+            <div *ngIf="registro.get('nombreU').errors && registro.get('nombreU').dirty">
+              <p class="alert alert-danger" *ngIf="registro.get('nombreU').hasError('required')">El campo es requerido</p>
+              <p class="alert alert-danger" *ngIf="registro.get('nombreU').hasError('sinEspacios')">No puede haber espacios</p>
+              <p class="alert alert-danger" *ngIf="registro.get('nombreU').hasError('pattern')">Nombre de usuario no valido debe tener 4-20 caracteres</p>
+            </div>
+            <div *ngIf="registro.get('tipoUsuario').errors && registro.get('tipoUsuario').dirty">
+              <p class="alert alert-danger" *ngIf="registro.get('tipoUsuario').hasError('required')">El campo es requerido</p>
+            </div>
 
-  <!--USERNAME-->
-  <div class="form-group">
-    <label class="col-form-label">Nombre de usuario
-      <span class="text-danger">*</span>
-    </label>
-    <input type="text" data-toggle="tooltip" title="Tu PSNID debe tener al menos entre 3 y 16 caracteres válidos (A-Z _ -)" class="form-control"
-      name="username" placeholder="Ingresa tu nombre de usuario" value="" required formControlName="username">
-  </div>
+          <!--Contraseña-->
+          <div class="form-group" >
+            <label>Ingrese su contraseña</label>
+            <span class="text-danger">*</span>
+            <input maxlength="50" type="password" class="form-control" id="password" placeholder="Ingrese Password" formControlName="contra">
+            <div *ngIf="registro.get('contra').errors && registro.get('contra').dirty">
+              <p class="alert alert-danger" *ngIf="registro.get('contra').hasError('required')">El campo es requerido</p>
+              <p class="alert alert-danger" *ngIf="registro.get('contra').hasError('pattern')">No es un password</p>
+              <p class="alert alert-danger" *ngIf="registro.get('contra').hasError('sinEspacios')">No puede haber espacios</p>
+            </div>
+          </div>
+          <!--Confirmacion de contraseña-->
+          <div class="form-group">
+            <label>Confirme su passwrod</label>
+            <span class="text-danger">*</span>
+            <input maxlength="50" type="password" class="form-control" id="contraC" placeholder="Ingrese su apellido paterno" formControlName="contraC">
+            <div *ngIf="registro.get('contraC').errors && registro.get('contraC').dirty">
+              <p class="alert alert-danger" *ngIf="registro.get('contraC').hasError('required')">El campo es requerido</p>
+              <p class="alert alert-danger" *ngIf="registro.get('contraC').hasError('pattern')">No es un password</p>
+              <p class="alert alert-danger" *ngIf="registro.get('contraC').hasError('sinEspacios')">No puede haber espacios</p>
+              <!--<p class="alert alert-danger" *ngIf="registro.get('contraC').hasError('MatchPassword')">Las contraseñas no coinciden</p>-->
+            </div>
+            <p class="alert alert-danger" *ngIf="!isValidMatchPassword()">Las contraseñas no coinciden</p>
+          </div>
+          <!--Nombre-->
 
-  <!--EMAIL-->
-  <div class="form-group">
-    <label class="control-label">Correo Electronico
-      <span class="text-danger">*</span>
-    </label>
-    <input type="email" class="form-control" name="email" placeholder="Ingresa tu eMail" value="" required formControlName="email">
-    <small> Tu eMail es utilizado para la seguridad de tu cuenta, autorización y recuperación de contraseña</small>
-  </div>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="">Nombre</span>
+              <input maxlength="50" type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre" formControlName="nombre">
+              <input maxlength="50" type="text" class="form-control" id="apellidoP" placeholder="Apellido Paterno" formControlName="apellidoP">
+              <input maxlength="50" type="text" class="form-control" id="apellidoM" placeholder="Apellido Materno" formControlName="apellidoM">
+            </div>
+          </div>
+            <div *ngIf="registro.get('nombre').errors && registro.get('nombre').dirty">
+              <p class="alert alert-danger" *ngIf="registro.get('nombre').hasError('required')">El nombre es requerido</p>
+            </div>
+            <div *ngIf="registro.get('apellidoP').errors && registro.get('apellidoP').dirty">
+              <p class="alert alert-danger" *ngIf="registro.get('apellidoP').hasError('required')">El apellido paterno es requerido</p>
+              <p class="alert alert-danger" *ngIf="registro.get('apellidoP').hasError('sinEspacios')">No puede haber espacios en el apellido paterno</p>
+            </div>
+            <div *ngIf="registro.get('apellidoM').errors && registro.get('apellidoM').dirty">
+              <p class="alert alert-danger" *ngIf="registro.get('apellidoM').hasError('required')">El apellido materno es requerido</p>
+              <p class="alert alert-danger" *ngIf="registro.get('apellidoM').hasError('sinEspacios')">No puede haber espacios en el apellido materno</p>
+            </div>
+            <br>
+          <!--Correro Electronico-->
+          <div class="form-group">
+            <label>Correo Electronico</label>
+            <span class="text-danger">*</span>
+            <input maxlength="50" type="email" class="form-control" id="correo" placeholder="Ingrese su apellido paterno" formControlName="correo">
+            <div *ngIf="registro.get('correo').errors && registro.get('correo').dirty">
+              <p class="alert alert-danger" *ngIf="registro.get('correo').hasError('required')">El campo es requerido</p>
+              <p class="alert alert-danger" *ngIf="registro.get('correo').hasError('pattern')">No es un email</p>
+              <p class="alert alert-danger" *ngIf="registro.get('correo').hasError('sinEspacios')">No puede haber espacios</p>
+            </div>
+          </div>
+          <!--Sexo-->
+          <div class="form-group ">
+            <label class="control-label">Sexo
+              <span class="text-danger"></span>
+            </label>
+            <div>
+              <label>
+                <input name="sexo" type="radio" value="M" formControlName="sexo" checked> Masculino
+              </label>
+              <label>
+                <input name="sexo" type="radio" value="F" formControlName="sexo"> Femenino
+              </label>
+              <div *ngIf="registro.get('sexo').errors ">
+                <p class="alert alert-danger" *ngIf="registro.get('numeroTarjeta').hasError('required')">El campo es requerido</p>
+              </div>
+            </div>
+          </div>
+          <!--Datos tarjeta de credito-->
+          <div class="form-group">
+            <br>
+            <!--Datos tarjeta de credito-->
+            <div class="form-group">
+              <label>Numero de tarjeta de credito</label>
+              <span class="text-danger">*</span>
+              <input maxlength="50" type="text" class="form-control" id="tarjeta" placeholder="Ingrese el numero de tarjeta" formControlName="numeroTarjeta">
+              <div *ngIf="registro.get('numeroTarjeta').errors && registro.get('numeroTarjeta').dirty">
+                <p class="alert alert-danger" *ngIf="registro.get('numeroTarjeta').hasError('required')">El campo es requerido</p>
+                <p class="alert alert-danger" *ngIf="registro.get('numeroTarjeta').hasError('sinEspacios')">No puede haber espacios</p>
+                <p class="alert alert-danger" *ngIf="registro.get('numeroTarjeta').hasError('pattern')">No es un numero valido valores validos: (0-9) deben ser 16 digitos</p>
+              </div>
+            </div>
+            <div class="form-group ">
+              <label>Mes de expiracion</label>
+              <span class="text-danger">*</span>
+              <br>
+              <select class="form-control" formControlName="mesFE">
+                <option value="Enero">Enero</option>
+                <option value="Febrero">Febrero</option>
+                <option value="Marzo">Marzo</option>
+                <option value="Abril">Abril</option>
+                <option value="Mayo">Mayo</option>
+                <option value="Junio">Junio</option>
+                <option value="Julio">Julio</option>
+                <option value="Agosto">Agosto</option>
+                <option value="Septiembre">Septiembre</option>
+                <option value="Octubre">Octubre</option>
+                <option value="Noviembre">Noviembre</option>
+                <option value="Diciembre">Diciembre</option>
 
-  <!--PASSWORD-->
-  <div class="form-group">
-    <label class="control-label">Contraseña
-      <span class="text-danger">*</span>
-    </label>
-    <input type="password" class="form-control" name="password" placeholder="Ingresa tu contraseña" value="" data-toggle="tooltip"
-      title="Tu contraseña debe tener entre 5 a 15 caracteres" required formControlName="password">
-    <small> Ingresa una contraseña de 5 a 15 caracteres</small>
-  </div>
+              </select>
+              <div *ngIf="registro.get('mesFE').errors">
+                <p class="alert alert-danger" *ngIf="registro.get('mesFE').hasError('required')">El campo es requerido</p>
+              </div>
+              <label>Año de expiracion</label>
+              <span class="text-danger">*</span>
+              <br>
+              <select class="form-control" formControlName="anioFE">
+                <option value="2018">2018</option>
+                <option value="2019">2019</option>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+              </select>
+              <div *ngIf="registro.get('anioFE').errors">
+                <p class="alert alert-danger" *ngIf="registro.get('anioFE').hasError('required')">El campo es requerido</p>
+              </div>
+            </div>
 
-  <!--CONFIRMA PASSWORD-->
-  <div class="form-group">
-    <label class="control-label">Confirmar Contraseña
-      <span class="text-danger">*</span>
-    </label>
-    <input type="password" class="form-control" name="cpassword" id="cpassword" placeholder="Confirmar contraseña" value="" required
-      formControlName="cpassword">
-  </div>
-
-  <!--NOMBRE COMPLETO-->
-  <div class="form-group">
-    <label class="control-label">Nombre Completo
-      <span class="text-danger">*</span>
-    </label>
-    <div class="form-inline">
-      <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre(s)" value="" data-toggle="tooltip"
-        title="Ingresa tu nombre por favor" required formControlName="nombre">
-      <input type="text" class="form-control" name="apellido" id="apellido" placeholder="Apellido" value="" data-toggle="tooltip"
-        title="Ingresa tu apellido por favor" required formControlName="apellido">
-    </div>
-  </div>
-
-  <!--GENERO-->
-  <div class="form-group">
-    <label class="control-label">Sexo
-      <span class="text-danger">*</span>
-    </label>
-    <div>
-      <label>
-        <input name="genero" type="radio" value="M" checked formControlName="genero"> Masculino
-      </label>
-      <label>
-        <input name="genero" type="radio" value="F" formControlName="genero"> Femenino
-      </label>
-    </div>
-  </div>
-
-
-  <!--TARJETA-->
-  <div class="form-group">
-    <label class="control-label">Tarjeta de Credito
-      <span class="text-danger">*</span>
-    </label>
-    <input class="form-control" name="numeroTarjeta" type="number" placeholder="Ingresa el numero de tu tarjeta de credito" required
-      formControlName="tarjeta">
-  </div>
-
-  <p class="text-left">Los valores marcados con (
-    <span class="text-danger">*</span>) son requeridos.</p>
-
-  <span class="text-muted">
-    <span class="label label-danger">Nota:</span> Al hacer click en Registrarse, aceptas haber leído y estar de acuerdo con nuestros
-    <a href="#">Términos y Condiciones</a> , incluyendo nuestro
-    <a href="#">uso de Cookies</a>.</span>
-
-  <div class="modal-footer text-center">
-    <input name="submit" type="submit" value="Cancelar" class="btn btn-disabled" data-dismiss="modal">
-    <input *ngIf="registro.valid" [routerLink]="['/home']" name="submit" type="submit" value="Registrarse" class="btn btn-primary"
-      data-dismiss="modal">
-    <h5 class="text-center">
-      <a href="signupModal" data-toggle="modal" data-target="#loginModal">¿Ya tienes una cuenta?</a>
-    </h5>
-    <!--<button class="btn btn-primary" type="submit">Registrarse</button>
-                  <button class="btn btn-disabled" >Cancelar</button>
-                                                                                                       -->
-  </div>
-</form>
-
-</div>
-
-</div>
+            <div class="form-group">
+              <label>Codigo de seguridad</label>
+              <span class="text-danger">*</span>
+              <input maxlength="4" type="password" class="form-control text-muted " id="cvsT" placeholder="Ingrese su codigo de seguridad"
+                formControlName="codigoS">
+              <div *ngIf="registro.get('codigoS').errors && registro.get('codigoS').dirty">
+                <p class="alert alert-danger" *ngIf="registro.get('codigoS').hasError('required')">El campo es requerido</p>
+                <p class="alert alert-danger" *ngIf="registro.get('codigoS').hasError('sinEspacios')">No puede haber espacios</p>
+                <p class="alert alert-danger" *ngIf="registro.get('codigoS').hasError('pattern')">No es un codigo deben ser numeros y contener 3 digitos</p>
+              </div>
+            </div>
+            <br>
+          </div>
+          <div align="center">
+            <button type="submit" [disabled]="registro.invalid || !isValidMatchPassword()" class="btn btn-primary btn-md ">Aceptar</button>
+            
+          </div>
+          <br>
+          <br>
+        </div>

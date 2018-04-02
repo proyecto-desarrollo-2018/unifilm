@@ -105,6 +105,7 @@ export class PeliculaNewComponent implements OnInit {
         //({ _id }) => this.router.navigate(['/home-cliente'] ),
           this.authService.handleError
         );
+        alert('Pelicula Guardada exitosamente') ;
 
 
 

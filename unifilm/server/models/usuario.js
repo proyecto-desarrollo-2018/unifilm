@@ -1,5 +1,6 @@
 import mongoose, { Schema } from 'mongoose'
 import uniqueValidator from 'mongoose-unique-validator'
+import { Tarjeta } from './'
 
 
 const { ObjectId } = Schema.Types
