@@ -1,5 +1,5 @@
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-    <h1 class="h2">Estadisticas Usuarios</h1>
+    <h1 class="h1">Estadisticas Usuarios</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
       <div class="btn-group mr-2">
         <button class="btn btn-sm btn-outline-secondary" (click)="activarTopGeneros()">Top Generos</button>
@@ -13,7 +13,7 @@
 <!--TOP GENEROS -->
 <div *ngIf="topGeneros">
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-    <h5 class="h5">Top Generos</h5>
+    <h2 class="h2">Top Generos</h2>
     <div class="btn-toolbar mb-2 mb-md-0">
       <div class="btn-group mr-2">
         <button class="btn btn-sm btn-outline-secondary">Top Generos</button>
@@ -24,12 +24,12 @@
   
   </div>
   
-  <fusioncharts [id]="chart2" [width]="600" [height]="400" [type]="type" [dataFormat]="json" [dataSource]="dataSourceTopGeneros">
+    <fusioncharts [id]="id" [width]="width" [height]="height" [type]="type" [dataFormat]="dataFormat" [dataSource]="dataSourceTopGeneros">
   </fusioncharts>
   
   
   
-  <h2>Lista Clientes</h2>
+  <h3>Lista Clientes</h3>
   <div class="table-responsive">
     <table class="table table-striped table-sm table-bordered table-hover">
       <thead class="thead-dark">
@@ -52,22 +52,35 @@
           <td>{{ usuario.apellidoM }}</td>
           <td>{{ usuario.genero }}</td>
         </tr>
+      </tbody>
+    </table>
+  </div>
+  <h3>Resultados</h3>
+  <div class="table-responsive">
+    <table class="table table-striped table-sm table-bordered table-hover">
+      <thead class="thead-dark">
         <tr>
-          <th scope="row">#</th>
-          <td class="bg-dark" style="color: white;" >
-            <strong>Total Hombres</strong>
+          <th scope="col">Generos</th>
+          <th scope="col">Totales</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="bg-info" style="color: white;">
+            <strong>Hombres</strong>
           </td>
           <td>
             <strong style="color: blue">{{totalMasculino}}</strong>
           </td>
-          <td class="bg-dark" style="color: white;" >
-            <strong>Total Mujeres</strong>
+        </tr>
+        <tr>
+          <td class="bg-info" style="color: white;">
+            <strong>Mujeres</strong>
           </td>
           <td>
             <strong style="color: blue">{{totalFemenino}}</strong>
           </td>
         </tr>
-  
       </tbody>
     </table>
   </div>
@@ -77,23 +90,18 @@
 <!--TOP TIPOS DE USUARIOS -->
 <div *ngIf="topTiposUsuarios">
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-    <h5 class="h5">Top Tipos de Usuarios</h5>
+    <h2 class="h2">Top Tipos de Usuarios</h2>
     <div class="btn-toolbar mb-2 mb-md-0">
       <div class="btn-group mr-2">
         <button class="btn btn-sm btn-outline-secondary">Top Generos</button>
-
       </div>
-
     </div>
-
   </div>
 
-  <fusioncharts [id]="chart1" [width]="600" [height]="400" [type]="type" [dataFormat]="json" [dataSource]="dataSourceTopTiposUsuarios">
-  </fusioncharts>
+    <fusioncharts [id]="id" [width]="width" [height]="height" [type]="type" [dataFormat]="dataFormat" [dataSource]="dataSourceTopTiposUsuarios">
+    </fusioncharts>
 
-
-
-  <h2>Lista Clientes</h2>
+  <h3>Lista Clientes</h3>
   <div class="table-responsive">
     <table class="table table-striped table-sm table-bordered table-hover">
       <thead class="thead-dark">
@@ -116,37 +124,57 @@
           <td>{{ usuario.apellidoM }}</td>
           <td>{{ usuario.tipoUsuario }}</td>
         </tr>
+      </tbody>
+    </table>
+    
+  <h2>Resultados</h2>
+
+  </div>
+  <div class="table-responsive">
+    <table class="table table-striped table-sm table-bordered table-hover">
+      <thead class="thead-dark">
         <tr>
-          <td class="bg-dark" style="color: white;" >
-            <strong>Total Clientes</strong>
+          <th scope="col">Tipo Usuario</th>
+          <th scope="col">Totales</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="bg-info" style="color: white;">
+            <strong>Clientes</strong>
           </td>
           <td>
             <strong style="color: blue">{{totalClientes}}</strong>
           </td>
-          <td class="bg-dark" style="color: white;" >
-            <strong>Total Soporte</strong>
+        </tr>
+        <tr>
+          <td class="bg-info" style="color: white;">
+            <strong>Soporte</strong>
           </td>
           <td>
             <strong style="color: blue">{{totalSoporte}}</strong>
           </td>
-          <td class="bg-dark" style="color: white;" >
-            <strong>Total Administradores</strong>
+        </tr>
+        <tr>
+          <td class="bg-info" style="color: white;">
+            <strong>Administradores</strong>
           </td>
           <td>
             <strong style="color: blue">{{totalAdministradores}}</strong>
           </td>
         </tr>
-
+    
       </tbody>
     </table>
   </div>
+  
 </div>
 <!--TOP TIPOS DE USUARIOS FIN -->
 
 <!--TOP EDADES -->
 <div *ngIf="topEdades">
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-    <h5 class="h5">Top Edades</h5>
+    <h2 class="h2">Top Edades</h2>
     <div class="btn-toolbar mb-2 mb-md-0">
       <div class="btn-group mr-2">
         <button class="btn btn-sm btn-outline-secondary">Top Generos</button>
@@ -157,7 +185,7 @@
 
   </div>
 
-  <fusioncharts [id]="chart1" [width]="600" [height]="400" [type]="type" [dataFormat]="json" [dataSource]="dataSourceTopEdades">
+  <fusioncharts [id]="id" [width]="width" [height]="height" [type]="type" [dataFormat]="dataFormat" [dataSource]="dataSourceTopEdades">
   </fusioncharts>
 
 
@@ -172,39 +200,88 @@
           <th scope="col">Nombre</th>
           <th scope="col">Apellido Paterno</th>
           <th scope="col">Apellido Materno</th>
-          <th scope="col">Genero</th>
-          <th scope="col">Tipo Usuario</th>
+          <th scope="col">Edad</th>
 
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let usuario of usuarios; let i = index">
+        <tr *ngFor="let usuario of usuarios; let i = index; " >
           <th scope="row">{{i+1}}</th>
           <td>{{ usuario.nomUsuario }}</td>
           <td>{{ usuario.nombre }}</td>
           <td>{{ usuario.apellidoP }}</td>
           <td>{{ usuario.apellidoM }}</td>
-          <td>{{ usuario.genero }}</td>
-          <td>{{ usuario.tipoUsuario }}</td>
-        </tr>
-        <tr>
-          <th scope="row">#</th>
-          <td class="bg-dark" style="color: white;" colspan="2">
-            <strong>Total Hombres</strong>
-          </td>
-          <td>
-            <strong style="color: blue">{{totalMasculino}}</strong>
-          </td>
-          <td class="bg-dark" style="color: white;" colspan="2">
-            <strong>Total Mujeres</strong>
-          </td>
-          <td>
-            <strong style="color: blue">{{totalFemenino}}</strong>
-          </td>
-        </tr>
+          <td>{{ usuario.edad }}</td>
 
+        </tr>
+        
       </tbody>
     </table>
   </div>
+
+  <h2>Resultados</h2>
+  
+  <div class="table-responsive">
+    <table class="table table-striped table-sm table-bordered table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Rango edad</th>
+          <th scope="col">Totales</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="bg-info" style="color: white;">
+            <strong>Menos de 10 años</strong>
+          </td>
+          <td>
+            <strong style="color: blue">{{totalmenos10}}</strong>
+          </td>
+        </tr>
+        <tr>
+          <td class="bg-info" style="color: white;">
+            <strong>Entre 10 y 19 años</strong>
+          </td>
+          <td>
+            <strong style="color: blue">{{total10a19}}</strong>
+          </td>
+        </tr>
+        <tr>
+          <td class="bg-info" style="color: white;">
+            <strong>Entre 20 y 29 años</strong>
+          </td>
+          <td>
+            <strong style="color: blue">{{total20a29}}</strong>
+          </td>
+        </tr>
+          <tr>
+            <td class="bg-info" style="color: white;">
+              <strong>Entre 30 y 39 años</strong>
+            </td>
+            <td>
+              <strong style="color: blue">{{total30a39}}</strong>
+            </td>
+          </tr>
+          <tr>
+            <td class="bg-info" style="color: white;">
+              <strong>Entre 40 y 49 años</strong>
+            </td>
+            <td>
+              <strong style="color: blue">{{total40a49}}</strong>
+            </td>
+          </tr>
+          <tr>
+            <td class="bg-info" style="color: white;">
+              <strong>Mas de 50 años</strong>
+            </td>
+            <td>
+              <strong style="color: blue">{{totalmas50}}</strong>
+            </td>
+          </tr>
+  
+      </tbody>
+    </table>
+  </div>
+
 </div>
 <!--TOP EDADES FIN -->
