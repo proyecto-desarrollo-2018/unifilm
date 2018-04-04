@@ -16,7 +16,7 @@ export class PeliculaListTresComponent implements OnInit {
   loading = true;
 
   idPelicula = 'no definido';
-
+  
 
   ngOnInit() {
     this.peliculaService

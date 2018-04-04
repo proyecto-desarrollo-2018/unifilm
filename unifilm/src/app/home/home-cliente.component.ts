@@ -125,4 +125,7 @@ export class HomeClienteComponent implements OnInit {
     this.authService.logout();
   }
 
+  nombreUsuario(){
+    return this.authService.currentUser.nomUsuario;
+  }
 }

@@ -15,6 +15,7 @@ export class PeliculaDetailDosComponent implements OnInit {
   loading = true;
   sub: any;
 
+ 
   @Input() idPelicula: string;
 
 
@@ -35,8 +36,83 @@ export class PeliculaDetailDosComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
+    this.sub.unsubscribe();  
   }
+
+
+  //ACTIVAR MODULOS
+  editarDatosPelicula = false;
+  activarEditarDatos() {
+    this.ponerEnFalse();
+    this.editarDatosPelicula = true;
+  }
+  editarDirectores = false;
+  activarEditarDirectores() {
+    this.ponerEnFalse();
+    this.editarDirectores = true;
+  }
+ editarActores  = false;
+  activarEditarActores(){
+    this.ponerEnFalse();
+    this.editarActores = true;
+  }
+editarGeneros = false;
+  activarEditarGeneros(){
+    this.ponerEnFalse();
+    this.editarGeneros = true;
+  }
+editarClasificaciones = false;
+  activarEditarClasificaciones(){
+    this.ponerEnFalse();
+    this.editarClasificaciones = true;
+  }
+
+
+  
+  
+  
+  
+  agregarDirectores = false;
+  activarAgregarDirectores() {
+    this.ponerEnFalse();
+    this.agregarDirectores = true;
+  }
+  agregarActores = false;
+  activarAgregarActores() {
+    this.ponerEnFalse();
+    this.agregarActores = true;
+  }
+  agregarGeneros = false;
+  activarAgregarGeneros() {
+    this.ponerEnFalse();
+    this.agregarGeneros = true;
+  }
+  agregarClasificaciones = false;
+  activarAgregarClasificaciones() {
+    this.ponerEnFalse();
+    this.agregarClasificaciones = true;
+  }
+
+
+
+
+
+
+  ponerEnFalse() {
+    this.editarDatosPelicula = false;
+    this.editarDirectores = false;
+    this.editarActores = false;
+    this.editarGeneros = false;
+    this.editarClasificaciones = false;
+    
+    this.agregarDirectores = false;
+    this.agregarActores = false;
+    this.agregarGeneros = false;
+    this.agregarClasificaciones = false;
+
+ }
+
+  //FIN ACTIVAR MODULOS
 
 
 }

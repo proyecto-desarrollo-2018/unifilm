@@ -31,11 +31,38 @@ export class UsuarioDetailComponent implements OnInit, OnDestroy {
     });
     console.log('id usuario: ' + this.idUsuario);
 
-  }
+  }  
 
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
+
+  //ACTIVAR MODULOS
+  agregarTarjeta = false;
+  activarAgregarTarjeta() {
+    this.ponerEnFalse();
+    this.agregarTarjeta = true;
+  }
+  
+  editarTarjeta = false;
+  activarEditarTarjeta() {
+    this.ponerEnFalse();
+    this.editarTarjeta = true;
+  }
+  editarDatosPersonales = false;
+  activarEditarDatosPersonales(){
+    this.ponerEnFalse();
+    this.editarDatosPersonales= true;
+  }
+
+  ponerEnFalse(){
+    this.agregarTarjeta = false;
+    this.editarTarjeta = false;
+    this.editarDatosPersonales = false;
+  }
+
+  //FIN ACTIVAR MODULOS
+  
 
 
 }

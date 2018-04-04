@@ -1,6 +1,162 @@
-<p>Detalle de peliculas</p>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+  <h2 class="h2">Editar Pelicula( {{ pelicula.titulo }})</h2>
+</div>
 
-<div>
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+    <h4 class="h4">Agregar</h4>
+  <div class="btn-toolbar mb-2 mb-md-0"> 
+    <div class="btn-group mr-2">
+      <button class="btn btn-sm btn-outline-success" (click)="activarAgregarActores()">Agregar Actores</button>
+      <button class="btn btn-sm btn-outline-success" (click)="activarAgregarDirectores()">Agregar Directores</button>
+      <button class="btn btn-sm btn-outline-success" (click)="activarAgregarGeneros()">Agregar Generos</button>
+      <button class="btn btn-sm btn-outline-success" (click)="activarAgregarClasificaciones()">Agregar Clasificaciones</button>
+      
+    </div>
+  </div>
+</div>
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+  <h4 class="h4">Editar</h4>
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <div class="btn-group mr-2">
+      <button class="btn btn-sm btn-outline-warning" (click)="activarEditarActores()">Editar Actores</button>
+      <button class="btn btn-sm btn-outline-warning" (click)="activarEditarDirectores()">Editar Directores</button>
+      <button class="btn btn-sm btn-outline-warning" (click)="activarEditarGeneros()">Editar Generos</button>
+      <button class="btn btn-sm btn-outline-warning" (click)="activarEditarClasificaciones()">Editar Clasificaciones</button>
+      <button class="btn btn-sm btn-outline-warning" (click)="activarEditarDatos()">Editar Datos Pelicula</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--EDITAR DATOS PELICULA-->
+<div *ngIf="editarDatosPelicula">
+  <p>Editar DAtos PELICULA</p>
+  <form>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputEmail4">Email</label>
+        <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputPassword4">Password</label>
+        <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputAddress">Address</label>
+      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+    </div>
+    <div class="form-group">
+      <label for="inputAddress2">Address 2</label>
+      <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputCity">City</label>
+        <input type="text" class="form-control" id="inputCity">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputState">State</label>
+        <select id="inputState" class="form-control">
+          <option selected>Choose...</option>
+          <option>...</option>
+        </select>
+      </div>
+      <div class="form-group col-md-2">
+        <label for="inputZip">Zip</label>
+        <input type="text" class="form-control" id="inputZip">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="gridCheck">
+        <label class="form-check-label" for="gridCheck">
+          Check me out
+        </label>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Sign in</button>
+  </form>
+</div>
+<!--FIN EDITAR DATOS PELICULA-->
+
+<!--EDITAR ACTORES-->
+<div *ngIf="editarActores">
+  <p>Editar  actores</p>
+</div>
+<!--FIN EDITAR ACTORES-->
+
+<!--EDITARDirectores-->
+<div *ngIf="editarDirectores">
+  <p>Editar Directores</p>
+</div>
+<!--FIN EDITAR Directores-->
+
+<!--EDITAR Generos-->
+<div *ngIf="editarGeneros">
+  <p>Editar  Generos</p>
+</div>
+<!--FIN EDITAR Generos-->
+
+<!--EDITAR clasificasiones-->
+<div *ngIf="editarClasificaciones">
+  <p>Editar  clasificaciones<p>
+</div>
+<!--FIN EDITAR Clasificaciones-->
+
+
+
+
+
+
+
+
+<!--agregar actores-->
+<div *ngIf="agregarActores">
+  <p>agregar actores</p>
+</div>
+<!--FIN agregar ACTORES-->
+
+<!--agregar Directores-->
+<div *ngIf="agregarDirectores">
+  <p>agregar Directores</p>
+</div>
+<!--FIN agregar Directores-->
+
+<!--agregar Generos-->
+<div *ngIf="agregarGeneros">
+  <p>agregar generos</p>
+</div>
+<!--FIN agregar Generos-->
+
+<!--agregar clasiicaciones-->
+<div *ngIf="agregarClasificaciones">
+  <p>agregar  clasificaciones
+    <p>
+</div>
+<!--FIN agregar Clasificaciones-->
+
+
+
+
+
+
+
+
+
+<div *ngIf="false">
   <ul class="list-group">
     <li class="list-group-item disabled">
       <pre>{{ pelicula | json }}</pre>
