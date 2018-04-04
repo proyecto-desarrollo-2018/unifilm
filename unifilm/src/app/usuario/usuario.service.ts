@@ -6,6 +6,7 @@ import urljoin from 'url-join';
 import 'rxjs/add/operator/toPromise';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
+import { Tarjeta } from '../models/tarjeta';
 
 
 @Injectable()
@@ -42,6 +43,26 @@ export class UsuarioService {
         return this.http.post(this.usuarioUrl, body , {headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
+    }
+
+    addTarjeta(tarjeta: Tarjeta) {
+        const body = JSON.stringify(tarjeta);
+        console.log('id pelicula body: ' + tarjeta.usuario._id);
+        const url = this.usuarioUrl + '/' + tarjeta.usuario._id + '/tarjetas';
+        const headers = new Headers({ 'Content-Type': 'application/json' });
+        const token = this.getToken();
+
+        return this.http.post(url + token, body, { headers })
+            .map((response: Response) => response.json())
+            .catch((error: Response) => Observable.throw(error.json()));
+    }
+
+
+
+    getToken() {
+        const token = localStorage.getItem('token');
+        return '?token=' + token;
+
     }
 
     handleError(error: any) {

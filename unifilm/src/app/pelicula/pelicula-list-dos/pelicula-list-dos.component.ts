@@ -1,16 +1,15 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { PeliculaService } from './pelicula.service';
-import { Pelicula} from '../models/pelicula';
- 
+import { PeliculaService } from '../pelicula.service';
+import { Pelicula } from '../../models/pelicula';
+
 @Component({
-  selector: 'app-pelicula-list',
-  templateUrl: './pelicula-list.component.html',
-  styleUrls: ['./pelicula-list.component.css'],
+  selector: 'app-pelicula-list-dos',
+  templateUrl: './pelicula-list-dos.component.html',
+  styleUrls: ['./pelicula-list-dos.component.css'],
   providers: [PeliculaService]
 
-})
-export class PeliculaListComponent implements OnInit {
-  @Input() genero: string;
+}) 
+export class PeliculaListDosComponent implements OnInit {
 
   constructor(private peliculaService: PeliculaService) { }
   peliculas: Pelicula[];

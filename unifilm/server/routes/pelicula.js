@@ -4,7 +4,6 @@ import { pelicula } from '../db-api'
 import { handleError } from '../utils'
 import { Pelicula, Director, Actor,Usuario , Calificacion} from '../models'
 
-
 const app = express.Router();
 
 
@@ -117,26 +116,13 @@ const p = req.pelicula
       fechaCal: new Date(),
       usuario: new Usuario(req.user),
   })
-  //console.log('CALIFICACION: ' + JSON.stringify(c));
-
     
-
     const savedCalificacion = await c.save()
-
 
     p.calificacion.push(savedCalificacion)
 
   const pel = new Pelicula(p)
-
-    //console.log('PEL: ' + JSON.stringify(pel));
-
-    await pel.save()
-    
-    
-    
-    
-    
-   // console.log( 'SAVEDCALIFICACION: ' + savedCalificacion);
+    await pel.save()    
     res.status(201).json(savedCalificacion)
 
 })

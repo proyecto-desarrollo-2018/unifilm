@@ -1,5 +1,5 @@
 import mongoose, { Schema } from 'mongoose'
-import { Usuario, Pelicula } from './'
+import { Usuario } from './'
 
 const { ObjectId } = Schema.Types
 
@@ -10,4 +10,4 @@ const CalificacionSchema = Schema({
     usuario: { type: ObjectId , ref: 'Usuario', required: false},
 })
 
-export default mongoose.model('Calificacion', CalificacionSchema)
+export default mongoose.model('Calificacion', CalificacionSchema) 

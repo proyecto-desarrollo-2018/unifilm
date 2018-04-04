@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose'
 import uniqueValidator from 'mongoose-unique-validator'
-import { Tarjeta } from './'
+import { Tarjeta } from './' 
 
 
 const { ObjectId } = Schema.Types
@@ -16,7 +16,7 @@ const UsuarioSchema = Schema({
     contra : { type: String, required: true },
     genero : { type: String, required: false },
     tipoUsuario : { type: String, required: true },
-    tarjeta : { type: ObjectId , ref: 'Tarjeta' , required: false }
+    tarjeta : [{ type: ObjectId , ref: 'Tarjeta' , required: false, default: [] }]
 })
 
 

@@ -1,12 +1,6 @@
-<div class="container-fluid fondo-pelicula">
-  <div  *ngIf="loading" style="padding: 400px 300px ;">
-    <div class="progress" style="height: 40px;">
-      <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%" aria-valuenow="400">CARGANDO DETALLE USUARIO</div>
-    </div>
-  </div>
+
   
-  <div *ngIf="!loading">
-    <p class="container">
+    <p >
       DETALLE DE USUARIO
     </p>
   <div>
@@ -14,7 +8,5 @@
       <li class="list-group-item disabled"><pre>{{ usuario | json }}</pre></li>
     </ul>
   </div>
-  </div>
 
 
-</div>

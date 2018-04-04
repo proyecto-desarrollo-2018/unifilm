@@ -29,6 +29,7 @@ export class UsuarioNewComponent implements OnInit {
       nombre: ['', [Validators.required]],
       apellidoP: ['', [Validators.required, Validaciones.verificarEspacios]],
       apellidoM: ['', [Validators.required, Validaciones.verificarEspacios]],
+      fNacimiento: ['', [Validators.required]],
       correo: ['', [Validators.required, Validators.pattern("^[a-zA-Z0-9-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"), Validaciones.verificarEspacios]],
       sexo: ['', [Validators.required]],
       numeroTarjeta: ['', [Validators.required, Validators.pattern(/^[0-9]{16}$/)]],
@@ -40,7 +41,7 @@ export class UsuarioNewComponent implements OnInit {
   onSubmit() {
     if (this.registro.valid) {
       const { nombreU,tipoUsuario, contra, nombre, apellidoP,
-        apellidoM, correo, sexo,
+        apellidoM, fNacimiento,correo, sexo,
         numeroTarjeta, mesFE, anioFE, codigoS } = this.registro.value;
       const tarjeta: Tarjeta = new Tarjeta(null, numeroTarjeta, mesFE, anioFE, codigoS);
       const usuario = new Usuario(null,
@@ -49,21 +50,24 @@ export class UsuarioNewComponent implements OnInit {
         apellidoP,
         apellidoM,
         null,
-        null,
+        fNacimiento,
         null,
         correo,
         contra,
         sexo,
         tipoUsuario,
-        tarjeta
+        []
       );
+      usuario.tarjeta.push(tarjeta);
 
       this.authService.singup(usuario)
         .subscribe(
           this.authService.login,
           err => console.log(err)
         );
+
       this.registro.reset();
+
     }
   }
 

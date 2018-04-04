@@ -1,0 +1,19 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+  <h1 class="h1">Administrar Peliculas</h1>
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <div class="btn-group mr-2">
+      <button class="btn btn-sm btn-outline-secondary" (click)="activarAgregarPeliculas()">Agregar Pelicula</button>
+      <button class="btn btn-sm btn-outline-secondary" (click)="activarEditarPeliculas()">Editar Pelicula</button>
+    </div>
+
+  </div>
+</div> 
+
+
+<!-- AGREGAR PELICULAS-->
+<app-pelicula-new *ngIf="agregarPeliculas"></app-pelicula-new>
+<!-- AGREGAR PELICULAS FIN-->
+
+<!-- EDITAR PELICULAS-->
+<app-pelicula-list-tres *ngIf="editarPeliculas"></app-pelicula-list-tres> 
+<!-- EDITAR PELICULAS FIN-->  

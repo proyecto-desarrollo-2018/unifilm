@@ -29,6 +29,12 @@ import { PeliculaListComponent } from './pelicula/pelicula-list.component';
 import { PeliculaDetailComponent } from './pelicula/pelicula-detail.component';
 import { AuthService } from './auth/auth.service';
 import { ReporteComponent } from './reporte/reporte.component';
+import { PeliculaListDosComponent } from './pelicula/pelicula-list-dos/pelicula-list-dos.component';
+import { UsuarioList2Component } from './usuario/usuario-list-2/usuario-list-2.component';
+import { AdministracionUsuariosComponent } from './administracion-usuarios/administracion-usuarios.component';
+import { AdministracionPeliculasComponent } from './administracion-peliculas/administracion-peliculas.component';
+import { PeliculaListTresComponent } from './pelicula/pelicula-list-tres/pelicula-list-tres.component';
+import { PeliculaDetailDosComponent } from './pelicula/pelicula-detail-dos/pelicula-detail-dos.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +50,13 @@ import { ReporteComponent } from './reporte/reporte.component';
     PeliculaNewComponent,
     PeliculaListComponent,
     PeliculaDetailComponent,
-    ReporteComponent
+    ReporteComponent,
+    PeliculaListDosComponent,
+    UsuarioList2Component,
+    AdministracionUsuariosComponent,
+    AdministracionPeliculasComponent,
+    PeliculaListTresComponent,
+    PeliculaDetailDosComponent
   ],
   imports: [
     BrowserModule,

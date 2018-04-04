@@ -2,6 +2,7 @@ import express from 'express'
 import jwt from 'jsonwebtoken'
 import { secret } from '../config'
 import { Usuario, Tarjeta } from '../models'
+import { required, usuarioMiddleware } from '../middleware'
 import {
     hashSync as hash,
     compareSync as comparePassword
@@ -50,14 +51,25 @@ app.post('/singin', async (req,res,next) => {
 
 // /api/auth/singup
 app.post('/singup', async (req, res,) => {
-    const { nomUsuario, contra, nombre, apellidoP, apellidoM, correo, genero,
-        tarjeta, tipoUsuario } = req.body;
+    const { nomUsuario,
+nombre,
+apellidoP,
+apellidoM,
+direccion,
+fNacimiento,
+telefono,
+correo,
+contra,
+genero,
+tipoUsuario,
+tarjeta } = req.body;
     const t = new Tarjeta({
         numTarjeta: tarjeta.numTarjeta,
         mesExpiracion:  tarjeta.mesExpiracion,
         anioExpiracion: tarjeta.anioExpiracion,
         codigoSeguridad : tarjeta.codigoSeguridad
     })
+
 
     console.log('Tarjeta: ' + JSON.stringify(t))
 
@@ -66,18 +78,29 @@ app.post('/singup', async (req, res,) => {
         nombre: nombre,
         apellidoP: apellidoP,
         apellidoM: apellidoM,
-        direccion: null,
-        fNacimiento: new Date(),
-        telefono: null,
+        direccion: direccion,
+        fNacimiento: fNacimiento ,
+        telefono: telefono,
         correo: correo,
         contra: hash(contra,10),
         genero: genero,
         tipoUsuario: tipoUsuario ,
-        tarjeta: t
+        tarjeta: []
     })
 
     console.log('Creando nuevo usuario: ' + u )
     const usuario = await u.save()
+
+
+    //añadiendo tarjeta
+    const tarjetaSalvada = await t.save()
+    const usuarioTarjeta = usuario;
+    usuarioTarjeta.tarjeta.push(usuarioTarjeta) ;
+    const usuarioS = new Usuario(usuarioTarjeta)
+    await usuarioS.save();
+    console.log('usuario con tarjeta: ' + JSON.stringify(usuarioS))
+    //--------------------
+
     const token = createToken( usuario )
     res.status(200).json({
         message: 'Usuario salvado',
@@ -99,3 +122,35 @@ function handleLoginFailed(res, message) {
         error: message || 'Email y password no encontrado'
     })
 }
+
+
+// POST /api/usuarios/:id/tarjetas
+
+app.post('/:id/tarjetas', required, usuarioMiddleware, async (req, res) => {
+
+    const u = req.usuario
+
+    const { numTarjeta,
+mesExpiracion,
+anioExpiracion,
+codigoSeguridad
+ } = req.body
+
+    console.log('Comentario: ' + comentario);
+    const t = new Tarjeta({
+        numTarjeta,
+mesExpiracion,
+anioExpiracion,
+codigoSeguridad,
+        usuario: new Usuario(req.user)
+    })
+
+    const savedTarjeta = await t.save()
+
+    u.tarjeta.push(savedTarjeta)
+
+    const us = new Usuario(u)
+    await us.save()
+    res.status(201).json(savedTarjeta)
+
+})

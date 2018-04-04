@@ -55,9 +55,10 @@ export class SingupComponent implements OnInit {
         correo,
         contra, 
         sexo,
-        'socio',
-        tarjeta
+        'cliente',
+        []
         );
+      usuario.tarjeta.push(tarjeta);
 
         this.authService.singup(usuario)
           .subscribe(

@@ -1,10 +1,12 @@
-<div class="fondo-singup">
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+  <h2 class="h2">Agregar Usuarios</h2>
+
+</div>
+  
+
+
   <div class="container-fluid d-flex" >
     <div class="mx-auto my-auto text center">
-      <h6 class="display-1 mx-auto my-auto" >Agregar Usuario</h6>
-      <br>
-      <br>
-
 
       <form [formGroup]="registro" (ngSubmit)="onSubmit()" novalidate>
         <!--Nombre de usuario-->
@@ -77,6 +79,17 @@
               <p class="alert alert-danger" *ngIf="registro.get('apellidoM').hasError('sinEspacios')">No puede haber espacios en el apellido materno</p>
             </div>
             <br>
+
+            <!--Fecha de nacimiento-->
+            <div class="form-group">
+              <label>Fecha de Naciiento</label>
+              <span class="text-danger">*</span>
+              <input  type="date" class="form-control date" id="fNacimiento" formControlName="fNacimiento">
+              <div *ngIf="registro.get('fNacimiento').errors" >
+                <p class="alert alert-danger" *ngIf="registro.get('fNacimiento').hasError('required')">La fecha de nacmiento es requerida</p>
+              </div>
+            </div>
+
           <!--Correro Electronico-->
           <div class="form-group">
             <label>Correo Electronico</label>
@@ -176,3 +189,7 @@
           <br>
           <br>
         </div>
+        </form>
+        </div>
+        </div>
+        

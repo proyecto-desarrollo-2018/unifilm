@@ -21,4 +21,4 @@ const PeliculaSchema = Schema({
     usuarioAgrego: { type: ObjectId, ref: 'Usuario', required: false}
 })
 
-export default mongoose.model('Pelicula', PeliculaSchema)
+export default mongoose.model('Pelicula', PeliculaSchema) 

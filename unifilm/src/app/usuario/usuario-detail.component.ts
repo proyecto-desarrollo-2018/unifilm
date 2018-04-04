@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Usuario } from '../models/usuario';
 import { UsuarioService } from './usuario.service';
 import { ActivatedRoute } from '@angular/router';
@@ -14,17 +14,23 @@ export class UsuarioDetailComponent implements OnInit, OnDestroy {
   loading = true;
   sub: any;
 
-  constructor( private usuarioService: UsuarioService, private route: ActivatedRoute ) { }
+  @Input() idUsuario: string;
+
+
+  constructor( private usuarioService: UsuarioService, private route: ActivatedRoute ) { 
+  }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.usuarioService
-        .getUsuario(params.id)
+        .getUsuario(this.idUsuario)
         .then( (usuario: Usuario) => {
           this.usuario = usuario;
           this.loading = false;
         });
     });
+    console.log('id usuario: ' + this.idUsuario);
+
   }
 
   ngOnDestroy() {
