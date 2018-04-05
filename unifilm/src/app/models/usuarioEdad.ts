@@ -15,7 +15,8 @@ export class UsuarioEdad {
         public genero?: string,
         public tipoUsuario?: string,
         public tarjeta?: Array<Tarjeta>,
-        public edad?: number
+        public edad?: number,
+        public numCalificaciones?: number
     ) { }
 
 }

@@ -2,16 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from './usuario.service';
 import { UsuarioEdad } from '../models/usuarioEdad';
 import { Usuario} from '../models/usuario';
+import { Pelicula } from '../models/pelicula';
+import { PeliculaService } from '../pelicula/pelicula.service';
+import { isEmpty } from 'rxjs/operator/isEmpty';
 
 
 @Component({
   selector: 'app-usuario-list',
   templateUrl: './usuario-list.component.html',
   styleUrls: ['./usuario-list.component.css'],
-  providers: [ UsuarioService ]
+  providers: [ UsuarioService, PeliculaService ]
 })
 export class UsuarioListComponent implements OnInit {
   usuarios: Array<UsuarioEdad>;
+  peliculas: Pelicula[];
+
   loading = true;
   
   /** Graficas*/
@@ -19,10 +24,12 @@ export class UsuarioListComponent implements OnInit {
   width= 900;
   height= 430;
   dataFormat = 'json';
-  type = 'bar2d';
+  type = 'column2d';
   dataSourceTopGeneros;
   dataSourceTopTiposUsuarios;
   dataSourceTopEdades;
+  dataSourceTopCalificaciones;
+
     /** FIN Graficas*/
 
 
@@ -220,9 +227,88 @@ export class UsuarioListComponent implements OnInit {
 
   }
 
+  graficarTopCalificaciones(pel: Pelicula[], usu: UsuarioEdad[]) {
+    let calificaciones = [];
+    pel.forEach((p) => { 
+      if( p.calificacion !== null ){
+        calificaciones.push(p.calificacion);
+      }  
+    });
+
+    for (const u of usu) {
+      u.numCalificaciones = 0;
+    }
+    let contador = 0;
+    for ( const c of calificaciones ){
+      for( const c2 of c ){
+        if( c2.usuario !== undefined ){
+          for (const u of usu) {
+            if( u._id === c2.usuario ){
+                u.numCalificaciones += 1;
+            }
+          }
+        }
+      }
+    }
+
+/*ORDENANDO USUARIOS POR numCalificaciones desc*/
+    for (let i = 1; i < usu.length; i++) {
+      for (let j = 0; j < (usu.length - i); j++) {
+        if (usu[j].numCalificaciones < usu[j + 1].numCalificaciones) {
+          let k = usu[j + 1];
+          usu[j + 1] = usu[j];
+          usu[j] = k;
+        }
+      }
+    }
+/*FIN ORDENANDO USUARIOS POR numCalificaciones ASC*/
+
+
+    console.log('usuarios sin ordenar: ' + JSON.stringify(usu));
+
+    /** Graficas*/
+    this.dataSourceTopCalificaciones = {
+      "chart": {
+        "caption": "Usuarios",
+        "subCaption": "Grafica de top calificaciones",
+        "numberprefix": "#",
+        "theme": "fint",
+        "xAxisName": "Usuario",
+        "yAxisName": "Cantidad de calificaciones por usuario",
+      },
+      "data": [
+        {
+          "label": usu[ 0 ].nombre,
+          "value": usu[ 0 ].numCalificaciones
+        },
+        {
+          "label": usu[ 1 ].nombre,
+          "value":usu[ 1 ].numCalificaciones
+        }
+        ,
+        {
+          "label": usu[ 2 ].nombre,
+          "value":usu[ 2 ].numCalificaciones 
+        }
+        ,
+        {
+          "label":usu[ 3 ].nombre ,
+          "value": usu[ 3 ].numCalificaciones
+        }
+        , {
+          "label": usu[ 4 ].nombre,
+          "value":usu[ 4].numCalificaciones 
+        }
+
+      ]
+    }
+
+
+  }
+
  
   ngOnInit() { 
-
+    
   }
 
 
@@ -231,6 +317,9 @@ export class UsuarioListComponent implements OnInit {
   topGeneros= false;
   topTiposUsuarios = false;
   topEdades = false;
+  topCalificaciones = false;
+
+
   activarTopGeneros() {
     this.ponerFalseActivaciones();
     this.topGeneros = true;
@@ -243,17 +332,23 @@ export class UsuarioListComponent implements OnInit {
     this.ponerFalseActivaciones();
     this.topEdades = true;
   }
+  activarTopCalificaciones() {
+    this.ponerFalseActivaciones();
+    this.topCalificaciones = true;
+  }
 
   ponerFalseActivaciones() {
     this.topGeneros = false;
     this.topTiposUsuarios = false;
     this.topEdades = false;
+    this.topCalificaciones = false;
+
   }
 
       /** ACTIVACIONES TOP FIN|*/
 
 
-  constructor(private usuarioService: UsuarioService) {
+  constructor(private usuarioService: UsuarioService, private peliculaService: PeliculaService) {
 
     this.usuarioService
       .getUsuarios()
@@ -264,6 +359,18 @@ export class UsuarioListComponent implements OnInit {
         this.graficarTopEdades(this.usuarios);
         this.loading = false;
       });
+    this.peliculaService
+      .getPeliculas()
+      .then((peliculas: Pelicula[]) => {
+        this.peliculas = peliculas;
+        this.graficarTopCalificaciones(this.peliculas, this.usuarios);
+
+      });
+
+
+
+
 
   }
+  
 }
