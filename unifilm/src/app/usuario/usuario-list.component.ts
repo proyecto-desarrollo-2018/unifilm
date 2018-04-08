@@ -19,7 +19,7 @@ export class UsuarioListComponent implements OnInit {
 
   loading = true;
   
-  /** Graficas*/
+  /** Graficas*/ 
   id = 'chart1'
   width= 900;
   height= 430;
@@ -231,7 +231,7 @@ export class UsuarioListComponent implements OnInit {
     let calificaciones = [];
     pel.forEach((p) => { 
       if( p.calificacion !== null ){
-        calificaciones.push(p.calificacion);
+        calificaciones.push(p.calificacion); 
       }  
     });
 
@@ -263,8 +263,6 @@ export class UsuarioListComponent implements OnInit {
     }
 /*FIN ORDENANDO USUARIOS POR numCalificaciones ASC*/
 
-
-    console.log('usuarios sin ordenar: ' + JSON.stringify(usu));
 
     /** Graficas*/
     this.dataSourceTopCalificaciones = {

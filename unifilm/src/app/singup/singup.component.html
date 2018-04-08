@@ -30,7 +30,7 @@
               <p class="alert alert-danger" *ngIf="registro.get('contra').hasError('pattern')">No es un password</p>
               <p class="alert alert-danger" *ngIf="registro.get('contra').hasError('sinEspacios')">No puede haber espacios</p>
             </div>
-          </div>
+          </div> 
           <!--Confirmacion de contraseña-->
           <div class="form-group">
             <label>Confirme su passwrod</label>
@@ -73,6 +73,15 @@
               <p class="alert alert-danger" *ngIf="registro.get('apellidoM').hasError('sinEspacios')">No puede haber espacios</p>
             </div>
           </div>
+              <!--Fecha de nacimiento-->
+              <div class="form-group">
+                <label>Fecha de Naciiento</label>
+                <span class="text-danger">*</span>
+                <input type="date" class="form-control date" id="fNacimiento" formControlName="fNacimiento">
+                <div *ngIf="registro.get('fNacimiento').errors">
+                  <p class="alert alert-danger" *ngIf="registro.get('fNacimiento').hasError('required')">La fecha de nacmiento es requerida</p>
+                </div>
+              </div>
           <!--Correro Electronico-->
           <div class="form-group">
             <label>Correo Electronico</label>

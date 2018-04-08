@@ -10,7 +10,7 @@ import { Usuario } from '../../models/usuario';
 })
 export class UsuarioList2Component implements OnInit {
 
-  constructor(private usuarioService: UsuarioService) { }
+  constructor(private usuarioService: UsuarioService) { } 
   usuarios: Usuario[];
   loading = true;
 

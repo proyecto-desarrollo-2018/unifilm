@@ -13,7 +13,7 @@ import { AuthService } from '../auth/auth.service';
 })
 export class UsuarioNewComponent implements OnInit {
 
-  registro: FormGroup;
+  registro: FormGroup; 
 
   ngOnInit() {
   }

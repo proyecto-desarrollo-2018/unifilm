@@ -2,13 +2,105 @@
   <h1 class="h1">Estadisticas Peliculas</h1>
   <div class="btn-toolbar mb-2 mb-md-0">
     <div class="btn-group mr-2">
-      <button class="btn btn-sm btn-outline-secondary" >Top Generos</button>
-      <button class="btn btn-sm btn-outline-secondary" >Top Calificados</button>
-      <button class="btn btn-sm btn-outline-secondary">Lista Peliculas</button>
+      <button class="btn btn-sm btn-outline-secondary" (click)="activarTopGeneros()">Top Generos</button>
+      <button class="btn btn-sm btn-outline-secondary" (click)="activarTopCalificados()">Top Calificados</button>
     </div>
  
   </div>
+</div> 
+
+
+
+<!--TOP GENEROS -->
+<div *ngIf="topGeneros">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+    <h2 class="h2">Top Generos</h2>
+  </div>
+
+  <fusioncharts [id]="id" [width]="width" [height]="height" [type]="type" [dataFormat]="dataFormat" [dataSource]="dataSourceTopGeneros">
+  </fusioncharts>
+
+  <h3>Lista Peliculas</h3>
+  <div class="table-responsive">
+    <table class="table table-striped table-sm table-bordered table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Titulo</th>
+          <th scope="col">Sinopsis</th>
+          <th scope="col"></th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pelicula of peliculas; let i = index">
+          <th scope="row">{{i+1}}</th>
+          <td>{{ pelicula.titulo }}</td>
+          <td>{{ pelicula.sinopsis }}</td>
+          <td>{{ pelicula.generos }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Resultados</h3>
+    <div class="table-responsive">
+      <table class="table table-striped table-sm table-bordered table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Generos</th>
+            <th scope="col">Totales</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let g of totalesGenero;">
+            <td class="bg-info" style="color: white;">
+              <strong>{{ g.genero}}</strong>
+            </td>
+            <td>
+              <strong style="color: blue">{{g.total}}</strong>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
 </div>
+<!--TOP GENEROS FIN -->
 
+<!--TOP  CALIFICADOS -->
+<div *ngIf="topCalificados">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+    <h2 class="h2">Top Calificados</h2>
+  </div>
 
+  <fusioncharts [id]="id" [width]="width" [height]="height" [type]="type" [dataFormat]="dataFormat" [dataSource]="dataSourceTopCalificaciones">
+  </fusioncharts>
+
+  <h3>Lista Peliculas</h3>
+  <div class="table-responsive">
+    <table class="table table-striped table-sm table-bordered table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Titulo</th>
+          <th scope="col">Sinopsis</th>
+          <th scope="col">Calificacion</th>
+
+        </tr>
+      </thead> 
+      <tbody>
+        <tr *ngFor="let pelicula of peliculasTotales; let i = index">
+          <th scope="row">{{i+1}}</th>
+          <td>{{ pelicula.titulo }}</td>
+          <td>{{ pelicula.sinopsis }}</td>
+          <td>{{ pelicula.totalCalificacion }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  
+</div>
+<!--TOP CALIFICADOS FIN -->
 
